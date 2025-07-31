@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Quiz Musical - Musiverso</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-red-200 to-green-100 font-sans text-gray-800">
+  <!-- CABEÇALHO / LOGO -->
+  <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+      <div class="text-2xl font-bold text-red-600 select-none cursor-default">
+        Musiverso - Mini Quiz
+      </div>
+    </div>
+    
+  </header>
+
+  
+
+  <!-- Espaço para o conteúdo não ficar atrás do header fixo -->
+  <main class="pt-24 pb-16 px-6 max-w-xl mx-auto bg-white rounded-2xl shadow-lg">
+    <h1 class="text-4xl font-bold mb-8 text-center text-red-700">Teste seus conhecimentos musicais!</h1>
+    
+    <div id="quiz-container">
+      <!-- Perguntas e respostas vão aparecer aqui -->
+    </div>
+
+    <div id="result" class="hidden text-center mt-10">
+      <p class="text-2xl font-semibold text-green-700 mb-6"></p>
+      <button id="restart-btn" class="bg-red-600 text-white px-6 py-3 rounded-xl hover:bg-red-700 transition">
+        Refazer Quiz
+      </button>
+    </div>
+  </main>
+
+<script>
+  const quizDataOriginal = [
+    { question: "Qual é a figura musical que vale 4 tempos?", options: ["Semínima", "Mínima", "Semibreve", "Colcheia"], answer: 2 },
+    { question: "Quantas cordas tem um violino tradicional?", options: ["4", "6", "5", "7"], answer: 0 },
+    { question: "Qual é a nota musical que vem depois do Fá?", options: ["Sol", "Mi", "Lá", "Ré"], answer: 0 },
+    { question: "O que indica o tempo na música?", options: ["Clave", "Andamento", "Compasso", "Dinâmica"], answer: 1 },
+    { question: "Qual é o nome do símbolo que sustenta uma nota?", options: ["Pausa", "Ponto", "Alteração", "Ligadura"], answer: 2 },
+    { question: "Qual instrumento é conhecido como 'rei dos instrumentos'?", options: ["Piano", "Violão", "Flauta", "Trompete"], answer: 0 },
+    { question: "Qual é a clave que geralmente é usada para notas graves?", options: ["Clave de Sol", "Clave de Fá", "Clave de Dó", "Clave de Ré"], answer: 1 },
+    { question: "O que é um semitom na música?", options: ["Intervalo maior", "Intervalo menor", "Intervalo mais curto entre duas notas", "Intervalo de duas oitavas"], answer: 2 },
+    { question: "Qual instrumento pertence à família dos aerofones?", options: ["Violino", "Saxofone", "Piano", "Guitarra"], answer: 1 },
+    { question: "Qual é o nome do movimento rápido em uma peça musical?", options: ["Adagio", "Allegro", "Lento", "Andante"], answer: 1 },
+    { question: "Quantas notas naturais existem na escala musical?", options: ["7", "8", "5", "12"], answer: 0 },
+    { question: "O que significa 'piano' em dinâmica musical?", options: ["Tocar forte", "Tocar suave", "Tocar rápido", "Tocar devagar"], answer: 1 },
+    { question: "Qual destes instrumentos é de percussão?", options: ["Violão", "Tambor", "Flauta", "Clarinete"], answer: 1 },
+    { question: "Qual tecla no piano corresponde à nota Dó?", options: ["Branca", "Preta", "Vermelha", "Amarela"], answer: 0 },
+    { question: "Qual é o nome do intervalo entre duas notas que têm o dobro ou metade da frequência?", options: ["Quinta", "Oitava", "Terça", "Segunda"], answer: 1 },
+    { question: "O que indica a clave de Sol?", options: ["Posição da nota Sol na pauta", "Posição da nota Fá na pauta", "Número de compassos", "Ritmo da música"], answer: 0 },
+    { question: "Quantos tempos tem um compasso 3/4?", options: ["3 tempos", "4 tempos", "2 tempos", "6 tempos"], answer: 0 },
+    { question: "Qual desses instrumentos é de cordas friccionadas?", options: ["Violino", "Guitarra", "Piano", "Bateria"], answer: 0 },
+    { question: "Qual a função da clave na partitura?", options: ["Determinar o ritmo", "Determinar a posição das notas", "Determinar a velocidade", "Determinar a intensidade"], answer: 1 },
+    { question: "O que é um intervalo?", options: ["Distância entre duas notas", "Duração de uma nota", "Número de compassos", "Tipo de instrumento"], answer: 0 },
+    { question: "Qual é a figura musical que vale meio tempo?", options: ["Colcheia", "Semínima", "Fusa", "Mínima"], answer: 0 },
+    { question: "Qual desses é um instrumento de sopro?", options: ["Piano", "Flauta", "Violão", "Bateria"], answer: 1 },
+    { question: "Quem compôs a 9ª Sinfonia?", options: ["Mozart", "Beethoven", "Bach", "Chopin"], answer: 1 },
+    { question: "Qual é o nome da parte que indica a tonalidade da música?", options: ["Clave", "Armadura de clave", "Compasso", "Dinâmica"], answer: 1 },
+    { question: "Qual instrumento tem teclas brancas e pretas?", options: ["Guitarra", "Piano", "Violino", "Saxofone"], answer: 1 },
+    { question: "Qual a velocidade do andamento Allegro?", options: ["Devagar", "Moderado", "Rápido", "Muito rápido"], answer: 2 },
+    { question: "Quantos tempos existem em um compasso 4/4?", options: ["4 compassos", "4 tempos", "2 compassos", "4 batidas"], answer: 1 },
+    { question: "Qual dessas notas é um sustenido?", options: ["Dó", "Ré#", "Mi", "Fá"], answer: 1 },
+    { question: "Qual família pertence o violoncelo?", options: ["Cordas", "Sopro", "Percussão", "Teclado"], answer: 0 },
+    { question: "Qual é o nome do símbolo que indica silêncio na música?", options: ["Nota", "Pausa", "Clave", "Compasso"], answer: 1 },
+    { question: "Quem é conhecido como o 'pai da música clássica'?", options: ["Bach", "Mozart", "Beethoven", "Haydn"], answer: 3 },
+    { question: "Qual é o menor intervalo musical?", options: ["Tom", "Semitom", "Terça", "Quarta"], answer: 1 },
+    { question: "Quantas cordas tem uma guitarra elétrica?", options: ["4", "6", "7", "12"], answer: 1 },
+    { question: "Qual instrumento é tocado com baquetas?", options: ["Piano", "Bateria", "Violino", "Saxofone"], answer: 1 },
+    { question: "O que é uma clave?", options: ["Símbolo que indica a posição das notas", "Ritmo da música", "Velocidade da música", "Instrumento musical"], answer: 0 },
+    { question: "Qual destes não é um instrumento de sopro?", options: ["Clarinete", "Trompete", "Violão", "Flauta"], answer: 2 },
+    { question: "Qual o nome do instrumento de cordas dedilhadas?", options: ["Violino", "Violão", "Trompete", "Piano"], answer: 1 },
+    { question: "O que significa 'forte' na dinâmica musical?", options: ["Suave", "Rápido", "Forte", "Lento"], answer: 2 },
+    { question: "Qual dessas notas pertence à escala de Dó maior?", options: ["Fá#", "Dó", "Sol#", "Lá#"], answer: 1 },
+    { question: "Qual instrumento possui teclas e é usado em orquestras?", options: ["Piano", "Guitarra", "Violino", "Bateria"], answer: 0 },
+    { question: "Qual a função do maestro?", options: ["Tocar o piano", "Dirigir a orquestra", "Cantar", "Compor música"], answer: 1 },
+    { question: "Quantos tempos tem um compasso 2/4?", options: ["2 tempos", "4 tempos", "3 tempos", "1 tempo"], answer: 0 },
+    { question: "Qual é o nome da tecla preta entre Dó e Ré?", options: ["Dó#", "Ré#", "Si", "Fá"], answer: 0 },
+    { question: "Qual destes é um instrumento de cordas friccionadas?", options: ["Violino", "Guitarra", "Bateria", "Flauta"], answer: 0 },
+    { question: "O que é uma partitura?", options: ["Texto", "Notação musical", "Instrumento", "Técnica vocal"], answer: 1 },
+    { question: "Qual instrumento é conhecido por sua forma de ampulheta?", options: ["Djembê", "Cajón", "Atabaque", "Castanhola"], answer: 3 },
+    { question: "Qual nota vem antes do Mi?", options: ["Ré", "Fá", "Dó", "Lá"], answer: 0 },
+    { question: "Qual é a tecla mais grave do piano?", options: ["Dó", "Si", "Lá", "Fá"], answer: 0 },
+    { question: "Qual a duração da pausa de semínima?", options: ["1 tempo", "2 tempos", "Meio tempo", "4 tempos"], answer: 0 },
+    { question: "Quem compôs a ópera 'Carmen'?", options: ["Bizet", "Verdi", "Mozart", "Chopin"], answer: 0 }
+  ];
+
+  let quizData = [];
+  const quizContainer = document.getElementById('quiz-container');
+  const resultContainer = document.getElementById('result');
+  const resultText = resultContainer.querySelector('p');
+  const restartBtn = document.getElementById('restart-btn');
+
+  let currentQuestion = 0;
+  let score = 0;
+
+  function shuffleArray(array) {
+    for(let i = array.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function pick10Questions() {
+    const shuffled = shuffleArray([...quizDataOriginal]);
+    return shuffled.slice(0, 10);
+  }
+
+  function showQuestion() {
+    const q = quizData[currentQuestion];
+    quizContainer.innerHTML = `
+      <div>
+        <p class="text-lg font-semibold mb-6">${q.question}</p>
+        <div class="space-y-4">
+          ${q.options.map((opt, idx) => `
+            <button
+              class="w-full text-left px-5 py-3 rounded-lg border border-red-400 hover:bg-red-100 transition font-medium"
+              onclick="selectAnswer(${idx})"
+            >${opt}</button>
+          `).join('')}
+        </div>
+        <p class="mt-6 text-sm text-gray-600 text-center">Pergunta ${currentQuestion + 1} de ${quizData.length}</p>
+      </div>
+    `;
+  }
+
+  function selectAnswer(selected) {
+    if(selected === quizData[currentQuestion].answer){
+      score++;
+    }
+    currentQuestion++;
+    if(currentQuestion < quizData.length){
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    quizContainer.classList.add('hidden');
+    resultContainer.classList.remove('hidden');
+    resultText.textContent = `Você acertou ${score} de ${quizData.length} perguntas!`;
+  }
+
+  restartBtn.addEventListener('click', () => {
+    currentQuestion = 0;
+    score = 0;
+    resultContainer.classList.add('hidden');
+    quizContainer.classList.remove('hidden');
+    quizData = pick10Questions();
+    showQuestion();
+  });
+
+  // Inicializa o quiz
+  quizData = pick10Questions();
+  showQuestion();
+
+  // Torna selectAnswer global para funcionar no onclick inline
+  window.selectAnswer = selectAnswer;
+</script>
+
+<div class="w-full text-center mt-12">
+  <a href="index.html" class="inline-block px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition">
+    ← Voltar para o início
+  </a>
+</div>
+
+</body>
+</html>
+
+
