@@ -71,6 +71,9 @@
 (function(){
   const pieces=window.MUSIVERSO_PIANO_PIECES;
   const midi={C4:60,D4:62,E4:64,F4:65,G4:67,A4:69,B4:71,C5:72,D5:74,E5:76};
+  // Leitura nota por nota da pauta do Anexo G I (página impressa 99).
+  // Clave de sol, sem armadura: 1º tempo parcial é Sol4.
+  // A segunda parte começa em Lá4 — não em Fá4.
   const bars=[
     ['G4:1'],
     ['C5:2','B4:1','A4:1'],
@@ -79,16 +82,16 @@
     ['E4:4'],
     ['G4:2','E4:2'],
     ['G4:2','E4:2'],
-    ['E5:2','E5:1','D5:1'],
+    ['C5:2','C5:1','B4:1'],
     ['C5:2','R:1','G4:1'],
-    ['F4:1','E4:1','C4:1','E4:1'],
-    ['F4:1','E4:1','C4:1','E4:1'],
-    ['F4:1','E4:1','F4:1','G4:1'],
-    ['A4:2','R:1','E4:1'],
-    ['F4:1','E4:1','C4:1','E4:1'],
-    ['F4:1','E4:1','C4:1','E4:1'],
-    ['F4:1','E4:1','F4:1','G4:1'],
-    ['A4:2','R:1']
+    ['A4:1','G4:1','F4:1','G4:1'],
+    ['A4:1','G4:1','F4:1','G4:1'],
+    ['A4:1','G4:1','A4:1','B4:1'],
+    ['C5:2','R:1','G4:1'],
+    ['A4:1','G4:1','F4:1','G4:1'],
+    ['A4:1','G4:1','F4:1','G4:1'],
+    ['A4:1','G4:1','A4:1','B4:1'],
+    ['C5:2','R:1']
   ];
   const notes=bars.flatMap((bar,i)=>{
     const events=bar.map(s=>{
