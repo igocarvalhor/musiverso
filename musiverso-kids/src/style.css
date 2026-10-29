@@ -204,3 +204,13 @@
 .piano-br-label{display:inline-block;color:#66449a;font-size:12px;font-weight:900;letter-spacing:1px}
 .piano-unavailable-tag{display:inline-flex;margin-top:10px;padding:9px 13px;border-radius:12px;background:#f2e7ff;color:#624286;font-weight:900;font-size:13px}
 @media(max-width:700px){.piano-licensed-reference{padding:18px 16px;border-radius:20px}}
+
+/* Cantigas em conferência: não permitir que versões incorretas sejam ensinadas */
+.piano-review-list{margin:22px 0;padding:22px;border:2px solid #e8d6f8;border-radius:22px;background:#faf5ff}
+.piano-review-list h2{color:#58308b;margin:0 0 8px}
+.piano-review-list>p{max-width:800px;color:#715d85;margin:0 0 18px}
+.piano-review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.piano-review-item{display:flex;flex-direction:column;gap:6px;border:1px solid #e6dbf2;background:white;border-radius:15px;padding:14px}
+.piano-review-item strong{font-family:'Baloo 2','Nunito',sans-serif;color:#503078}
+.piano-review-item span{color:#88759c;font-size:12px;font-weight:800}
+@media(max-width:700px){.piano-review-list{padding:15px}}
