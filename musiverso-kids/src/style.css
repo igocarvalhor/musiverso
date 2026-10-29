@@ -60,3 +60,132 @@
 .journey-suggestion-theme{margin:14px 2px 0;color:#81758b;font-size:13px;font-weight:800}
 
 .family-game{max-width:1000px;margin:0 auto}.family-game-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 16px}.family-bins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0 24px}.family-bin{display:flex;flex-direction:column;align-items:center;min-height:190px;padding:16px 12px;border:2px dashed #cbb8dd;border-radius:20px;background:#fff;text-align:center;transition:transform .15s,border-color .15s,background .15s}.family-bin:hover{transform:translateY(-2px);border-color:#8752b4;background:#fbf7ff}.family-bin[data-family-bin="strings"]{background:#fff8ee}.family-bin[data-family-bin="wind"]{background:#eef8ff}.family-bin[data-family-bin="percussion"]{background:#f2faef}.family-bin.wrong-family{border-color:#cf6c68;background:#fff0ed}.family-bin-icon{font-size:34px;line-height:1.1}.family-bin strong{margin:5px 0;font-size:20px}.family-bin small{max-width:230px;line-height:1.35;font-size:11px}.family-bin-items{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:11px}.family-sorted-chip{padding:4px 8px;border-radius:999px;background:#ece3f5;color:#62447f;font-size:11px;font-weight:900}.family-bin-empty{color:#8c7b99;font-size:11px}.family-game>h2{margin:10px 0;font-size:20px}.family-instrument-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.family-instrument-card{display:flex;flex-direction:column;align-items:center;gap:7px;padding:9px;border:2px solid #e5dced;border-radius:16px;background:#fff;transition:transform .15s,border-color .15s}.family-instrument-card:hover{transform:translateY(-2px);border-color:#a681c4}.family-instrument-card.selected{border:3px solid #773bb3;background:#f5ecff;box-shadow:0 0 0 3px #773bb326}.family-instrument-card img{width:100%;height:88px;object-fit:contain;border-radius:10px;background:#f7f4fa}.family-instrument-card strong{text-align:center;font-size:13px;line-height:1.25}.family-feedback{min-height:42px;margin:16px 0;padding:10px 12px;border-radius:14px;background:#f4eff9;color:#665174;text-align:center;font-weight:800;line-height:1.45}.family-feedback-wrong{background:#fff0ed;color:#a24d42}.family-feedback-good{background:#effaf2;color:#16844a}.family-game+.game-continue-btn{min-width:240px}@media(max-width:700px){.family-bins{grid-template-columns:1fr;gap:9px}.family-bin{min-height:130px;padding:12px}.family-bin-icon{font-size:29px}.family-bin small{max-width:none}.family-instrument-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.family-instrument-card img{height:86px}.family-game-top .helper{margin:0}}
+
+
+/* Musiverso Kids — botões táteis inspirados na ergonomia de jogos educativos.
+   Preserva a paleta, a tipografia e a navegação originais. */
+:root{
+  --mk-btn-purple:#8143d6;
+  --mk-btn-purple-shadow:#59239c;
+  --mk-btn-blue:#258ae8;
+  --mk-btn-blue-shadow:#1760b2;
+  --mk-btn-green:#27c46d;
+  --mk-btn-green-shadow:#13814a;
+}
+.btn,.game-continue-btn,.continue-journey-btn,
+.answer,.staff-answer,.level-picker button,
+.picture-answer,.music-button,.voice-button{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  font-family:'Baloo 2','Nunito',sans-serif;
+  font-weight:900;
+  border-radius:19px;
+  transition:transform .14s ease,box-shadow .14s ease,filter .14s ease,border-color .14s ease;
+}
+.btn:not(.soft),.game-continue-btn,.continue-journey-btn{
+  position:relative;
+  border:2px solid rgba(255,255,255,.25);
+  min-height:54px;
+  padding:12px 24px;
+  box-shadow:0 5px 0 var(--mk-btn-purple-shadow),0 9px 15px rgba(63,27,112,.13);
+}
+.btn.purple:not(.soft){
+  background:linear-gradient(180deg,#9a60f3 0%,#7936cf 100%);
+  box-shadow:0 5px 0 var(--mk-btn-purple-shadow),0 9px 15px rgba(63,27,112,.13);
+  color:#fff;
+}
+.game-continue-btn,.continue-journey-btn{
+  background:linear-gradient(180deg,#42df86 0%,#1cab5b 100%);
+  box-shadow:0 6px 0 var(--mk-btn-green-shadow),0 10px 17px rgba(21,115,67,.16);
+  color:#fff;
+  font-size:clamp(19px,2vw,23px);
+  min-height:66px;
+  min-width:min(100%,260px);
+  padding:15px 28px;
+  letter-spacing:.15px;
+}
+.btn.soft,.voice-button,.music-button{
+  border:2px solid #e4d3f4;
+  box-shadow:0 4px 0 #d1bce8;
+  background:linear-gradient(180deg,#fff 0%,#f5eeff 100%);
+}
+.answer,.staff-answer,.picture-answer{
+  box-shadow:0 5px 0 #e0d3ee,0 7px 12px rgba(49,25,83,.07);
+  border-width:2px;
+  background:linear-gradient(180deg,#fff 0%,#faf6ff 100%);
+  min-height:76px;
+}
+.answer.selected,.staff-answer.selected{
+  border-color:#8546d5;
+  background:#efe2ff;
+  box-shadow:0 4px 0 #b99bdc;
+}
+.answer.correct,.staff-answer.correct{
+  border-color:#26b56c;
+  background:#e4faed;
+  box-shadow:0 4px 0 #6acb92;
+}
+.answer.wrong,.staff-answer.wrong{
+  border-color:#de6b73;
+  background:#fff0f0;
+  box-shadow:0 4px 0 #f0a5a9;
+}
+.level-picker button{
+  min-height:52px;
+  border-radius:17px;
+  box-shadow:0 4px 0 #ddc8ed;
+}
+.side-links button,#bottom button{
+  border-radius:17px;
+  transition:background-color .14s,transform .14s;
+}
+@media(hover:hover){
+  .btn:not(:disabled):hover,
+  .game-continue-btn:not(:disabled):hover,
+  .continue-journey-btn:not(:disabled):hover,
+  .answer:not(:disabled):hover,
+  .staff-answer:not(:disabled):hover,
+  .picture-answer:not(:disabled):hover,
+  .voice-button:not(:disabled):hover,
+  .music-button:not(:disabled):hover,
+  .level-picker button:not(:disabled):hover{
+    filter:brightness(1.035);
+    transform:translateY(-2px);
+  }
+}
+.btn:not(:disabled):active,
+.game-continue-btn:not(:disabled):active,
+.continue-journey-btn:not(:disabled):active,
+.answer:not(:disabled):active,
+.staff-answer:not(:disabled):active,
+.picture-answer:not(:disabled):active,
+.voice-button:not(:disabled):active,
+.music-button:not(:disabled):active,
+.level-picker button:not(:disabled):active{
+  transform:translateY(4px);
+  box-shadow:0 1px 0 rgba(48,23,86,.3);
+  filter:brightness(.98);
+}
+.btn:focus-visible,.answer:focus-visible,.staff-answer:focus-visible,
+.picture-answer:focus-visible,.level-picker button:focus-visible,
+.voice-button:focus-visible,.music-button:focus-visible{
+  outline:4px solid #ffc83e;
+  outline-offset:3px;
+}
+.btn:disabled,.answer:disabled,.staff-answer:disabled,
+.game-continue-btn:disabled,.continue-journey-btn:disabled{
+  opacity:.55;
+  filter:saturate(.5);
+  cursor:not-allowed;
+  box-shadow:0 3px 0 #b5a9c0;
+}
+@media(max-width:700px){
+  .game-continue-btn,.continue-journey-btn{min-height:68px;max-width:100%;font-size:21px}
+  .answer,.staff-answer{min-height:78px}
+  .btn{min-height:50px}
+}
+@media(prefers-reduced-motion:reduce){
+  .btn,.game-continue-btn,.continue-journey-btn,.answer,.staff-answer,
+  .level-picker button,.picture-answer,.music-button,.voice-button,
+  .side-links button,#bottom button{transition:none!important}
+}
