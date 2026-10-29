@@ -74,7 +74,7 @@
   const bars=[
     ['G4:1'],
     ['C5:2','B4:1','A4:1'],
-    ['G4:3','A4:1'],
+    ['G4:2:next','G4:1:prev','A4:1'],
     ['G4:1','A4:1','G4:1','F4:1'],
     ['E4:4'],
     ['G4:2','E4:2'],
@@ -92,11 +92,11 @@
   ];
   const notes=bars.flatMap((bar,i)=>{
     const events=bar.map(s=>{
-      const [spelling,beatsRaw]=s.split(':');
+      const [spelling,beatsRaw,tie]=s.split(':');
       const beats=Number(beatsRaw);
       if(![.5,1,1.5,2,4].includes(beats)||!(spelling==='R'||Object.hasOwn(midi,spelling)))
         throw Error('Escravos de Jó: figura ou nota inválida '+s);
-      return spelling==='R'?{midi:null,beats}:{midi:midi[spelling],beats,spelling:spelling.slice(0,1)};
+      return spelling==='R'?{midi:null,beats}:{midi:midi[spelling],beats,spelling:spelling.slice(0,1),...(tie==='next'?{tieNext:true}:tie==='prev'?{tiePrevious:true}:{})};
     });
     const sum=events.reduce((acc,n)=>acc+n.beats,0);
     if(sum!==(i===0?1:i===bars.length-1?3:4))
