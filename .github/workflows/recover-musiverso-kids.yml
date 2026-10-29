@@ -1,0 +1,86 @@
+name: Recover Musiverso Kids from verified Vercel deployment
+
+on:
+  push:
+    paths:
+      - .github/workflows/recover-musiverso-kids.yml
+      - musiverso-kids/recovery-manifest.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: true
+      - name: Download and verify the original 200 source files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import shutil
+          import tempfile
+          import time
+          import urllib.parse
+          import urllib.request
+
+          manifest = json.loads(pathlib.Path("musiverso-kids/recovery-manifest.json").read_text("utf-8"))
+          base = "https://musiverso-kids.vercel.app/"
+          assert manifest["source"] == base.rstrip("/")
+          files = manifest["files"]
+          assert len(files) == 200, "Expected 200 files from the selected Vercel deployment"
+          root = pathlib.Path("musiverso-kids")
+          with tempfile.TemporaryDirectory() as temp:
+              staging = pathlib.Path(temp)
+              for i, entry in enumerate(files, start=1):
+                  path = entry["path"]
+                  sha1 = entry["sha1"]
+                  parts = pathlib.PurePosixPath(path).parts
+                  if not parts or parts[0] != "src" or ".." in parts or any(p.startswith(".") for p in parts):
+                      raise ValueError("Unsafe path in source manifest")
+                  if len(sha1) != 40 or any(c not in "0123456789abcdef" for c in sha1):
+                      raise ValueError("Invalid checksum")
+                  target = staging.joinpath(*parts)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  url = urllib.parse.urljoin(base, urllib.parse.quote("/".join(parts), safe="/"))
+                  for attempt in range(4):
+                      try:
+                          req = urllib.request.Request(url, headers={"User-Agent": "MusiversoKidsSourceRecovery/1.0"})
+                          with urllib.request.urlopen(req, timeout=40) as response:
+                              data = response.read()
+                          if hashlib.sha1(data).hexdigest() != sha1:
+                              raise ValueError("File checksum mismatch for " + path)
+                          target.write_bytes(data)
+                          break
+                      except Exception:
+                          if attempt == 3:
+                              raise
+                          time.sleep(2 * (attempt + 1))
+                  print(f"Verified {i}/{len(files)}: {path}", flush=True)
+              for entry in files:
+                  path = pathlib.PurePosixPath(entry["path"])
+                  target = root.joinpath(*path.parts)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copyfile(staging.joinpath(*path.parts), target)
+          print("Recovery complete: all 200 files verified and copied")
+          PY
+      - name: Commit restored files without overwriting the existing Musiverso website
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- musiverso-kids/src
+          if git diff --cached --quiet; then
+            echo "Source files already match deployment."
+          else
+            git commit -m "Restore complete Musiverso Kids application from Vercel"
+            git push origin HEAD:main
+          fi
