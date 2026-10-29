@@ -104,17 +104,23 @@
       ]
     }
   ];
-  const existing=new Set(repertoire.map(p=>p.id));
-  for(const song of songs){
-    if(existing.has(song.id))continue;
-    const {bars,...details}=song;
-    repertoire.push({
-      ...defaults,...details,
-      notes:parse(bars,defaults.meter),
-      sourceCredit:'Adaptação pedagógica simplificada de cantiga tradicional, criada para trabalhar leitura de notas e as cinco figuras permitidas. Há variantes regionais de melodia e ritmo.',
-      scope:details.subtitle
-    });
+  // A versão anterior tinha melodias inventadas e não correspondia às cantigas.
+  // Não permitir tocar nem premiar o aluno por executar uma melodia incorreta.
+  // Novas versões só serão ativadas após conferência de alturas e ritmo com partitura.
+  const flagged=new Set(songs.map(song=>song.id));
+  for(let i=repertoire.length-1;i>=0;i--){
+    if(flagged.has(repertoire[i].id))repertoire.splice(i,1);
   }
+  window.MUSIVERSO_PIANO_FOLK_REVIEW=songs.map(song=>({
+    id:song.id,title:song.title,composer:'Cancioneiro tradicional brasileiro',
+    status:'revisao-melodica',level:song.level,
+    description:'A partitura anterior foi retirada por não reproduzir fielmente a cantiga. Em revisão para garantir notas e ritmo corretos.',
+    source:song.id==='br-ciranda-cirandinha'?
+      'https://www.unirio.br/cla/ivl/publicacoes/cancoes_do_brasil_tomo1.pdf':
+      song.id==='br-sapo-cururu'?
+      'https://www.teses.usp.br/teses/disponiveis/27/27158/tde-08032013-110447/publico/LIUMANYING.pdf':
+      'https://cantigasderoda.com.br/albuns/'
+  }));
   /* Asa Branca: Luiz Gonzaga / Humberto Teixeira (1947).
      A obra NÃO está em domínio público. Não inserir notas ou áudio sem licença. */
   window.MUSIVERSO_PIANO_LICENSED_PENDING=[{
