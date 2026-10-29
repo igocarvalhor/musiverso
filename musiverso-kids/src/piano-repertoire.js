@@ -5081,3 +5081,131 @@ window.MUSIVERSO_PIANO_PIECES = [
     "rhythmScale": 2
   }
 ];
+
+
+/* Repertório complementar: melodias tradicionais em domínio público e
+   duas composições originais de estudo do Musiverso Kids.
+   Cada barra representa um compasso inteiro. A versão pedagógica é
+   monofônica e usa exclusivamente 0.5, 1, 1.5, 2 e 4 tempos. */
+(function addMusiversoKidsPianoRepertoire(){
+  'use strict';
+  const pitch={C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
+  const allowed=new Set([0.5,1,1.5,2,4]);
+  function parseBars(bars,meter){
+    const beatsPerBar=meter[0]*4/meter[1];
+    return bars.flatMap((bar,i)=>{
+      const events=bar.trim().split(/\s+/).map(token=>{
+        const [note,duration]=token.split(':');
+        const beats=Number(duration);
+        if(!allowed.has(beats))throw new Error('Figura não permitida: '+token);
+        if(note==='R')return {midi:null,beats};
+        const match=/^([A-G](?:#|b)?)([2-6])$/.exec(note);
+        if(!match||pitch[match[1]]===undefined)throw new Error('Altura inválida: '+note);
+        return {midi:12*(Number(match[2])+1)+pitch[match[1]],beats,spelling:match[1]};
+      });
+      const sum=events.reduce((acc,e)=>acc+e.beats,0);
+      if(Math.abs(sum-beatsPerBar)>0.00001)throw new Error('Compasso '+(i+1)+' soma '+sum+' em vez de '+beatsPerBar);
+      return events;
+    });
+  }
+  const songs=[
+    {
+      id:'traditional-twinkle',composer:'Melodia tradicional',title:'Brilha, Brilha, Estrelinha',
+      subtitle:'Melodia tradicional completa · 12 compassos',level:'Iniciante',bpm:86,meter:[4,4],key:'C',
+      source:'https://en.wikipedia.org/wiki/Twinkle,_Twinkle,_Little_Star',
+      sourceCredit:'Melodia tradicional francesa Ah! vous dirai-je, maman, em arranjo pedagógico monofônico. Não é apresentada como composição de Mozart.',
+      bars:[
+        'C4:1 C4:1 G4:1 G4:1','A4:1 A4:1 G4:2',
+        'F4:1 F4:1 E4:1 E4:1','D4:1 D4:1 C4:2',
+        'G4:1 G4:1 F4:1 F4:1','E4:1 E4:1 D4:2',
+        'G4:1 G4:1 F4:1 F4:1','E4:1 E4:1 D4:2',
+        'C4:1 C4:1 G4:1 G4:1','A4:1 A4:1 G4:2',
+        'F4:1 F4:1 E4:1 E4:1','D4:1 D4:1 C4:2'
+      ]
+    },
+    {
+      id:'traditional-frere-jacques',composer:'Melodia tradicional francesa',title:'Frère Jacques (Frei João)',
+      subtitle:'Quatro frases completas, com repetições · 8 compassos',level:'Iniciante',bpm:92,meter:[4,4],key:'C',
+      source:'https://en.wikipedia.org/wiki/Fr%C3%A8re_Jacques',
+      sourceCredit:'Canção tradicional em arranjo monofônico na tonalidade de dó maior. A versão original também é cantada em cânone.',
+      bars:[
+        'C4:1 D4:1 E4:1 C4:1','C4:1 D4:1 E4:1 C4:1',
+        'E4:1 F4:1 G4:2','E4:1 F4:1 G4:2',
+        'G4:0.5 A4:0.5 G4:0.5 F4:0.5 E4:1 C4:1',
+        'G4:0.5 A4:0.5 G4:0.5 F4:0.5 E4:1 C4:1',
+        'C4:1 G3:1 C4:2','C4:1 G3:1 C4:2'
+      ]
+    },
+    {
+      id:'traditional-mary-lamb',composer:'Melodia tradicional',title:'Mary Had a Little Lamb',
+      subtitle:'Melodia completa de estudo · 8 compassos',level:'Iniciante',bpm:84,meter:[4,4],key:'C',
+      source:'https://en.wikipedia.org/wiki/Mary_Had_a_Little_Lamb',
+      sourceCredit:'Melodia tradicional popularizada no século XIX, simplificada em dó maior; a realização melódica é adaptada para estudo infantil.',
+      bars:[
+        'E4:1 D4:1 C4:1 D4:1','E4:1 E4:1 E4:2',
+        'D4:1 D4:1 D4:2','E4:1 G4:1 G4:2',
+        'E4:1 D4:1 C4:1 D4:1','E4:1 E4:1 E4:1 E4:1',
+        'D4:1 D4:1 E4:1 D4:1','C4:4'
+      ]
+    },
+    {
+      id:'traditional-london-bridge',composer:'Melodia tradicional inglesa',title:'London Bridge',
+      subtitle:'Tema completo em versão de estudo · 8 compassos',level:'Iniciante',bpm:98,meter:[4,4],key:'C',
+      source:'https://en.wikipedia.org/wiki/London_Bridge_Is_Falling_Down',
+      sourceCredit:'Arranjo didático monofônico do tema tradicional London Bridge Is Falling Down, com cadências rítmicas simplificadas.',
+      bars:[
+        'G4:1 A4:1 G4:1 F4:1','E4:1 F4:1 G4:2',
+        'D4:1 E4:1 F4:2','E4:1 F4:1 G4:2',
+        'G4:1 A4:1 G4:1 F4:1','E4:1 F4:1 G4:2',
+        'D4:1 G4:1 E4:1 F4:1','E4:4'
+      ]
+    },
+    {
+      id:'traditional-hot-cross-buns',composer:'Melodia tradicional inglesa',title:'Hot Cross Buns',
+      subtitle:'Canção completa em quatro frases · 4 compassos',level:'Iniciante',bpm:82,meter:[4,4],key:'C',
+      source:'https://en.wikipedia.org/wiki/Hot_Cross_Buns_(song)',
+      sourceCredit:'Melodia tradicional em arranjo monofônico para crianças. A frase repetida e as colcheias são mantidas.',
+      bars:[
+        'E4:1 D4:1 C4:2','E4:1 D4:1 C4:2',
+        'C4:0.5 C4:0.5 C4:0.5 C4:0.5 D4:0.5 D4:0.5 D4:0.5 D4:0.5',
+        'E4:1 D4:1 C4:2'
+      ]
+    },
+    {
+      id:'musiverso-passeio-musical',composer:'Musiverso Kids',title:'Passeio Musical',
+      subtitle:'Composição didática original · 8 compassos',level:'Intermediário',bpm:90,meter:[4,4],key:'C',
+      source:'https://musiverso-kids.vercel.app/',
+      sourceCredit:'Composição didática original criada para o Musiverso Kids: frases com semínima pontuada e colcheia.',
+      bars:[
+        'C4:1 D4:1 E4:1 G4:1','A4:1.5 G4:0.5 E4:2',
+        'F4:1 E4:1 D4:1 C4:1','D4:1.5 E4:0.5 G4:2',
+        'G4:1 A4:1 B4:1 C5:1','B4:1.5 A4:0.5 G4:2',
+        'E4:1 G4:1 D4:1 B3:1','C4:4'
+      ]
+    },
+    {
+      id:'musiverso-jardim-ritmico',composer:'Musiverso Kids',title:'Jardim dos Ritmos',
+      subtitle:'Composição didática original · 8 compassos',level:'Intermediário',bpm:76,meter:[4,4],key:'C',
+      source:'https://musiverso-kids.vercel.app/',
+      sourceCredit:'Composição didática original criada para treinar diferentes durações, escalas e pausas.',
+      bars:[
+        'C4:0.5 D4:0.5 E4:1 G4:2','A4:1.5 G4:0.5 E4:1 D4:1',
+        'F4:2 E4:1 D4:1','C4:1 R:1 G4:2',
+        'A4:0.5 B4:0.5 C5:1 B4:1 A4:1','G4:1.5 E4:0.5 F4:2',
+        'E4:1 D4:1 B3:1 G3:1','C4:4'
+      ]
+    }
+  ];
+  const existing=new Set(window.MUSIVERSO_PIANO_PIECES.map(p=>p.id));
+  for(const song of songs){
+    if(existing.has(song.id))continue;
+    const {bars,...metadata}=song;
+    window.MUSIVERSO_PIANO_PIECES.push({
+      ...metadata,composerId:'traditional',notes:parseBars(bars,song.meter),
+      sourceLabel:'Repertório pedagógico · '+song.composer,
+      license:song.composer==='Musiverso Kids'?'Composição original Musiverso Kids':'Melodia tradicional em domínio público',
+      licenseUrl:song.composer==='Musiverso Kids'?'https://musiverso-kids.vercel.app/':'https://creativecommons.org/publicdomain/mark/1.0/',
+      scope:song.subtitle,rhythmScale:1
+    });
+  }
+})();
