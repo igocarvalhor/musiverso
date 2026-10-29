@@ -189,3 +189,18 @@
   .level-picker button,.picture-answer,.music-button,.voice-button,
   .side-links button,#bottom button{transition:none!important}
 }
+
+/* Cancioneiro brasileiro e referência de obra licenciada */
+.piano-licensed-reference{
+  margin:24px 0 18px;
+  padding:22px 24px;
+  border-radius:24px;
+  border:2px solid #e7d7f4;
+  background:linear-gradient(135deg,#fffdf6 0%,#f4edff 100%);
+  box-shadow:0 5px 0 #ddd0ec;
+}
+.piano-licensed-reference h2{margin:7px 0 6px;color:#512394}
+.piano-licensed-reference p{margin:8px 0;max-width:760px}
+.piano-br-label{display:inline-block;color:#66449a;font-size:12px;font-weight:900;letter-spacing:1px}
+.piano-unavailable-tag{display:inline-flex;margin-top:10px;padding:9px 13px;border-radius:12px;background:#f2e7ff;color:#624286;font-weight:900;font-size:13px}
+@media(max-width:700px){.piano-licensed-reference{padding:18px 16px;border-radius:20px}}
