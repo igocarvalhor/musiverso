@@ -62,3 +62,64 @@
       window.MUSIVERSO_PIANO_FOLK_REVIEW.filter(p=>p.id!==song.id);
   }
 })();
+
+
+/* Escravos de Jó — transcrição da melodia do Anexo G I, p. 99 da mesma fonte.
+   A fonte usa 2/4, com anacruse de uma colcheia. Durações dobradas para
+   o estudo em 4/4 sem perder o ritmo proporcional. Ligaduras de expressão
+   entre alturas DIFERENTES não são representadas como ligaduras de duração. */
+(function(){
+  const pieces=window.MUSIVERSO_PIANO_PIECES;
+  const midi={C4:60,D4:62,E4:64,F4:65,G4:67,A4:69,B4:71,C5:72,D5:74,E5:76};
+  const bars=[
+    ['G4:1'],
+    ['C5:2','B4:1','A4:1'],
+    ['G4:3','A4:1'],
+    ['G4:1','A4:1','G4:1','F4:1'],
+    ['E4:4'],
+    ['G4:2','E4:2'],
+    ['G4:2','E4:2'],
+    ['E5:2','E5:1','D5:1'],
+    ['C5:2','R:1','G4:1'],
+    ['F4:1','E4:1','C4:1','E4:1'],
+    ['F4:1','E4:1','C4:1','E4:1'],
+    ['F4:1','E4:1','F4:1','G4:1'],
+    ['A4:2','R:1','G4:1'],
+    ['F4:1','E4:1','C4:1','E4:1'],
+    ['F4:1','E4:1','C4:1','E4:1'],
+    ['F4:1','E4:1','F4:1','G4:1'],
+    ['A4:2','R:1']
+  ];
+  const notes=bars.flatMap((bar,i)=>{
+    const events=bar.map(s=>{
+      const [spelling,beatsRaw]=s.split(':');
+      const beats=Number(beatsRaw);
+      if(![.5,1,1.5,2,4].includes(beats)||!(spelling==='R'||Object.hasOwn(midi,spelling)))
+        throw Error('Escravos de Jó: figura ou nota inválida '+s);
+      return spelling==='R'?{midi:null,beats}:{midi:midi[spelling],beats,spelling:spelling.slice(0,1)};
+    });
+    const sum=events.reduce((acc,n)=>acc+n.beats,0);
+    if(sum!==(i===0?1:i===bars.length-1?3:4))
+      throw Error('Escravos de Jó: erro no compasso '+i+' ('+sum+')');
+    return events;
+  });
+  const song={
+    id:'br-escravos-de-jo',
+    composerId:'traditional-brasil',composer:'Folclore brasileiro',
+    title:'Escravos de Jó',
+    subtitle:'Partitura de referência · 16 compassos + anacruse',
+    level:'Intermediário',bpm:118,meter:[4,4],pickupBeats:1,key:'C',
+    notes,
+    source:'https://bvsms.saude.gov.br/bvs/publicacoes/premio2008/tania_rosseto.pdf',
+    sourceLabel:'Rossetto (2008) · Anexo G I, p. 99 · Escravos de Jó',
+    sourceCredit:'Transcrição do Anexo G I da monografia de Tania C. F. S. Rossetto (2008), preservando alturas, pausas e ritmos proporcionais. Como a fonte usa 2/4 com semicolcheias ocasionais, as durações são duplicadas para o modo didático do piano infantil.',
+    license:'Cantiga tradicional · transcrição pedagógica própria',
+    licenseUrl:'https://creativecommons.org/publicdomain/mark/1.0/',
+    scope:'Melodia da edição consultada · 16 compassos',rhythmScale:2
+  };
+  const prev=pieces.findIndex(p=>p.id===song.id);
+  if(prev>=0)pieces.splice(prev,1);
+  pieces.push(song);
+  if(Array.isArray(window.MUSIVERSO_PIANO_FOLK_REVIEW))
+    window.MUSIVERSO_PIANO_FOLK_REVIEW=window.MUSIVERSO_PIANO_FOLK_REVIEW.filter(x=>x.id!==song.id);
+})();
