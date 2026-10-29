@@ -27,7 +27,9 @@ function pianoRestSvg(beats,x,y,color='#746087'){
 }
 function pianoClefSvg(bass,x,bottom){return bass?`<g transform="translate(${x} ${bottom-36})" fill="#493556"><path d="M0 0C0 -21 33 -21 33 0C33 19 13 33 -4 39C12 27 22 13 22 0C22 -15 7 -13 5 -3"/><circle cx="3" cy="1" r="6"/><circle cx="42" cy="-6" r="2.6"/><circle cx="42" cy="6" r="2.6"/></g>`:`<text x="${x}" y="${bottom+9}" font-size="72" font-family="Noto Music,DejaVu Serif,serif" fill="#493556">𝄞</text>`}
 function pianoScore(piece){
- const events=buildPianoEvents(piece),barBeats=piece.meter[0]*4/piece.meter[1],total=events.at(-1).end,bars=Array.from({length:Math.ceil(total/barBeats)},(_,i)=>events.filter(e=>Math.floor((e.start+.00001)/barBeats)===i));
+ const events=buildPianoEvents(piece),barBeats=piece.meter[0]*4/piece.meter[1],total=events.at(-1).end,pickup=piece.pickupBeats||0,barGroups=new Map();
+ events.forEach(e=>{const barIndex=pickup?(e.start<pickup-0.00001?0:1+Math.floor((e.start-pickup+0.00001)/barBeats)):Math.floor((e.start+0.00001)/barBeats);if(!barGroups.has(barIndex))barGroups.set(barIndex,[]);barGroups.get(barIndex).push(e)});
+ const bars=[...barGroups.entries()].sort((a,b)=>a[0]-b[0]).map(([,notes])=>notes);
  const grand=piece.notes.some(n=>n.midi&&n.midi<55),trebleBottom=148,bassBottom=268,height=grand?370:250,labelY=grand?336:216;
  let cursor=115;const xs=[],ends=[];bars.forEach(notes=>{let local=35;notes.forEach(e=>{xs[e.index]=cursor+local;local+=Math.max(64,e.beats*40)});cursor+=Math.max(205,local+26);ends.push(cursor)});const width=cursor+25;
  let svg=`<svg class="piano-score" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Partitura colorida, ${grand?'claves de sol e fá':'clave de sol'}, ${piece.meter[0]} por ${piece.meter[1]}">`;
