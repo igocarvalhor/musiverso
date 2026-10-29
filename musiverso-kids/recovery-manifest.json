@@ -1,0 +1,806 @@
+{
+  "source": "https://musiverso-kids.vercel.app",
+  "deployment": "dpl_2hzkwjhGJYdtYeWALyzX5JU9w51z",
+  "files": [
+    {
+      "path": "src/app.js",
+      "sha1": "dee76254f647f10046b0ca9d8c77e51ba972d269"
+    },
+    {
+      "path": "src/assets/audio/bassoon-example.mp3",
+      "sha1": "fed379068607f44374fd584c74275238aa74fbe1"
+    },
+    {
+      "path": "src/assets/audio/cello-example.mp3",
+      "sha1": "f25c16563571522ea143fc437314652d92517905"
+    },
+    {
+      "path": "src/assets/audio/clarinet-example.mp3",
+      "sha1": "7388db81e3eb818cd32e81a4b67413a6bcbd2ed9"
+    },
+    {
+      "path": "src/assets/audio/composer-bach.mp3",
+      "sha1": "58a9096b704e32dae4d6e46507afbcd332b3721f"
+    },
+    {
+      "path": "src/assets/audio/composer-beethoven.mp3",
+      "sha1": "ef413070238c08ff8d97a33c73d6a126c82702cb"
+    },
+    {
+      "path": "src/assets/audio/composer-chopin.mp3",
+      "sha1": "dbab7e9e888d317a83f4cc543a5fd896093bcf7f"
+    },
+    {
+      "path": "src/assets/audio/composer-haydn.mp3",
+      "sha1": "2ab8d4dd04f87020767649e2bbcbea4d4b6224d2"
+    },
+    {
+      "path": "src/assets/audio/composer-mozart.mp3",
+      "sha1": "3e257485502216f83a165a085ddf5cbba5353d58"
+    },
+    {
+      "path": "src/assets/audio/composer-vivaldi.mp3",
+      "sha1": "a72b0c4a5e9c338fd8219afbd529683e3bcb785d"
+    },
+    {
+      "path": "src/assets/audio/contrabass-example.mp3",
+      "sha1": "ef5a102cffdb514559a4d8f6eb1219365ef0da7c"
+    },
+    {
+      "path": "src/assets/audio/credits.json",
+      "sha1": "9c80e0410807180e22209236aaf035db6848a8ba"
+    },
+    {
+      "path": "src/assets/audio/drum-example.mid",
+      "sha1": "5af226efbd456b8e60a75f74af5a9cbf66253ecd"
+    },
+    {
+      "path": "src/assets/audio/drum-example.mp3",
+      "sha1": "04c02f67a8873adb8c25176fa4827cb35b130b55"
+    },
+    {
+      "path": "src/assets/audio/drum.json",
+      "sha1": "3aec16b446c7e3f6d5baa83496ff7cdc7a550bd7"
+    },
+    {
+      "path": "src/assets/audio/echo-1.mp3",
+      "sha1": "d389e96ffcb0097174985658eeaf7d59392d85bc"
+    },
+    {
+      "path": "src/assets/audio/echo-2.mp3",
+      "sha1": "0c668d7433b5fa3ff2c98236da754329b09f4b28"
+    },
+    {
+      "path": "src/assets/audio/echo-3.mp3",
+      "sha1": "9769dde1c38618401b6ff1ead92ff835ee4268a0"
+    },
+    {
+      "path": "src/assets/audio/echo-tap.mp3",
+      "sha1": "9f19e9405b48cf0c3b4670228780a086a359811c"
+    },
+    {
+      "path": "src/assets/audio/figure-eighth-rest.mp3",
+      "sha1": "8b7626d6c423e78bdeb02c485797e0126c9043ff"
+    },
+    {
+      "path": "src/assets/audio/figure-eighth.mp3",
+      "sha1": "50ca087bf2525f9d1e624a012bdd6083d3182aa2"
+    },
+    {
+      "path": "src/assets/audio/figure-half.mp3",
+      "sha1": "c47ad2e4a116c1723dbfaaebc89361405914a617"
+    },
+    {
+      "path": "src/assets/audio/figure-quarter.mp3",
+      "sha1": "c07993a23bf7c5300d374519e8218b9b019e1637"
+    },
+    {
+      "path": "src/assets/audio/figure-rest.mp3",
+      "sha1": "eb2beb2cd87206e4f994fc6fdb5ea5523f536dbf"
+    },
+    {
+      "path": "src/assets/audio/figure-whole.mp3",
+      "sha1": "752f0a120eca154deac144fa73a539c2233bfa78"
+    },
+    {
+      "path": "src/assets/audio/flute-example.mid",
+      "sha1": "935488523c72def10b3c9fc9abcc4071339580c7"
+    },
+    {
+      "path": "src/assets/audio/flute-example.mp3",
+      "sha1": "f40e95a3e0117f4a387a2adde02040aa96e57c71"
+    },
+    {
+      "path": "src/assets/audio/flute.json",
+      "sha1": "aeaad75f8beece72ee5c3a8abb44a3b7558cd228"
+    },
+    {
+      "path": "src/assets/audio/guitar-example.mid",
+      "sha1": "0625db929ae386a92682d6ab07cd39b42a58c8e4"
+    },
+    {
+      "path": "src/assets/audio/guitar-example.mp3",
+      "sha1": "85dd8f2a70631dc90489c426d6c186b1bd50b885"
+    },
+    {
+      "path": "src/assets/audio/guitar.json",
+      "sha1": "a85df14cb0f9d63757e8d3ab9cbe02df9bb3670b"
+    },
+    {
+      "path": "src/assets/audio/memory-eighth.mp3",
+      "sha1": "bfd5020fa21cee4d5a8d144a8302fa89c1a3b319"
+    },
+    {
+      "path": "src/assets/audio/memory-half.mp3",
+      "sha1": "7f2be2ea6e57f98209649e486b0881985ff8f6d6"
+    },
+    {
+      "path": "src/assets/audio/memory-quarter.mp3",
+      "sha1": "dab4a0e5a7f0b7b5f1e5451b8a6fb6fa4bf2f481"
+    },
+    {
+      "path": "src/assets/audio/memory-whole.mp3",
+      "sha1": "4340d9ceec782bca4a1da26bdd8cce19d2b8e926"
+    },
+    {
+      "path": "src/assets/audio/oboe-example.mp3",
+      "sha1": "8ce86526471d371697f8decdd803838f8f3f25bf"
+    },
+    {
+      "path": "src/assets/audio/piano-example.mid",
+      "sha1": "c8e970035aa6b0dacd553ceb74e393a1155db8a4"
+    },
+    {
+      "path": "src/assets/audio/piano-example.mp3",
+      "sha1": "64334e3b82b6c3438ecad28a5280373e2c59e54d"
+    },
+    {
+      "path": "src/assets/audio/piano.json",
+      "sha1": "08a8f5560cd756de7940d67d1714324c528bda67"
+    },
+    {
+      "path": "src/assets/audio/timpani-example.mp3",
+      "sha1": "1b9eb3612b64fd7a220dd1cf4c4300b7e59a6cd0"
+    },
+    {
+      "path": "src/assets/audio/violin-example.mp3",
+      "sha1": "9811a4060047afc4b41557429330c5f6d60847af"
+    },
+    {
+      "path": "src/assets/history/bone-flute.jpg",
+      "sha1": "1a092e877c1fe6fbf551eb093bb409e6f380d377"
+    },
+    {
+      "path": "src/assets/history/choir.jpg",
+      "sha1": "4dddacd36816406b4918d5e630cf8508e7c56542"
+    },
+    {
+      "path": "src/assets/history/clapping.jpg",
+      "sha1": "d1ad37155d52e530509070c7101a1b33de591cf3"
+    },
+    {
+      "path": "src/assets/history/concert.jpg",
+      "sha1": "87574fdce8aa53708b527d90b831855ff665f02e"
+    },
+    {
+      "path": "src/assets/history/frevo.jpg",
+      "sha1": "d5581dc4339133f91e38d0fb165a89ba62eab0b9"
+    },
+    {
+      "path": "src/assets/history/harpsichord.jpg",
+      "sha1": "70ab788b8863a63405ace17674190a305cb64449"
+    },
+    {
+      "path": "src/assets/history/lyre.jpg",
+      "sha1": "87896075bf9df8f549f744918f4fea56337d2fb9"
+    },
+    {
+      "path": "src/assets/history/machaut.jpg",
+      "sha1": "29c4abe9ef4b474c059bc743438473d130404cb9"
+    },
+    {
+      "path": "src/assets/history/magic-flute.jpg",
+      "sha1": "ee2f1abd01b6bff57fc5dc525f6276cae0ccbc48"
+    },
+    {
+      "path": "src/assets/history/manuscript.gif",
+      "sha1": "602a04242ddf918baccf7e04d28c53fb7b053b96"
+    },
+    {
+      "path": "src/assets/history/notre-dame.jpg",
+      "sha1": "0440bc16c3e4d512de9c2e5ba9eb20c15cd76815"
+    },
+    {
+      "path": "src/assets/history/orchestra.jpg",
+      "sha1": "406c93ded53875523c853b53013b28f0d6c6dc76"
+    },
+    {
+      "path": "src/assets/history/perotin-score.jpg",
+      "sha1": "025f8bafc2d6b186c243c6812eddbeae19e9006b"
+    },
+    {
+      "path": "src/assets/history/phonograph.jpg",
+      "sha1": "0263fbed1e01e235ab8fe68a1155f43d1cb5609a"
+    },
+    {
+      "path": "src/assets/history/studio.jpg",
+      "sha1": "283953a4f8b191c9b7023c7fe9ee28f96fb5b41c"
+    },
+    {
+      "path": "src/assets/history/troubadour.jpg",
+      "sha1": "4e017cea5472dd7301cc5e24314988741149abec"
+    },
+    {
+      "path": "src/assets/history/violin.png",
+      "sha1": "d6beddd8f354037cba291a8955e4337fd1721b17"
+    },
+    {
+      "path": "src/assets/instruments/bassoon.jpg",
+      "sha1": "5600d374f35284b562ffc138d24502171b61f15d"
+    },
+    {
+      "path": "src/assets/instruments/cello.jpg",
+      "sha1": "3aa2ebc2eec47be1fb83217f9a4e4f780a8c93cc"
+    },
+    {
+      "path": "src/assets/instruments/clarinet.jpg",
+      "sha1": "77ea877f17ea52bd325b1875602a93fb1353e1ee"
+    },
+    {
+      "path": "src/assets/instruments/contrabass.jpg",
+      "sha1": "0fb81831712cbcc1fe56c4c3488635557c0018a4"
+    },
+    {
+      "path": "src/assets/instruments/drum.jpg",
+      "sha1": "b9179cf3d1526020dc38b05034c8daa76905f929"
+    },
+    {
+      "path": "src/assets/instruments/flute.jpg",
+      "sha1": "97fbb9bd6786b6bf650f254001a6e95b62a36e47"
+    },
+    {
+      "path": "src/assets/instruments/guitar.png",
+      "sha1": "86967045d68a730ffcc6d20b34b2d2030554ca2c"
+    },
+    {
+      "path": "src/assets/instruments/oboe.jpg",
+      "sha1": "c5b872315f2a88966f617e831184ff488f4c8a9f"
+    },
+    {
+      "path": "src/assets/instruments/piano.jpg",
+      "sha1": "d70ff14045f584beb880791cb102d10b06d71227"
+    },
+    {
+      "path": "src/assets/instruments/timpani.jpg",
+      "sha1": "b37a4686daedb4a24482abc39bf7adeda92e10c5"
+    },
+    {
+      "path": "src/assets/instruments/violin.jpg",
+      "sha1": "d7ff08c7834409640953b396764e3e35839a242f"
+    },
+    {
+      "path": "src/assets/journey-storybook.png",
+      "sha1": "7389b9f5a0075b8c5c98491fce98cef2991a3288"
+    },
+    {
+      "path": "src/assets/people/bach.jpg",
+      "sha1": "be2f242e82f9bce4cb94fb408e6fcdb0aacbf44e"
+    },
+    {
+      "path": "src/assets/people/beethoven.jpg",
+      "sha1": "ff26c55635ece6af7245b7bf35c26858e63e7ada"
+    },
+    {
+      "path": "src/assets/people/chiquinha.jpg",
+      "sha1": "dd6931ef54adaf9a919dcaceafc1c2f886af9bdf"
+    },
+    {
+      "path": "src/assets/people/chopin.jpg",
+      "sha1": "b2742260a85ddbabd804f017d2c04e4ccfdc0037"
+    },
+    {
+      "path": "src/assets/people/clara.jpg",
+      "sha1": "610ea2cd26c1c4ff84fe98c366690a1110c0c9fb"
+    },
+    {
+      "path": "src/assets/people/haydn.jpg",
+      "sha1": "0e59bc94d8fbddc22a3ee081eb71f38fcae582f2"
+    },
+    {
+      "path": "src/assets/people/hildegard.jpg",
+      "sha1": "6d00d7902dc6df66ab140c1778b1dce1e3cbda8a"
+    },
+    {
+      "path": "src/assets/people/josquin.jpg",
+      "sha1": "fdffe083b66ca96387e250a4dd69672d1c9c386b"
+    },
+    {
+      "path": "src/assets/people/mozart.jpg",
+      "sha1": "baa25ee1148b3e52bda3560a92d9b6cb262d9247"
+    },
+    {
+      "path": "src/assets/people/pixinguinha.jpg",
+      "sha1": "6be81a8574285749d27a0c4ff7c79e52169e28d5"
+    },
+    {
+      "path": "src/assets/people/schubert.jpg",
+      "sha1": "13a18f1c574754547cc5fcc4a2f74080e7a0ba68"
+    },
+    {
+      "path": "src/assets/people/villa-lobos.jpg",
+      "sha1": "9ac2c92d1c67161e65a7e551470ccaaa4de28fe9"
+    },
+    {
+      "path": "src/assets/people/vivaldi.jpg",
+      "sha1": "e38e28394e2525911d962187ea473a706cd20b91"
+    },
+    {
+      "path": "src/assets/valley.png",
+      "sha1": "71f35413fe1ddcf4cdb558db30b5e010d937c082"
+    },
+    {
+      "path": "src/assets/voice/003aaf096e076b5b.mp3",
+      "sha1": "9a0b6a8958f107cf52596d4f96699b9f3afee5da"
+    },
+    {
+      "path": "src/assets/voice/00b3d5c322c4f990.mp3",
+      "sha1": "bfba2b87cf863a01ec288f5e369b4a3191c8c175"
+    },
+    {
+      "path": "src/assets/voice/018cc3486ea0f526.mp3",
+      "sha1": "44453884c2aff766470658a2d471e55a60bcd573"
+    },
+    {
+      "path": "src/assets/voice/03708e14ad02603e.mp3",
+      "sha1": "fd977dbf56079bd4727949e4b51d9d0c474131c6"
+    },
+    {
+      "path": "src/assets/voice/03beb04ce8d404e9.mp3",
+      "sha1": "64a048b4e8ded4eb8a6125d222c28be3ac5fcb7a"
+    },
+    {
+      "path": "src/assets/voice/06890e3970128247.mp3",
+      "sha1": "0f367182002f19c104156d01db16d9426a60abdb"
+    },
+    {
+      "path": "src/assets/voice/074187390a68fefd.mp3",
+      "sha1": "a2d8477d0f890ce0e762bf78f102554acb0f355b"
+    },
+    {
+      "path": "src/assets/voice/09fd98f90f2637c7.mp3",
+      "sha1": "7a04a8f606f4b989cae69ead748371223b38ea67"
+    },
+    {
+      "path": "src/assets/voice/0abfc465dbe015e7.mp3",
+      "sha1": "65326754d9316579aefe95acaed2b8c324d91077"
+    },
+    {
+      "path": "src/assets/voice/0d56177f3307c9e2.mp3",
+      "sha1": "53cda18be5c93bef0626506ffab222589062bb5f"
+    },
+    {
+      "path": "src/assets/voice/0f0d955ac89c2cf0.mp3",
+      "sha1": "2c0b5390f651e74167c00901b10383876c8b0c39"
+    },
+    {
+      "path": "src/assets/voice/149837a90d12a5d3.mp3",
+      "sha1": "c43f11ff46421461f3ad7b9dc6f6494f48a26924"
+    },
+    {
+      "path": "src/assets/voice/1941189801cb7cc0.mp3",
+      "sha1": "f3120376ec856d11eac0b9d81a2aaa948b9f5aea"
+    },
+    {
+      "path": "src/assets/voice/1ce89854c331880c.mp3",
+      "sha1": "2e7bae37d76877aecf41890c51e2ffe1025fd7af"
+    },
+    {
+      "path": "src/assets/voice/1d35be554c8469f2.mp3",
+      "sha1": "b06fe4aed9eadafd360528ef6bf8b17d0d15ff60"
+    },
+    {
+      "path": "src/assets/voice/1e2727e27f48734a.mp3",
+      "sha1": "dda0873da085397de66e06c063da378f9f5a6c9d"
+    },
+    {
+      "path": "src/assets/voice/20dd21178a1a54f4.mp3",
+      "sha1": "f5de7b8133e2f159cde8575adb40fe5df5f115bc"
+    },
+    {
+      "path": "src/assets/voice/249bc2392d700930.mp3",
+      "sha1": "8a44410a011270223fac6cc94751f565ceca75b4"
+    },
+    {
+      "path": "src/assets/voice/2a6c3d86bc1df9ed.mp3",
+      "sha1": "6c41dd08b3dade04c76ef73ac979c14faa7a89f4"
+    },
+    {
+      "path": "src/assets/voice/2d051b5837467269.mp3",
+      "sha1": "46216ebea20b6333e26511baffceaeef2ac8c2c2"
+    },
+    {
+      "path": "src/assets/voice/333f28cc5088315d.mp3",
+      "sha1": "0037937f8db6d10add5ff8db397c44bafba8f3d9"
+    },
+    {
+      "path": "src/assets/voice/345b294367e75fe0.mp3",
+      "sha1": "9fd22da1bad17bdbb0470c8d7455892a40493718"
+    },
+    {
+      "path": "src/assets/voice/34e23184fd233737.mp3",
+      "sha1": "cf90037a77aecba99f4fc04a0457c60a79b822e0"
+    },
+    {
+      "path": "src/assets/voice/3903890bc3f633f8.mp3",
+      "sha1": "b15dd87e6a54914488217bc9f99a30f6b2c3d476"
+    },
+    {
+      "path": "src/assets/voice/3a3dfa9c56b5fc2e.mp3",
+      "sha1": "f018ae8363267a0cb676fff6b6a7b27b88c095db"
+    },
+    {
+      "path": "src/assets/voice/3c7ac3351a41bb0f.mp3",
+      "sha1": "9de4ea4c59002b8a1ba806c37ab171bf48011fc0"
+    },
+    {
+      "path": "src/assets/voice/3ccda96e34cf4b3d.mp3",
+      "sha1": "3c60d3deadd9234abb0810b06a17c99922331433"
+    },
+    {
+      "path": "src/assets/voice/3eb8672fcc37951d.mp3",
+      "sha1": "5f1374abf45993df34bc5fc671f3aebc3659c8e0"
+    },
+    {
+      "path": "src/assets/voice/43383a57ca52d69e.mp3",
+      "sha1": "ea6187b7966920e4462f29d6cb713d3760099de5"
+    },
+    {
+      "path": "src/assets/voice/4354cb1242c0450f.mp3",
+      "sha1": "f50298c7e6d56e1e8cb432165b8a87807008748e"
+    },
+    {
+      "path": "src/assets/voice/4985c380b55c9a63.mp3",
+      "sha1": "e79c08f85c09374cf9dfde7649d2b97e5fcb6182"
+    },
+    {
+      "path": "src/assets/voice/4aa31d3cf9b1902d.mp3",
+      "sha1": "d04d4f02447f4f5a38134e88bb2d6dc73b15f1f6"
+    },
+    {
+      "path": "src/assets/voice/4b52c04c40c53c6e.mp3",
+      "sha1": "34ee8e5639e6c79f519a30a075970a1fc2378dce"
+    },
+    {
+      "path": "src/assets/voice/4bc44815ff95ff12.mp3",
+      "sha1": "0c113589e130a72f323d50e5d1f51ee364875cd7"
+    },
+    {
+      "path": "src/assets/voice/4d4190c5ed6089e8.mp3",
+      "sha1": "dddebd872e541bd90b13f128256f25ec2e5f791f"
+    },
+    {
+      "path": "src/assets/voice/4df83df085fd7075.mp3",
+      "sha1": "6a2f0320d3277ea83f851eae236f5c2ffa4aa67b"
+    },
+    {
+      "path": "src/assets/voice/50e5469810bba43c.mp3",
+      "sha1": "8789c1cad6f3847e99d8ee1ff8ab52c48232cf5c"
+    },
+    {
+      "path": "src/assets/voice/521bf11d658df1d8.mp3",
+      "sha1": "d31c05d5191a04dbb960aec8bd57d90e0928174b"
+    },
+    {
+      "path": "src/assets/voice/52bfb0b18870dc16.mp3",
+      "sha1": "94993aeab074d3deefc482908fdc9b60e4c64fa9"
+    },
+    {
+      "path": "src/assets/voice/536831f5455c7b6a.mp3",
+      "sha1": "1080e4001db9ade163e543db4bd0fd2d5d803d0e"
+    },
+    {
+      "path": "src/assets/voice/55397778a5a3946c.mp3",
+      "sha1": "2fcf862b58292a69533328f3844de5fbc3abf2ce"
+    },
+    {
+      "path": "src/assets/voice/57d56ad1b4669511.mp3",
+      "sha1": "a5d5d6dbf1660765ee83e0b4e0d5e2661dce9d8b"
+    },
+    {
+      "path": "src/assets/voice/5a8f65176f262895.mp3",
+      "sha1": "65557ac3378b08703e952f9fbe7050f9d0535275"
+    },
+    {
+      "path": "src/assets/voice/5af71470f44669c5.mp3",
+      "sha1": "9cadaa1ee7ba6f7269073b8426e4e0dcc19c6676"
+    },
+    {
+      "path": "src/assets/voice/5e8fd1bdb686e148.mp3",
+      "sha1": "699fdcd748a7c3121741b47f0147cf589f22b05e"
+    },
+    {
+      "path": "src/assets/voice/5eb61e88f0535f7a.mp3",
+      "sha1": "47b1582fe684a721b4f2331c64fbfed8c2375330"
+    },
+    {
+      "path": "src/assets/voice/5f6ab0b7c803fb09.mp3",
+      "sha1": "dfac0d226bcd0187f1bb1014579db77f3c1eed67"
+    },
+    {
+      "path": "src/assets/voice/61b63950ad8327e1.mp3",
+      "sha1": "129f4e7ac6bbc960bf55d42519f12c3b9ef27b51"
+    },
+    {
+      "path": "src/assets/voice/64d64deb653ccfc9.mp3",
+      "sha1": "545c24e0b6233391ea8c700dbf09f275daed4ac1"
+    },
+    {
+      "path": "src/assets/voice/6999459f4d5cdfbc.mp3",
+      "sha1": "2508e44444d2376f99500b76c85e1064933252c0"
+    },
+    {
+      "path": "src/assets/voice/733ca6cdbcd59ad6.mp3",
+      "sha1": "d4bfe4ecdbb3f65be6f7009ba08fdd1c35bbc503"
+    },
+    {
+      "path": "src/assets/voice/74f2a8e798658732.mp3",
+      "sha1": "d9e7dcf5dc4af8cf88896a2a05fadd96cbb77c29"
+    },
+    {
+      "path": "src/assets/voice/792fc72367e37db6.mp3",
+      "sha1": "3bbcbde9d50f9f894df94c9e937f4127c0619911"
+    },
+    {
+      "path": "src/assets/voice/7ca0e1ff21fcc8bd.mp3",
+      "sha1": "3ef8738e0c7f30848a7a9aaf11c5b8c1f95382fa"
+    },
+    {
+      "path": "src/assets/voice/7e121cc7e50a3d5e.mp3",
+      "sha1": "dc2aaf8de913e2e290b385c20cc062213d4848ea"
+    },
+    {
+      "path": "src/assets/voice/85a8de5bb74d9365.mp3",
+      "sha1": "5b3d2a5788fc5f77778322cbaad728043551358a"
+    },
+    {
+      "path": "src/assets/voice/911093ff9b4ad8ea.mp3",
+      "sha1": "9007d66fe52fff735917966cc80f7681090489ac"
+    },
+    {
+      "path": "src/assets/voice/92d355e1d31bb46c.mp3",
+      "sha1": "14e4a361773f9e8cb61f740211f24e36f8a8018d"
+    },
+    {
+      "path": "src/assets/voice/94cb56efb33b9ec3.mp3",
+      "sha1": "8352fa08c347a3da2aba65c8b87784c504307c26"
+    },
+    {
+      "path": "src/assets/voice/9adf775b3e1e8b9d.mp3",
+      "sha1": "319ad0a1a7178fc5a8c763e14b80d5811b37e3b7"
+    },
+    {
+      "path": "src/assets/voice/9b16548f62c64cfe.mp3",
+      "sha1": "fc8ec9c2b33b41bbeb86828671dc1e25e0d938db"
+    },
+    {
+      "path": "src/assets/voice/9f643300a3e1ebeb.mp3",
+      "sha1": "a307abcbb5092e41de4e9934b0f1617ee77f1aaa"
+    },
+    {
+      "path": "src/assets/voice/a0b2b98d9080a9e4.mp3",
+      "sha1": "9c29250734c0a56eab45e51229f302a1f28229db"
+    },
+    {
+      "path": "src/assets/voice/aa06171a18a524da.mp3",
+      "sha1": "550ae810a94386707af4fae3788c39e2ab02b1a5"
+    },
+    {
+      "path": "src/assets/voice/ad13ee71cc9332ff.mp3",
+      "sha1": "271271f442743f8590a23c0589500507fc800bbd"
+    },
+    {
+      "path": "src/assets/voice/b1b4ba7a68280a53.mp3",
+      "sha1": "6024bfcd57302c803dd3dfa33b47e9f3c88c414b"
+    },
+    {
+      "path": "src/assets/voice/b386f13d7e0d491c.mp3",
+      "sha1": "b5371a01cbefca8777cba4466206920e9f05979b"
+    },
+    {
+      "path": "src/assets/voice/b58f9c1584adb07d.mp3",
+      "sha1": "33e802a6a24d169502a318946e500dc10b7a75c2"
+    },
+    {
+      "path": "src/assets/voice/baeda9d15ddee230.mp3",
+      "sha1": "12f862b242b3ddc79e25efe8dc01e83101157699"
+    },
+    {
+      "path": "src/assets/voice/bb72a42c6fff7c30.mp3",
+      "sha1": "4f72e60083c69c5eacbb511d04e029d96f059ccc"
+    },
+    {
+      "path": "src/assets/voice/c0593b9984ef21bd.mp3",
+      "sha1": "287eaae3eeccae07d63019d18ba497acff352653"
+    },
+    {
+      "path": "src/assets/voice/c06a308937fec8b6.mp3",
+      "sha1": "10a9575edb2b79b1b93879357127338e516895fe"
+    },
+    {
+      "path": "src/assets/voice/c2368afdaf7fd2d6.mp3",
+      "sha1": "a7f62cbed59d57c76d5dba319aef4d0dd38c264d"
+    },
+    {
+      "path": "src/assets/voice/c6f7d51f24aa0790.mp3",
+      "sha1": "6e5bf7c6ece4d07fe823218a48eb4ded32655cc1"
+    },
+    {
+      "path": "src/assets/voice/c9fc62d48c7c0c2e.mp3",
+      "sha1": "a21c9f13544400fe8a841bd95cf526c02c2e7da4"
+    },
+    {
+      "path": "src/assets/voice/ccdfb7443d2a04fe.mp3",
+      "sha1": "90466476ac22f390e3ab71189685e94afbba4f11"
+    },
+    {
+      "path": "src/assets/voice/cf7c0aec5da72b35.mp3",
+      "sha1": "1bd8460617d0ac00b1a9c30a9b7a9a763bbdd501"
+    },
+    {
+      "path": "src/assets/voice/d356281418bfc290.mp3",
+      "sha1": "8bbd49f0e9c8457dd65867f7cb8cd8afa3aa61eb"
+    },
+    {
+      "path": "src/assets/voice/d984538a7a1766d9.mp3",
+      "sha1": "01c5be6b191971adfa1edc9e761525d28be70a8f"
+    },
+    {
+      "path": "src/assets/voice/dabe453f5b54210f.mp3",
+      "sha1": "9e3348f84e1b15232ed5c50d077db60652bf52a7"
+    },
+    {
+      "path": "src/assets/voice/dad4f73b401eed7b.mp3",
+      "sha1": "3afe0eef5432c28d7fe85813d685c65e149ae9c1"
+    },
+    {
+      "path": "src/assets/voice/e2bc33def79f2b0d.mp3",
+      "sha1": "18ce842e2066cbb2d66b3c52cf09f1603bad1fd6"
+    },
+    {
+      "path": "src/assets/voice/e321538739fe4758.mp3",
+      "sha1": "e1db3a01b48f4b4d17b47fbdb1c8154a17d641e6"
+    },
+    {
+      "path": "src/assets/voice/e34abe867418ad21.mp3",
+      "sha1": "9b2a1e6626e4ce84871dd525e6a6757348934828"
+    },
+    {
+      "path": "src/assets/voice/e37c17b0f4cf45de.mp3",
+      "sha1": "10f02ec85c7934e87353f29e411ee44710c0cf6b"
+    },
+    {
+      "path": "src/assets/voice/e4eaf3609abcc16a.mp3",
+      "sha1": "139f6824a271d32bbdf7968b8aed22c86a11e6be"
+    },
+    {
+      "path": "src/assets/voice/e61c83e08368faf9.mp3",
+      "sha1": "fec30b060c4bf5e1374b4dcafeefbccff22cb780"
+    },
+    {
+      "path": "src/assets/voice/ed03d8d4a1ae6d2c.mp3",
+      "sha1": "67f7cf18bf89f66b895b7214b19dfda195f47d0a"
+    },
+    {
+      "path": "src/assets/voice/efd68a6ec4c7f69c.mp3",
+      "sha1": "8a62915b7f23343b3b90035580b3902bd6d026c0"
+    },
+    {
+      "path": "src/assets/voice/f252ec05be8c44f3.mp3",
+      "sha1": "fc40eee5bea29134de8b1fc2a86bcdb85216738b"
+    },
+    {
+      "path": "src/assets/voice/f572dd9f3610ec0b.mp3",
+      "sha1": "0b52e8365a65466f66985bec93605224f999217c"
+    },
+    {
+      "path": "src/assets/voice/f651ff8b802d7c1c.mp3",
+      "sha1": "8e201441de5d4bcdd85d9b7c53aff04cd8731f10"
+    },
+    {
+      "path": "src/assets/voice/f68c5591ce3d439b.mp3",
+      "sha1": "32080cc9074ba3e7da0b5d7317c4993301ce112f"
+    },
+    {
+      "path": "src/assets/voice/f6f2150e417f7ac1.mp3",
+      "sha1": "383352b0783d7dbf28391f0986eeb0c6946bb6a9"
+    },
+    {
+      "path": "src/assets/voice/f786cee376c6fd66.mp3",
+      "sha1": "76b786ac57a1be676ceaa258f0e4c68cc89d6ded"
+    },
+    {
+      "path": "src/assets/voice/f81c288f49c74d22.mp3",
+      "sha1": "4a18f71088f711fa041a9c5c3ff463f9532b5204"
+    },
+    {
+      "path": "src/assets/voice/f90c20070a8c9bcc.mp3",
+      "sha1": "adcafc42afb2ef0ace105cfbc96585a3644fa0be"
+    },
+    {
+      "path": "src/assets/voice/f9c34ed53bc2a3ce.mp3",
+      "sha1": "9b90fb105db5e515cf21333dab594be69b2ea162"
+    },
+    {
+      "path": "src/assets/voice/fa19badcf0d41922.mp3",
+      "sha1": "fd7436c651748a502605fc7ae4ec12d609a71e8b"
+    },
+    {
+      "path": "src/assets/voice/fa96167ff4c33467.mp3",
+      "sha1": "78240b9e27030726aca3ed7963060383875a4348"
+    },
+    {
+      "path": "src/composer-game.js",
+      "sha1": "217bd337769cf3e8ecf05be523bf927089786e48"
+    },
+    {
+      "path": "src/creditos.html",
+      "sha1": "7b067b4686439d6586083630e40e5a5ca7be281e"
+    },
+    {
+      "path": "src/encyclopedia.js",
+      "sha1": "fb8a3330fa9d43b6a2ed8ecd58d9054b7c25c282"
+    },
+    {
+      "path": "src/history-image-sources.json",
+      "sha1": "fd0059620a378cb320423b75b14caeccced166d6"
+    },
+    {
+      "path": "src/image-sources.json",
+      "sha1": "0991d7ffcd80eafca63fd5794daf75de30545dd2"
+    },
+    {
+      "path": "src/index.html",
+      "sha1": "8d2fee8b70eabfa069871153f310bbdcccf4163f"
+    },
+    {
+      "path": "src/instrument-audio.js",
+      "sha1": "6c6067585f12446e4ad338cbc21c9c77c75b578f"
+    },
+    {
+      "path": "src/instrument-expansion.js",
+      "sha1": "e7eed98946943b5dcd003fa3d78082f0fd9a3d43"
+    },
+    {
+      "path": "src/journey-media.js",
+      "sha1": "2b8b578b574d093721f458f24c768f4c851d6305"
+    },
+    {
+      "path": "src/listening-sources.json",
+      "sha1": "410eb4d7a4315234d37dbb5f18a6464d7bcc0cbf"
+    },
+    {
+      "path": "src/piano-repertoire.js",
+      "sha1": "ef0209bba427cc623dda5c23cd4f4f490ed19ad0"
+    },
+    {
+      "path": "src/piano-studio.js",
+      "sha1": "b0adeb652769c72066637309d489d2b54a57527c"
+    },
+    {
+      "path": "src/rhythm-audio.js",
+      "sha1": "4bcb81d629eada83ca7c6baacc2b630ddec1a36d"
+    },
+    {
+      "path": "src/staff-games.js",
+      "sha1": "4e26a075025eef200baa421a71a853723ba9ade9"
+    },
+    {
+      "path": "src/style.css",
+      "sha1": "6f75c5fb72b9f69f31d40fcbf78e48f56a3f6796"
+    },
+    {
+      "path": "src/voice-map.js",
+      "sha1": "abac7edc29ec7082068fbdb4ddc546d6ae661401"
+    }
+  ]
+}
