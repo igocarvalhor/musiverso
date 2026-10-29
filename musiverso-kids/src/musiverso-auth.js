@@ -42,6 +42,27 @@ function setBusy(state){busy=state;$('auth-submit').disabled=state;$('auth-submi
 $('tab-login').onclick=()=>setMode('login');
 $('tab-signup').onclick=()=>setMode('signup');
 $('forgot-link').onclick=()=>setMode(mode==='login'?'forgot':'login');
+const googleButton=$('google-login');
+if(googleButton)googleButton.addEventListener('click',async()=>{
+ if(busy)return;
+ if(!client){message('O serviço de autenticação está indisponível.',true);return}
+ googleButton.disabled=true;
+ message('');
+ try{
+  const {data,error}=await client.auth.signInWithOAuth({
+   provider:'google',
+   options:{
+    redirectTo:new URL('plataforma.html',location.href).href,
+    scopes:'email profile'
+   }
+  });
+  if(error)throw error;
+  if(!data?.url)throw Error('O serviço Google não forneceu a página de entrada.');
+ }catch(error){
+  message(errorMessage(error),true);
+  googleButton.disabled=false;
+ }
+});
 $('password-toggle').onclick=()=>{
  const input=$('auth-password');const showing=input.type==='password';input.type=showing?'text':'password';$('password-toggle').textContent=showing?'Ocultar':'Mostrar';$('password-toggle').setAttribute('aria-label',showing?'Ocultar senha':'Mostrar senha');
 };
