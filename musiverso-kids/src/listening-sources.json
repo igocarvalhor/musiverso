@@ -1,0 +1,213 @@
+{
+  "hildegard": {
+    "source": "https://www.hildegard-society.org/",
+    "works": [
+      {
+        "title": "O virtus Sapientiae",
+        "video": "zScfIqQkjUk",
+        "credit": "Emma Nwobilor e músicos · Neumes and Tunes",
+        "guide": "Ouça a voz e acompanhe o desenho da melodia. Esta interpretação inclui acompanhamento instrumental."
+      },
+      {
+        "title": "Ordo virtutum",
+        "guide": "Uma obra dramática com personagens cantados. Sugira a escuta de um pequeno trecho para observar como as vozes contam uma história.",
+        "source": "https://www.hildegard-society.org/"
+      }
+    ]
+  },
+  "josquin": {
+    "source": "https://www.stileantico.co.uk/recordings/josquin-des-prez",
+    "works": [
+      {
+        "title": "Ave Maria… virgo serena",
+        "video": "xGkb5KFwx1I",
+        "credit": "Stile Antico · canal oficial",
+        "guide": "Acompanhe as entradas das vozes, uma depois da outra."
+      },
+      {
+        "title": "Missa Pange lingua",
+        "guide": "Escolha um trecho do Kyrie e compare as melodias que acontecem ao mesmo tempo.",
+        "source": "https://www.stileantico.co.uk/recordings/josquin-des-prez"
+      }
+    ]
+  },
+  "bach": {
+    "source": "https://www.bachvereniging.nl/en/bwv/bwv-846",
+    "works": [
+      {
+        "title": "Prelúdio em dó maior, BWV 846",
+        "video": "IZ2pNhh6D1w",
+        "credit": "Netherlands Bach Society · All of Bach",
+        "guide": "Ouça as notas sucessivas que formam acordes. Observe o instrumento de teclado."
+      },
+      {
+        "title": "Concerto de Brandemburgo nº 3, BWV 1048",
+        "guide": "Compare o som de vários instrumentos de cordas com o teclado do prelúdio.",
+        "source": "https://www.bachvereniging.nl/en/allofbach"
+      }
+    ]
+  },
+  "vivaldi": {
+    "source": "https://vivaldi4seasons.com/music/",
+    "works": [
+      {
+        "title": "A Primavera, RV 269 — As Quatro Estações",
+        "video": "3LiztfE1X7E",
+        "credit": "Alana Youssefian e Voices of Music",
+        "guide": "Comece pelo primeiro movimento. Procure os gestos que lembram pássaros."
+      },
+      {
+        "title": "O Inverno, RV 297 — As Quatro Estações",
+        "guide": "Compare com A Primavera: o que muda no movimento e na intensidade?",
+        "source": "https://vivaldi4seasons.com/performance/"
+      }
+    ]
+  },
+  "mozart": {
+    "source": "https://www.hr-sinfonieorchester.de/media/videos/konzert-videos-19-20/mozart-eine-kleine-nachtmusik,video-mozart-kleine-nachtmusik-100.html",
+    "works": [
+      {
+        "title": "Rondó alla turca, K. 331 — Marcha Turca",
+        "video": "aeEmGvm7kDk",
+        "credit": "Rousseau · interpretação ao piano",
+        "guide": "Observe as mãos e as notas destacadas no teclado. Marque o pulso suavemente."
+      },
+      {
+        "title": "Uma pequena serenata noturna, K. 525",
+        "guide": "Ouça o primeiro movimento e compare o som das cordas com o piano da Marcha Turca.",
+        "source": "https://www.hr-sinfonieorchester.de/media/videos/konzert-videos-19-20/mozart-eine-kleine-nachtmusik,video-mozart-kleine-nachtmusik-100.html"
+      }
+    ]
+  },
+  "haydn": {
+    "source": "https://www.youtube.com/watch?v=Pb4nRgwQ5Jk",
+    "works": [
+      {
+        "title": "Sinfonia nº 94, “Surpresa” — II. Andante",
+        "video": "Pb4nRgwQ5Jk",
+        "start": 535,
+        "credit": "Lucerne Festival Orchestra · Andris Nelsons · DW Classical Music",
+        "guide": "A reprodução começa no segundo movimento. Ouça em volume confortável para perceber o contraste."
+      },
+      {
+        "title": "Quarteto de cordas op. 76 nº 3, “Imperador” — II. Poco adagio",
+        "guide": "Compare um quarteto de cordas com a orquestra da sinfonia.",
+        "source": "https://www.haydn2032.com/"
+      }
+    ]
+  },
+  "beethoven": {
+    "source": "https://www.beethoven.de/en/",
+    "works": [
+      {
+        "title": "Ode à alegria — Sinfonia nº 9",
+        "video": "fzyO3fLV5O0",
+        "credit": "London Symphony Orchestra · Sir Antonio Pappano",
+        "guide": "Observe o encontro entre as vozes e a orquestra."
+      },
+      {
+        "title": "Für Elise — Para Elisa, WoO 59",
+        "guide": "Ouça a frase inicial ao piano e perceba quantas vezes ela retorna.",
+        "source": "https://www.beethoven.de/en/"
+      }
+    ]
+  },
+  "schubert": {
+    "source": "https://www.deutschegrammophon.com/en/composers/franz-schubert/discography",
+    "works": [
+      {
+        "title": "Ave Maria — Ellens Gesang III, D. 839",
+        "video": "ebkNMePYQYk",
+        "credit": "Hera Hyesang Park e Sarah Tysman · Deutsche Grammophon",
+        "guide": "Compare a melodia da voz com o acompanhamento do piano."
+      },
+      {
+        "title": "A Truta — Die Forelle, D. 550",
+        "guide": "Escute os movimentos rápidos do piano e imagine a água do riacho.",
+        "source": "https://www.deutschegrammophon.com/en/composers/franz-schubert/discography"
+      }
+    ]
+  },
+  "chopin": {
+    "source": "https://chopin.nifc.pl/en/chopin/gatunki/7_walce",
+    "works": [
+      {
+        "title": "Valsa em ré bemol maior, op. 64 nº 1 — Valsa do Minuto",
+        "video": "3H0SRv8QNwk",
+        "credit": "Rousseau · interpretação ao piano",
+        "guide": "Perceba o movimento circular da melodia e o acompanhamento da valsa."
+      },
+      {
+        "title": "Noturno em mi bemol maior, op. 9 nº 2",
+        "guide": "Compare a velocidade e o caráter com a valsa, sem exigir uma emoção igual para todos.",
+        "source": "https://chopin.nifc.pl/en/chopin/gatunki/7_walce"
+      }
+    ]
+  },
+  "clara": {
+    "source": "https://www.laphil.com/works/three-romances-for-violin-and-piano-op-22",
+    "works": [
+      {
+        "title": "Romance op. 22 nº 1, para violino e piano",
+        "video": "M61ZPM5Av3Q",
+        "credit": "Augustin Hadelich · violino e piano gravados pelo músico",
+        "guide": "Identifique o som do violino e o do piano."
+      },
+      {
+        "title": "Concerto para piano em lá menor, op. 7",
+        "guide": "Ouça um trecho para comparar o piano acompanhado por orquestra com a formação de dois instrumentos.",
+        "source": "https://www.kannehmasons.com/project/romance-the-piano-music-of-clara-schumann/"
+      }
+    ]
+  },
+  "chiquinha": {
+    "source": "https://ims.com.br/titular-colecao/chiquinha-gonzaga/",
+    "works": [
+      {
+        "title": "Gaúcho — Corta-jaca",
+        "video": "g9p1KbTaROs",
+        "credit": "Maria Teresa Madeira · canal oficial da pianista",
+        "guide": "Acompanhe o ritmo com movimentos suaves e observe as mãos da pianista."
+      },
+      {
+        "title": "Ó abre alas",
+        "guide": "Conheça a melodia desta marcha e converse sobre a música nas festas populares.",
+        "source": "https://chiquinhagonzaga.com/wp/"
+      }
+    ]
+  },
+  "pixinguinha": {
+    "source": "https://pixinguinha.com.br/discografia/carinhoso-2/",
+    "works": [
+      {
+        "title": "Carinhoso",
+        "video": "8abizSxue_g",
+        "credit": "Hamilton de Holanda · Gravadora Galeão · música de Pixinguinha, letra de João de Barro",
+        "guide": "Nesta interpretação instrumental, observe o bandolim e o jeito de tocar as cordas."
+      },
+      {
+        "title": "Naquele tempo",
+        "video": "oPpmWOk3pfY",
+        "credit": "Hamilton de Holanda · Mundo de Pixinguinha · música de Pixinguinha e Benedito Lacerda",
+        "guide": "Compare a melodia e o acompanhamento com Carinhoso.",
+        "source": "https://pixinguinha.com.br/catalogo-de-obras-pixinguinha/"
+      }
+    ]
+  },
+  "villa-lobos": {
+    "source": "https://osesp.art.br/osesp/pt/portal-conteudo/discografia/50",
+    "works": [
+      {
+        "title": "O Trenzinho do Caipira — Bachianas brasileiras nº 2: Tocata",
+        "video": "KTKVgaY56NI",
+        "credit": "Osesp — Orquestra Sinfônica do Estado de São Paulo",
+        "guide": "Use os movimentos do corpo para acompanhar a viagem sugerida pela orquestra."
+      },
+      {
+        "title": "Bachianas brasileiras nº 5 — Ária (Cantilena)",
+        "guide": "Compare a combinação de voz e violoncelos com a orquestra de O Trenzinho.",
+        "source": "https://museuvillalobos.museus.gov.br/"
+      }
+    ]
+  }
+}

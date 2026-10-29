@@ -1,0 +1,257 @@
+[
+  {
+    "id": "bach",
+    "title": "Johann Sebastian Bach",
+    "path": "assets/people/bach.jpg",
+    "source": "https://en.wikipedia.org/wiki/Johann_Sebastian_Bach",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Sebastian_Bach.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Johann_Sebastian_Bach.jpg",
+    "bytes": 34275,
+    "filename": "Johann_Sebastian_Bach.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Elias Gottlob Haussmann (1695–1774) Description painter and portrait painter"
+    }
+  },
+  {
+    "id": "mozart",
+    "title": "Wolfgang Amadeus Mozart",
+    "path": "assets/people/mozart.jpg",
+    "source": "https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ad/The_Mozart_Family_-_Wolfgang_Amadeus_Mozart_headshot.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:The_Mozart_Family_-_Wolfgang_Amadeus_Mozart_headshot.jpg",
+    "bytes": 44683,
+    "filename": "The_Mozart_Family_-_Wolfgang_Amadeus_Mozart_headshot.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Johann Nepomuk della Croce"
+    }
+  },
+  {
+    "id": "beethoven",
+    "title": "Ludwig van Beethoven",
+    "path": "assets/people/beethoven.jpg",
+    "source": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven",
+    "original": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg/3840px-Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "commons": "https://commons.wikimedia.org/wiki/File:Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg",
+    "bytes": 37448,
+    "filename": "Joseph_Karl_Stieler's_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Joseph Karl Stieler (1781–1858)"
+    }
+  },
+  {
+    "id": "hildegard",
+    "title": "Hildegard of Bingen",
+    "path": "assets/people/hildegard.jpg",
+    "source": "https://en.wikipedia.org/wiki/Hildegard_of_Bingen",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Hildegard_von_Bingen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Hildegard_von_Bingen.jpg",
+    "bytes": 90539,
+    "filename": "Hildegard_von_Bingen.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Unknown author Unknown author"
+    }
+  },
+  {
+    "id": "josquin",
+    "title": "Josquin des Prez",
+    "path": "assets/people/josquin.jpg",
+    "source": "https://en.wikipedia.org/wiki/Josquin_des_Prez",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Josquin_woodcut.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Josquin_woodcut.jpg",
+    "bytes": 39639,
+    "filename": "Josquin_woodcut.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Unknown author Unknown author"
+    }
+  },
+  {
+    "id": "vivaldi",
+    "title": "Antonio Vivaldi",
+    "path": "assets/people/vivaldi.jpg",
+    "source": "https://en.wikipedia.org/wiki/Antonio_Vivaldi",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Vivaldi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Vivaldi.jpg",
+    "bytes": 43349,
+    "filename": "Vivaldi.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Unknown author Unknown author Unidentified painter Description 18th-century portrait paintings of men, with Not identified, Unspecified, Unmentioned, Unattributed, Unknown Unknown or Anonymous artists."
+    }
+  },
+  {
+    "id": "haydn",
+    "title": "Joseph Haydn",
+    "path": "assets/people/haydn.jpg",
+    "source": "https://en.wikipedia.org/wiki/Joseph_Haydn",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/05/Joseph_Haydn.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Joseph_Haydn.jpg",
+    "bytes": 31487,
+    "filename": "Joseph_Haydn.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Thomas Hardy (1757–circa 1805 date QS:P,+1805–00–00T00:00:00Z/9,P1480,Q5727902 ) Alternative names Thos. Hardy"
+    }
+  },
+  {
+    "id": "schubert",
+    "title": "Franz Schubert",
+    "path": "assets/people/schubert.jpg",
+    "source": "https://en.wikipedia.org/wiki/Franz_Schubert",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Franz_Schubert_by_Wilhelm_August_Rieder_1875.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Franz_Schubert_by_Wilhelm_August_Rieder_1875.jpg",
+    "bytes": 24060,
+    "filename": "Franz_Schubert_by_Wilhelm_August_Rieder_1875.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Wilhelm August Rieder (1796–1880)"
+    }
+  },
+  {
+    "id": "chopin",
+    "title": "Frédéric Chopin",
+    "path": "assets/people/chopin.jpg",
+    "source": "https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Frederic_Chopin_photo.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Frederic_Chopin_photo.jpeg",
+    "bytes": 57870,
+    "filename": "Frederic_Chopin_photo.jpeg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Louis-Auguste Bisson (1814–1876) Alternative names Bisson ainé; Louis-August Bisson; Louis Auguste Bisson; Bisson aine"
+    }
+  },
+  {
+    "id": "clara",
+    "title": "Clara Schumann",
+    "path": "assets/people/clara.jpg",
+    "source": "https://en.wikipedia.org/wiki/Clara_Schumann",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Franz_Hanfstaengl_-_Clara_Schumann_%281857%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Franz_Hanfstaengl_-_Clara_Schumann_%281857%29.jpg",
+    "bytes": 30782,
+    "filename": "Franz_Hanfstaengl_-_Clara_Schumann_(1857).jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Franz Hanfstaengl (1804–1877)"
+    }
+  },
+  {
+    "id": "chiquinha",
+    "title": "Chiquinha Gonzaga",
+    "path": "assets/people/chiquinha.jpg",
+    "source": "https://en.wikipedia.org/wiki/Chiquinha_Gonzaga",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Chiquinhagonzaga4.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Chiquinhagonzaga4.jpg",
+    "bytes": 35106,
+    "filename": "Chiquinhagonzaga4.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "author": "Unknown author Unknown author"
+    }
+  },
+  {
+    "id": "pixinguinha",
+    "title": "Pixinguinha",
+    "path": "assets/people/pixinguinha.jpg",
+    "source": "https://en.wikipedia.org/wiki/Pixinguinha",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Pixinguinha_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Pixinguinha_%282%29.jpg",
+    "bytes": 12480,
+    "filename": "Pixinguinha_(2).jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Pixinguinha_%282%29.jpg",
+      "author": "Unknown author Unknown author"
+    }
+  },
+  {
+    "id": "villa-lobos",
+    "title": "Heitor Villa-Lobos",
+    "path": "assets/people/villa-lobos.jpg",
+    "source": "https://en.wikipedia.org/wiki/Heitor_Villa-Lobos",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Heitor_Vila-Lobos_%28c._1922%29part.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Heitor_Vila-Lobos_%28c._1922%29part.jpg",
+    "bytes": 25751,
+    "filename": "Heitor_Vila-Lobos_(c._1922)part.jpg",
+    "credit": {
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:Heitor_Vila-Lobos_%28c._1922%29part.jpg",
+      "author": "Unknown author Unknown author"
+    }
+  },
+  {
+    "id": "piano",
+    "title": "Piano",
+    "path": "assets/instruments/piano.jpg",
+    "source": "https://en.wikipedia.org/wiki/Piano",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/01/Steinway_Vienna_002.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Steinway_Vienna_002.JPG",
+    "bytes": 43578,
+    "filename": "Steinway_Vienna_002.JPG",
+    "credit": {
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Gryffindor"
+    }
+  },
+  {
+    "id": "flute",
+    "title": "Recorder (musical instrument)",
+    "path": "assets/instruments/flute.jpg",
+    "source": "https://en.wikipedia.org/wiki/Recorder_(musical_instrument)",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/18/VariousRecorderFlutes.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:VariousRecorderFlutes.jpg",
+    "bytes": 23457,
+    "filename": "VariousRecorderFlutes.jpg",
+    "credit": {
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Mussklprozz"
+    }
+  },
+  {
+    "id": "guitar",
+    "title": "Classical guitar",
+    "path": "assets/instruments/guitar.png",
+    "source": "https://en.wikipedia.org/wiki/Classical_guitar",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Classical_Guitar_two_views2.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Classical_Guitar_two_views2.png",
+    "bytes": 98509,
+    "filename": "Classical_Guitar_two_views2.png",
+    "credit": {
+      "license": "CC BY-SA 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+      "author": "User:Martin Möller"
+    }
+  },
+  {
+    "id": "drum",
+    "title": "Djembe",
+    "path": "assets/instruments/drum.jpg",
+    "source": "https://en.wikipedia.org/wiki/Djembe",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/60/Lenke_djembe_from_Mali.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "commons": "https://commons.wikimedia.org/wiki/File:Lenke_djembe_from_Mali.jpeg",
+    "bytes": 54094,
+    "filename": "Lenke_djembe_from_Mali.jpeg",
+    "credit": {
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Djembe Art"
+    }
+  }
+]

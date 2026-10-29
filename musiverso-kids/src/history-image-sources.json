@@ -1,0 +1,175 @@
+[
+  {
+    "src": "assets/history/bone-flute.jpg",
+    "title": "Flauta de osso",
+    "kind": "Fotografia de peça arqueológica",
+    "caption": "Flauta feita de osso de cisne, encontrada na caverna de Geißenklösterle, na Alemanha.",
+    "author": "Thilo Parg / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Floete_Schwanenknochen_Geissenkloesterle_Blaubeuren.jpg"
+  },
+  {
+    "src": "assets/history/lyre.jpg",
+    "title": "Lira",
+    "kind": "Fotografia de reconstrução",
+    "caption": "Reconstrução de uma lira antiga no Museu Kotsanas. Observe as cordas e os dois braços do instrumento.",
+    "author": "Denexeitelos",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:A_reconstruction_of_an_ancient_lyre,_Kotsanas_Museum_of_Ancient_Greek_Technology.jpg"
+  },
+  {
+    "src": "assets/history/troubadour.jpg",
+    "title": "Um trovador medieval",
+    "kind": "Imagem de manuscrito · século XIII",
+    "caption": "Representação do trovador Perdigon em um manuscrito conservado na Biblioteca Nacional da França.",
+    "author": "Autor desconhecido / BnF, via Wikimedia Commons",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:BnF_ms._854_fol._49_-_Perdigon_(1).jpg"
+  },
+  {
+    "src": "assets/history/concert.jpg",
+    "title": "Músicos reunidos",
+    "kind": "Pintura histórica · 1623",
+    "caption": "O Concerto, de Gerard van Honthorst, mostra pessoas fazendo música juntas. Esta pintura é do início do Barroco.",
+    "author": "Gerard van Honthorst / National Gallery of Art",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Concert_A22894.jpg"
+  },
+  {
+    "src": "assets/history/violin.png",
+    "title": "Violino",
+    "kind": "Fotografia de instrumento atual",
+    "caption": "Um violino visto de frente e de lado. Repare nas cordas e no corpo de madeira.",
+    "author": "Just plain Bill",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Violin_VL100.png"
+  },
+  {
+    "src": "assets/history/manuscript.gif",
+    "title": "Música escrita no papel",
+    "kind": "Manuscrito musical · século XV",
+    "caption": "Trecho de uma obra de Johannes Ockeghem, compositor do Renascimento. Os sinais registram música em uma notação antiga.",
+    "author": "Johannes Ockeghem / Wikimedia Commons",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:White_mensural_notation.gif"
+  },
+  {
+    "src": "assets/history/harpsichord.jpg",
+    "title": "Cravo",
+    "kind": "Fotografia de instrumento histórico",
+    "caption": "Cravo construído por Andreas Ruckers em 1646 e modificado por Pascal Taskin em 1780. Parece um piano, mas seu mecanismo é diferente.",
+    "author": "Gérard Janot; ajuste de iluminação: Épine",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:ClavecinRuckers%26Taskin.JPG"
+  },
+  {
+    "src": "assets/history/orchestra.jpg",
+    "title": "Uma orquestra",
+    "kind": "Fotografia de apresentação · 2017",
+    "caption": "Orquestra Sinfônica de Cincinnati em concerto. Esta foto atual ajuda a reconhecer diferentes instrumentos reunidos.",
+    "author": "Quincena Musical / Iñigo Ibáñez",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Cincinnati_Symphony_Orchestra_Wikivoyage_FTT.jpg"
+  },
+  {
+    "src": "assets/history/phonograph.jpg",
+    "title": "Fonógrafo",
+    "kind": "Fotografia de aparelho antigo",
+    "caption": "Um fonógrafo Edison Standard: um exemplo de aparelho usado para gravar e reproduzir sons em cilindros.",
+    "author": "Jud McCranie (Bubba73)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Edison_Standard_Photograph_(08).jpg"
+  },
+  {
+    "src": "assets/history/studio.jpg",
+    "title": "Estúdio de gravação",
+    "kind": "Fotografia · 2007",
+    "caption": "Sala de controle de um estúdio. Os músicos são gravados e os sons podem ser ouvidos novamente.",
+    "author": "DavidABalch",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Control-room2.jpg"
+  },
+  {
+    "src": "assets/history/frevo.jpg",
+    "title": "Passistas de frevo",
+    "kind": "Fotografia · Pernambuco",
+    "caption": "Passistas de frevo em Pernambuco. Observe as sombrinhas e os movimentos da dança.",
+    "author": "Prefeitura de Olinda",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Passistas_de_Frevo.jpg"
+  },
+  {
+    "src": "assets/history/clapping.jpg",
+    "title": "O som das palmas",
+    "kind": "Fotografia atual · Egito, 2019",
+    "caption": "Mãos batendo palmas em uma celebração. A foto é atual: mostra um jeito de produzir sons com o corpo.",
+    "author": "Mona Hassan Abo-Abda",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Clapping_hand.jpg"
+  },
+  {
+    "src": "assets/history/choir.jpg",
+    "title": "Vozes cantando juntas",
+    "kind": "Fotografia atual · 1999",
+    "caption": "Um coro ensaiando na Catedral de York. Esta foto atual ajuda a visualizar o canto em grupo; não é uma cena da Idade Média.",
+    "author": "Allan Engelhardt",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Evensong_in_York_Minster.jpg"
+  },
+  {
+    "src": "assets/history/magic-flute.jpg",
+    "title": "A Flauta Mágica",
+    "kind": "Desenho de cenário · cerca de 1815",
+    "caption": "Cenário criado por Karl Friedrich Schinkel para a ópera de Mozart. É um projeto de montagem posterior à estreia da obra.",
+    "author": "Karl Friedrich Schinkel / Kupferstichkabinett Berlin",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Mozart_magic_flute.jpg"
+  },
+  {
+    "src": "assets/history/notre-dame.jpg",
+    "title": "Notre-Dame de Paris",
+    "kind": "Fotografia atual · 2026",
+    "caption": "A Catedral de Notre-Dame, em Paris. Entre os séculos XII e XIII, foi um importante centro de desenvolvimento da polifonia europeia.",
+    "author": "iMahesh",
+    "authorShort": "iMahesh",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Complete_west_facade_of_Notre-Dame_de_Paris_with_twin_towers_and_portals.jpg"
+  },
+  {
+    "src": "assets/history/perotin-score.jpg",
+    "title": "Música atribuída a Pérotin",
+    "kind": "Manuscrito musical · século XIII",
+    "caption": "Página com Alleluia nativitas, no códice Guelf. 1099. É um registro de música, não um retrato de Pérotin.",
+    "author": "Autor do manuscrito desconhecido / Wikimedia Commons",
+    "authorShort": "Autor do manuscrito desconhecido / Wikimedia Commons",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Perotin_-_Alleluia_nativitas.jpg"
+  },
+  {
+    "src": "assets/history/machaut.jpg",
+    "title": "Guillaume de Machaut",
+    "kind": "Miniatura histórica · século XIV",
+    "caption": "Machaut aparece em uma cena alegórica com figuras que representam ideias como a música e a retórica. É uma imagem de manuscrito, não uma fotografia.",
+    "author": "Autor desconhecido / Wikimedia Commons",
+    "authorShort": "Autor desconhecido / Wikimedia Commons",
+    "license": "Domínio público",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Machaut_1.jpg"
+  }
+]

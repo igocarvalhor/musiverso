@@ -1,0 +1,14 @@
+{
+  "bank": "FluidR3_GM",
+  "authors": "Frank Wen e colaboradores; conversão para MIDI.js por Benjamin Gleitzman",
+  "license": "Creative Commons Attribution 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+  "source": "https://github.com/gleitz/midi-js-soundfonts",
+  "programs": {
+    "piano": "acoustic_grand_piano",
+    "flute": "recorder",
+    "guitar": "acoustic_guitar_nylon",
+    "drum": "taiko_drum"
+  },
+  "notes": "Exemplos renderizados a partir de amostras General MIDI; tambor usa o programa taiko_drum e não pretende documentar o timbre específico do djembê fotografado."
+}
