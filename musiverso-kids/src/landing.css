@@ -8,3 +8,13 @@
 
 /* Native hidden attribute wins over reusable form and layout classes. */
 [hidden]{display:none!important}
+
+/* Login Google: mesma linguagem visual dos botões Musiverso Kids. */
+.social-divider{display:flex;align-items:center;gap:14px;margin:23px 0 18px;color:#8a7d98;font-size:13px;font-weight:900;text-align:center}
+.social-divider::before,.social-divider::after{content:"";height:1px;background:#e6dced;flex:1}
+.google-login-btn{width:100%;min-height:57px;display:flex;align-items:center;justify-content:center;gap:12px;background:#fff;border:2px solid #e8dced;border-radius:17px;color:#3c2b52;box-shadow:0 5px 0 #dfd4e9;font-weight:900;font-size:16px;transition:transform .14s,box-shadow .14s,background .14s}
+.google-login-btn svg{flex:none}
+.google-login-btn:hover:not(:disabled){background:#faf6ff;transform:translateY(-2px)}
+.google-login-btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #dfd4e9}
+.google-login-btn:disabled{opacity:.6;cursor:wait}
+@media(prefers-reduced-motion:reduce){.google-login-btn{transition:none}}
