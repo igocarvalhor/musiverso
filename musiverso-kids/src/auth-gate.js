@@ -16,10 +16,10 @@ window.MusiversoAuthClient=client;
    if(error||!data?.user){location.replace('acesso.html');return}
    window.MusiversoAuthUser=data.user;
    window.MusiversoProgressKey='musiverso-kids-v1:'+data.user.id;
-   document.getElementById('auth-loading')?.remove();
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
    script.src='app.js?v=auth1';
+   script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
  }catch(e){show('Não foi possível validar seu acesso. Confira a conexão e tente novamente.')}
