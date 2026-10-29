@@ -1,0 +1,22 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#512394"><meta name="description" content="Entre ou crie sua conta no Musiverso Kids com e-mail e senha."><title>Entrar ou criar conta | Musiverso Kids</title><link rel="stylesheet" href="landing.css?v=1"></head><body class="auth-page">
+<a class="skip-link" href="#auth">Ir para o formulário</a>
+<header class="site-header"><a class="logo" href="index.html"><span class="logo-icon">♫</span><span>Musiverso <em>Kids</em></span></a><nav><a href="index.html">← Voltar ao início</a></nav></header>
+<main class="auth-layout">
+<section class="auth-intro"><span class="eyebrow">♫ A SUA AVENTURA COMEÇA AQUI</span><h1>Aprenda, brinque e <span>descubra</span>!</h1><p>Um universo de histórias, sons e conquistas para explorar a música de um jeito divertido.</p><div class="auth-illustration" aria-hidden="true">🎹 🌟 🎶</div><div class="auth-mini"><span>🗺️ Jornada musical</span><span>🎮 Jogos</span><span>🏆 Medalhas</span></div></section>
+<section class="auth-panel" id="auth" aria-label="Acesso à plataforma">
+<h2 id="auth-title">Bem-vindo de volta!</h2><p class="auth-description" id="auth-desc">Entre com seu e-mail e sua senha para continuar a aventura.</p>
+<div class="auth-tabs" role="tablist" aria-label="Acesso"><button type="button" id="tab-login" role="tab" aria-selected="true">Entrar</button><button type="button" id="tab-signup" role="tab" aria-selected="false">Criar conta</button></div>
+<form id="auth-form" autocomplete="on" novalidate>
+<label class="field" id="name-field" hidden><span>Nome do responsável ou professor</span><input id="auth-name" name="name" autocomplete="name" maxlength="100" placeholder="Seu nome completo"></label>
+<label class="field"><span>E-mail</span><input id="auth-email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></label>
+<label class="field" id="password-field"><span id="password-label">Senha</span><span class="password-wrap"><input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="Sua senha"><button type="button" id="password-toggle" class="password-toggle" aria-label="Mostrar senha">Mostrar</button></span></label>
+<label class="field" id="password-confirm-field" hidden><span>Confirmar senha</span><span class="password-wrap"><input id="auth-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="Repita a senha"></span></label>
+<div id="auth-message" role="status" aria-live="polite" hidden></div>
+<button class="action-btn primary auth-submit" type="submit" id="auth-submit">Entrar na plataforma →</button>
+</form>
+<p id="auth-help" class="auth-help" hidden>Cadastro indicado para responsáveis e professores. Crianças devem utilizar a plataforma com a orientação de um adulto. A confirmação por e-mail pode ser necessária para ativar a conta.</p>
+<div class="auth-footer-row"><button class="auth-link" id="forgot-link" type="button">Esqueci minha senha</button><a class="auth-link" href="index.html">Voltar à página inicial</a></div>
+<p class="privacy-note">A senha é verificada por um serviço de autenticação. O progresso musical fica neste navegador, separado por conta; ainda não é sincronizado entre aparelhos.</p>
+</section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+<script src="musiverso-auth.js?v=1"></script></body></html>
