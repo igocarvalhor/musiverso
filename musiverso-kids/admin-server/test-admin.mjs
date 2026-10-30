@@ -1,0 +1,21 @@
+import {readFileSync} from 'node:fs';
+import {stripTypeScriptTypes} from 'node:module';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const source=stripTypeScriptTypes(readFileSync(new URL('./kids-admin.ts',import.meta.url),'utf8')).replace('export async function','async function');
+let handler, calls=[], identity={id:'admin',app_metadata:{musiverso_kids_admin:true}},identityStatus=200;
+const context=vm.createContext({Request,Response,URL,Set,Number,JSON,fetch:async(url,options)=>{calls.push({url,options});return url.endsWith('/user')?new Response(JSON.stringify(identity),{status:identityStatus}):new Response(JSON.stringify({users:[{id:'u1',email:'demo@example.test',encrypted_password:'NEVER',user_metadata:{display_name:'<script>name</script>'},app_metadata:{providers:['google']}}]}))},Deno:{env:{get:n=>({SUPABASE_URL:'https://test.invalid',SUPABASE_SERVICE_ROLE_KEY:'SERVER_SECRET'})[n]},serve:h=>handler=h}});
+vm.runInContext(source,context);
+async function test(name,headers,status,query='',method='GET'){calls=[];const r=await handler(new Request('https://api.invalid/kids-admin'+query,{headers,method}));assert.equal(r.status,status,name);return r}
+await test('No session',{},401);assert.equal(calls.length,0);
+await test('Disallowed origin',{origin:'https://evil.invalid',authorization:'Bearer valid'},403);assert.equal(calls.length,0);
+identity={id:'student',app_metadata:{},user_metadata:{musiverso_kids_admin:true}};
+await test('Student cannot forge role in editable metadata',{authorization:'Bearer student'},403);assert.equal(calls.length,1);
+identityStatus=401;await test('Invalid token',{authorization:'Bearer invalid'},401);assert.equal(calls.length,1);
+identityStatus=200;identity={id:'admin',app_metadata:{musiverso_kids_admin:true}};
+await test('Bad pagination',{authorization:'Bearer admin'},400,'?page=NaN');
+const check=await test('Role check',{authorization:'Bearer admin'},200,'?action=check');assert.equal(calls.length,1);
+const result=await test('Admin listing',{authorization:'Bearer admin',origin:'https://musiverso-kids.vercel.app'},200);const body=await result.text();assert(!body.includes('NEVER'));assert(!body.includes('SERVER_SECRET'));assert.equal(result.headers.get('cache-control'),'no-store');assert.equal(result.headers.get('access-control-allow-origin'),'https://musiverso-kids.vercel.app');assert.equal(calls.length,2);
+await test('Write methods blocked',{authorization:'Bearer admin'},405,'','POST');
+console.log('8 authorization / data-exposure checks passed.');
+const html=readFileSync(new URL('./admin.html',import.meta.url),'utf8');for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script[1]);console.log('Admin page JavaScript syntax passed.');
