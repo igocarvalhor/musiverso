@@ -30,7 +30,7 @@ client.auth.onAuthStateChange((event,session)=>{
    if(!window.MusiversoAuthUser)return;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=cloud-progress-1';
+   script.src='app.js?v=facts-5min-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
