@@ -1,0 +1,186 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prévia da vitrine musical</title><link rel="stylesheet" href="style.css"><style>body{padding:18px 16px}main{max-width:900px;margin:auto}.preview-status{max-width:900px;margin:0 auto 18px;color:#745a8a;font:13px/1.5 system-ui}.preview-status button{padding:10px 13px;border:1px solid #dac5e9;background:white;border-radius:12px}.preview-heading{font:700 13px system-ui;color:#745a8a;margin:0 0 8px}</style></head><body><div class="preview-status"><p class="preview-heading">PRÉVIA VISUAL · MUSIVERSO KIDS</p><button id="simulateAuto">Conferir próxima troca automática</button><p id="selectedPreview" role="status">Escolha um card para conferir seu destino.</p></div><main><section class="home-explore" id="homeExploreCarousel" role="region" aria-roledescription="carrossel" aria-labelledby="explore-title"><div class="section-head explore-heading"><div><span class="explore-eyebrow">UM UNIVERSO DE POSSIBILIDADES</span><h2 id="explore-title">O que vamos explorar?</h2><p>Escolha seu próximo caminho musical.</p></div><span class="explore-heading-star" aria-hidden="true">✦</span></div><div class="explore-grid" id="homeExploreGrid"></div><div class="explore-carousel-controls"><div class="explore-pagination"><span id="homeExploreCount"></span><span class="explore-dots" id="homeExploreDots" aria-hidden="true"></span></div><div class="explore-carousel-buttons"><button type="button" class="fact-arrow" id="previousHomeExplore" aria-label="Grupo anterior de descobertas">‹</button><button type="button" class="fact-pause" id="pauseHomeExplore" aria-pressed="false">Ⅱ Pausar</button><button type="button" class="fact-arrow" id="nextHomeExplore" aria-label="Próximo grupo de descobertas">›</button></div></div><p class="explore-auto-hint">Novos cards a cada 15 segundos. A troca pausa enquanto você escolhe.</p><span id="homeExploreAnnouncement" class="sr-only" role="status" aria-live="polite"></span></section></main><div id="modal" hidden></div><script>const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));let page="home";const state={reduced:false};function journeyNextPart(){return 0};window.MUSIVERSO_LIBRARY={instruments:{}};window.MUSIVERSO_EXTRA_INSTRUMENTS=[{"type":"violin","name":"Violino","icon":"🎻","desc":"Quatro cordas que vibram com o arco ou com os dedos.","story":"Há cerca de quinhentos anos, construtores do norte da Itália criaram violinos parecidos com os que conhecemos hoje. Eles reuniram ideias de instrumentos de cordas mais antigos. O violino acompanhou danças e cantores e, depois, conquistou espaço nas orquestras. Suas quatro cordas podem ser tocadas com um arco ou beliscadas com os dedos. Vivaldi conhecia muito bem esse instrumento e escreveu músicas em que ele parece imitar pássaros!","question":"Você consegue encontrar as quatro cordas e os dois desenhos em forma de f na fotografia?","guide":"Mostre o corpo de madeira e as cordas. Compare um som sustentado de arco com o gesto curto de beliscar uma corda; esse segundo jeito se chama pizzicato.","example":"Sugestão de escuta: A Primavera, de Vivaldi. Observe os violinos no começo da obra.","source":"https://www.metmuseum.org/essays/renaissance-violins","imageSource":"https://commons.wikimedia.org/wiki/File:Violin_front.jpg","imageCredit":"A. Kniesel / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/violin.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"cello","name":"Violoncelo","icon":"🎻","desc":"Cordas e arco produzem sons encorpados, do grave ao agudo.","story":"O violoncelo nasceu na Europa, na mesma época em que a família do violino se desenvolvia. Como era maior, ajudava os grupos musicais com sons mais graves. Ao longo dos séculos, seu tamanho e suas cordas mudaram. Hoje, o músico toca sentado e apoia o instrumento no chão por uma haste chamada espigão. Seu som também pode cantar melodias: Bach escreveu suítes inteiras para o violoncelo tocar sozinho.","question":"O que você vê no violoncelo que também aparece no violino? E o que parece diferente?","guide":"Compare as fotografias sem usar o tamanho na tela como escala real. Explique que o violoncelo é maior que o violino e fica apoiado no chão. Ouça primeiro uma nota grave e depois uma aguda.","example":"Sugestão de escuta: Prelúdio da Suíte nº 1 para violoncelo, BWV 1007, de Bach.","source":"https://www.yamaha.com/en/musical_instrument_guide/violin/structure/structure005.html","imageSource":"https://commons.wikimedia.org/wiki/File:Cello_front_side.jpg","imageCredit":"Georg Feitscher / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/cello.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"clarinet","name":"Clarinete","icon":"🎶","desc":"O sopro faz uma palheta simples vibrar na boquilha.","story":"Por volta de 1700, construtores de instrumentos começaram a transformar um antigo sopro chamado chalumeau. Dessa história surgiu o clarinete. No começo, ele tinha poucas chaves; com o tempo, ganhou mais mecanismos para alcançar outras notas. Uma pequena lâmina, a palheta, vibra quando o músico sopra. O clarinete consegue produzir sons graves macios e sons agudos brilhantes. Ele participa de orquestras, bandas, grupos de choro e de jazz.","question":"Você consegue localizar a boquilha e as chaves brilhantes na fotografia?","guide":"Explique que palheta simples significa uma lâmina apoiada na boquilha. Compare o timbre do clarinete com o do oboé, sem dizer que um deles só pode tocar forte ou fraco.","example":"Sugestão de escuta: Concerto para clarinete, K. 622, de Mozart. Procure o instrumento solista.","source":"https://www.yamaha.com/en/musical_instrument_guide/clarinet/structure/","imageSource":"https://commons.wikimedia.org/wiki/File:BflatClarinet_wide.jpg","imageCredit":"Brimz / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/clarinet.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"oboe","name":"Oboé","icon":"🎶","desc":"Duas pequenas lâminas formam sua palheta dupla.","story":"O oboé ganhou uma forma próxima da atual na França, no século XVII. Seus parentes mais antigos já eram tocados em festas e ao ar livre. Com mudanças no corpo e nas chaves, o instrumento passou a participar de grupos e orquestras. Na ponta, duas lâminas muito finas vibram juntas quando o músico sopra: é a palheta dupla. Seu timbre marcante pode lembrar uma voz contando uma história.","question":"O que muda na ponta do oboé quando você o compara com o clarinete?","guide":"Aponte a pequena palheta na extremidade do instrumento. Diga que o oboé usa duas lâminas que vibram uma contra a outra; no clarinete, há uma lâmina contra a boquilha.","example":"Sugestão de escuta: o pato em Pedro e o Lobo, de Prokofiev, é representado pelo oboé.","source":"https://www.yamaha.com/en/musical_instrument_guide/oboe/structure/","imageSource":"https://commons.wikimedia.org/wiki/File:Oboe_modern.jpg","imageCredit":"Hustvedt; edição de Gisbert K / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/oboe.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"bassoon","name":"Fagote","icon":"🎶","desc":"Um tubo comprido e uma palheta dupla ajudam a produzir seus sons graves.","story":"O fagote tem uma história ligada a antigos instrumentos de sopro do século XVI, como o dulciano. Seu tubo é comprido, mas faz uma volta por dentro: por isso, cabe em um corpo que parece dobrado. Assim como o oboé, ele usa palheta dupla. Ao longo do tempo, ganhou mais chaves para facilitar as notas. Na orquestra, pode sustentar sons graves ou apresentar uma melodia cheia de personalidade.","question":"Você consegue achar o pequeno tubo curvado que leva até a boca do músico?","guide":"Mostre o tubo metálico curvado, chamado tudel. Compare o som do fagote com o do oboé: os dois usam palheta dupla, mas o fagote alcança uma região mais grave.","example":"Sugestão de escuta: o avô em Pedro e o Lobo, de Prokofiev, é representado pelo fagote.","source":"https://www.yamaha.com/en/musical_instrument_guide/bassoon/structure/","imageSource":"https://commons.wikimedia.org/wiki/File:Bassoon.jpg","imageCredit":"Mezzofortist; ajustes de Eddau e Gisbert K / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/bassoon.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"timpani","name":"Tímpanos","icon":"🥁","desc":"Grandes tambores afinados, tocados com baquetas.","story":"Muito antes de entrarem nas orquestras, já existiam tambores com corpo parecido com uma grande tigela. Os tímpanos passaram a fazer parte da música de orquestra no século XVII. Sua pele vibra quando recebe a batida de uma baqueta. Mas há uma surpresa: eles podem ser afinados em notas! Nos instrumentos modernos, um pedal ajuda a mudar a tensão da pele e, assim, a altura do som.","question":"Os tímpanos da foto têm todos o mesmo tamanho? O que você imagina que isso muda no som?","guide":"Diferencie altura e intensidade: grave/agudo não é a mesma coisa que forte/fraco. Explique que o pedal muda a afinação e que as baquetas podem produzir ataques diferentes.","example":"Sugestão de escuta: a abertura do Concerto para violino, Op. 61, de Beethoven começa com batidas de tímpano.","source":"https://philharmonia.co.uk/resources/instruments/timpani/","imageSource":"https://commons.wikimedia.org/wiki/File:Timpani_BBC_Proms.jpg","imageCredit":"Amanda Slater / Wikimedia Commons","imageLicense":"CC BY-SA 2.0","image":"https://musiverso-kids.vercel.app/assets/instruments/timpani.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/2.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."},{"type":"contrabass","name":"Contrabaixo acústico","icon":"🎻","desc":"O grande instrumento de cordas que sustenta muitos sons graves.","story":"O contrabaixo acústico tem uma história ligada a antigos instrumentos graves, como o violone. Durante muito tempo, existiram modelos de tamanhos e números de cordas diferentes. Hoje, muitos têm quatro cordas, e alguns têm cinco. O músico pode passar o arco nas cordas ou puxá-las com os dedos. Na orquestra, ele ajuda a sustentar a parte grave; no jazz, suas notas dedilhadas também ajudam a marcar o caminho do ritmo.","question":"Como você imagina que o músico alcança as cordas desse instrumento tão grande?","guide":"Mostre o espigão e o arco na imagem. Compare o contrabaixo acústico com o violoncelo; esclareça que as fotografias não estão na mesma escala. Experimente ouvir arco e pizzicato.","example":"Sugestão de escuta: O Elefante, de O Carnaval dos Animais, de Saint-Saëns, destaca o contrabaixo.","source":"https://www.yamaha.com/en/musical_instrument_guide/violin/structure/structure006.html","imageSource":"https://commons.wikimedia.org/wiki/File:AGK_bass1_full.jpg","imageCredit":"Andrew Kepert (AGK) / Wikimedia Commons","imageLicense":"CC BY-SA 3.0","image":"https://musiverso-kids.vercel.app/assets/instruments/contrabass.jpg","imageLicenseUrl":"https://creativecommons.org/licenses/by-sa/3.0/","imageChanges":"Arquivo fotográfico original, sem alterações locais."}];const worlds=[
+{title:'Os primeiros sons',icon:'🪨',color:'#dff4df',subtitle:'Voz, corpo e natureza',text:'Muito antes dos pianos e dos violões, as pessoas já podiam explorar sons com a voz, o corpo e materiais da natureza. Instrumentos antigos feitos de osso sobreviveram por milhares de anos. Não sabemos exatamente quando a música começou: vamos imaginar possibilidades e experimentar!',discover:['Bata palmas bem devagar.','Bata as mãos nas pernas.','Combine os dois sons e invente um ritmo.'],questions:[['Qual destes sons você faz com o corpo?',['Palmas','Buzina','Piano'],0],['Qual material pode produzir som ao ser tocado?',['Madeira','Sombra','Reflexo'],0],['Sabemos exatamente quando a música começou?',['Sim, ontem','Não sabemos','Quando surgiu o piano'],1]]},
+{title:'Músicas da Antiguidade',icon:'🏛️',subtitle:'Muitos povos, muitos sons',text:'No Egito, na Grécia, na China e em muitos outros lugares, a música fazia parte de festas, cerimônias e da vida cotidiana. Havia flautas, tambores, liras e muitos outros instrumentos. Cada povo tinha seus próprios caminhos musicais.',discover:['Imagine o som de uma corda vibrando.','Compare uma flauta com um tambor.','Descubra: instrumentos de sopro usam ar!'],questions:[['Como uma flauta produz som?',['Com luz','Com o ar','Com tinta'],1],['Qual instrumento tem cordas?',['Lira','Tambor','Chocalho'],0],['Na Antiguidade, a música existia…',['Em diferentes povos','Só em um país','Só nos computadores'],0]]},
+{title:'Castelos e cantigas',icon:'🏰',subtitle:'Uma janela para a Europa medieval',text:'Na Europa medieval, a música podia ser ouvida nas igrejas, nas ruas e nos castelos. Trovadores criavam canções. Muitas músicas eram transmitidas pela escuta; outras eram escritas. Hildegard von Bingen foi uma compositora dessa época.',discover:['Cante uma frase sozinho.','Convide alguém para cantar junto.','Uma pessoa canta solo; várias podem formar um coro.'],questions:[['Um grupo de pessoas cantando forma um…',['Coro','Violino','Tambor'],0],['Quem foi Hildegard von Bingen?',['Uma compositora','Um instrumento','Uma dança'],0],['Trovadores criavam…',['Computadores','Canções','Pianos elétricos'],1]]},
+{title:'Vozes do Renascimento',icon:'🎶',subtitle:'Melodias que se encontram',text:'No Renascimento europeu, compositores como Josquin des Prez exploraram melodias que acontecem ao mesmo tempo. Chamamos essa combinação de polifonia. A impressão musical ajudou a compartilhar partituras. Em outras partes do mundo, muitas tradições também seguiam se desenvolvendo.',discover:['Cante uma nota longa.','Peça a alguém que cante outra nota.','Escute como as vozes se misturam.'],questions:[['O que pode acontecer na polifonia?',['Várias melodias juntas','Só silêncio','Nenhuma voz'],0],['Uma partitura ajuda a…',['Registrar música','Cozinhar','Acender uma luz'],0],['Josquin des Prez foi um…',['Compositor','Tambor','Microfone'],0]]},
+{title:'O mundo do Barroco',icon:'🎻',subtitle:'Bach, Vivaldi e novas descobertas',text:'Bach e Vivaldi viveram no período que chamamos de Barroco na história da música europeia. O cravo e o violino estavam presentes em muitas obras. Vivaldi escreveu As Quatro Estações, uma coleção de concertos que nos convida a imaginar cenas da natureza.',discover:['Imagine uma chuva em forma de música.','Como seria uma música sobre o verão?','No menu Compositores, ouça um trecho de Bach.'],questions:[['Quem escreveu As Quatro Estações?',['Vivaldi','Mozart','Chopin'],0],['Qual destes é um instrumento de cordas?',['Violino','Flauta','Triângulo'],0],['Bach é associado ao…',['Barroco','Cinema mudo apenas','Rock dos anos 1990'],0]]},
+{title:'O palco do Classicismo',icon:'🎹',subtitle:'Mozart, Haydn e a orquestra',text:'No Classicismo europeu, Mozart e Haydn criaram sinfonias, sonatas e outras obras. Na orquestra, diferentes famílias de instrumentos fazem música juntas. Mozart também escreveu óperas: histórias contadas com música, canto e teatro!',discover:['Imagine uma conversa entre dois instrumentos.','Escolha quem pergunta e quem responde.','Ouça Mozart no menu Compositores.'],questions:[['O que é uma ópera?',['História com música, canto e teatro','Um tipo de tambor','Uma peça de roupa'],0],['Quem compôs A Flauta Mágica?',['Mozart','Vivaldi','Bach'],0],['Uma orquestra reúne…',['Diferentes instrumentos','Somente pianos','Somente cantores'],0]]},
+{title:'Histórias do Romantismo',icon:'🌙',subtitle:'Imaginação e expressão',text:'Beethoven ajudou a abrir caminhos entre o Classicismo e o Romantismo. Depois, artistas como Schubert, Chopin e Clara Schumann criaram obras muito expressivas. Uma mesma música pode despertar ideias diferentes em cada pessoa. Não existe uma única emoção certa para sentir!',discover:['Ouça uma melodia de olhos fechados.','Imagine uma cena para ela.','Conte o que você imaginou.'],questions:[['Clara Schumann foi pianista e…',['Compositora','Instrumento','Rainha do Egito'],0],['Chopin escreveu muitas obras para…',['Piano','Bateria eletrônica','Buzina'],0],['Duas pessoas podem imaginar cenas diferentes ouvindo a mesma música?',['Sim','Não','Só com fones'],0]]},
+{title:'Muitos caminhos musicais',icon:'🎧',subtitle:'Do século XX até hoje',text:'Nos séculos XX e XXI, gravações, rádio, cinema e computadores ampliaram as formas de criar e compartilhar música. Jazz, rock, música eletrônica e muitos outros caminhos ganharam espaço. Compositores também criam trilhas para filmes e jogos. A música continua mudando!',discover:['Escute os sons ao seu redor.','Escolha um som para uma cena de aventura.','Crie sua trilha em Maestro por um dia.'],questions:[['Uma trilha sonora pode acompanhar…',['Um filme ou jogo','Apenas uma partitura','Somente um violino'],0],['Qual recurso permite guardar uma apresentação sonora?',['Gravação','Uma sombra','Uma lanterna'],0],['A música de hoje…',['Continua se transformando','Parou de mudar','Existe em um único estilo'],0]]},
+{title:'Brasil de muitos sons',icon:'🪘',subtitle:'Culturas, encontros e tradições',text:'A música no Brasil reúne muitas histórias. Povos indígenas têm tradições próprias e diversas. Culturas africanas e afro-brasileiras, europeias e de outras origens participam dessa riqueza. Chiquinha Gonzaga, Pixinguinha, Villa-Lobos e muitos outros artistas fazem parte desses caminhos. Em Pernambuco, frevo, maracatu e ciranda convidam a descobrir!',discover:['Pergunte à família qual música faz parte da sua história.','Conheça um ritmo da sua região.','Descubra uma música que você ainda não ouviu.'],questions:[['Qual destes ritmos faz parte da cultura de Pernambuco?',['Frevo','Valsa vienense apenas','Flamenco apenas'],0],['Chiquinha Gonzaga foi…',['Compositora e pianista','Uma flauta','Uma figura de pausa'],0],['As tradições musicais indígenas são…',['Diversas, como seus povos','Todas iguais','Uma única canção'],0]]}
+];
+const games=[['sound','🔊','Que som é esse?','Descubra os timbres.','#ffe1e8'],['memory','🃏','Memória sonora','Encontre os pares de sons.','#d9f5e5'],['echo','👏','Eco musical','Escute e repita o ritmo.','#d9eeff'],['composer','🎼','Quem compôs?','Conheça melodias e seus criadores.','#fff0c6'],['rhythm','🥁','Oficina de ritmos','Invente uma batida só sua.','#eadbff'],['maestro','🪄','Maestro por um dia','Misture sons e crie sua trilha.','#dcf3fa'],['figures','♩','Sons e silêncios','Descubra as figuras musicais.','#fff0d4'],['families','🎻','Famílias dos instrumentos','Junte cada instrumento à sua família.','#fce6cb'],['staff','🎼','Notas na pauta','Escolha, observe e descubra a nota.','#e2efff']];
+const instrumentFamilies={piano:'strings',flute:'wind',guitar:'strings',drum:'percussion',violin:'strings',cello:'strings',clarinet:'wind',oboe:'wind',bassoon:'wind',timpani:'percussion',contrabass:'strings'};
+const instruments=[{name:'Piano',icon:'🎹',type:'piano',desc:'As teclas acionam martelos que fazem as cordas vibrarem.'},{name:'Flauta doce',icon:'🪈',type:'flute',desc:'O ar em vibração produz seu som.'},{name:'Violão',icon:'🎸',type:'guitar',desc:'As cordas vibram quando são dedilhadas ou tocadas.'},{name:'Tambor',icon:'🥁',type:'drum',desc:'A membrana vibra quando recebe uma batida.'}];instruments.push(...(window.MUSIVERSO_EXTRA_INSTRUMENTS||[]));for(const item of window.MUSIVERSO_EXTRA_INSTRUMENTS||[])window.MUSIVERSO_LIBRARY.instruments[item.type]=item;
+const composers=[{name:'Bach',full:'Johann Sebastian Bach',era:'Barroco',icon:'🎼',dates:'1685–1750',desc:'Bach compôs para vozes, órgão, cravo e muitos outros instrumentos. Aqui ouvimos seu Prelúdio em dó maior.',melody:[[60,.22],[64,.22],[67,.22],[72,.22],[76,.22],[67,.22],[72,.22],[76,.22],[60,.22],[64,.22],[67,.22],[72,.22],[76,.22]],title:'Prelúdio em dó maior, BWV 846'}, {name:'Mozart',full:'Wolfgang Amadeus Mozart',era:'Classicismo',icon:'🎹',dates:'1756–1791',desc:'Mozart criou óperas, concertos e sinfonias. Esta melodia abre Uma pequena serenata noturna.',melody:[[67,.35],[0,.12],[62,.25],[67,.35],[0,.12],[62,.25],[67,.22],[62,.22],[67,.22],[71,.22],[74,.55]],title:'Uma pequena serenata noturna, K. 525'}, {name:'Beethoven',full:'Ludwig van Beethoven',era:'Entre Classicismo e Romantismo',icon:'🎻',dates:'1770–1827',desc:'Beethoven ampliou as possibilidades da orquestra. Ouça o tema conhecido como Ode à alegria.',melody:[[64,.35],[64,.35],[65,.35],[67,.35],[67,.35],[65,.35],[64,.35],[62,.35],[60,.35],[60,.35],[62,.35],[64,.35],[64,.5],[62,.18],[62,.7]],title:'Ode à alegria — Sinfonia nº 9'}];
+
+const people=[
+{id:'hildegard',name:'Hildegard von Bingen',era:'Idade Média',lesson:2,desc:'Esta é uma representação histórica de Hildegard. Ela foi uma compositora da Idade Média e criou músicas para vozes.'},
+{id:'josquin',name:'Josquin des Prez',era:'Renascimento',lesson:3,desc:'Este retrato representa Josquin des Prez. Ele criou músicas em que diferentes vozes cantam melodias ao mesmo tempo.'},
+{id:'bach',name:'Johann Sebastian Bach',short:'Bach',era:'Barroco',lesson:4,desc:composers[0].desc,music:0},
+{id:'vivaldi',name:'Antonio Vivaldi',era:'Barroco',lesson:4,desc:'Este é Antonio Vivaldi. Ele tocava violino e compôs As Quatro Estações. Suas músicas podem nos fazer imaginar cenas da natureza.'},
+{id:'mozart',name:'Wolfgang Amadeus Mozart',short:'Mozart',era:'Classicismo',lesson:5,desc:composers[1].desc,music:1},
+{id:'haydn',name:'Joseph Haydn',era:'Classicismo',lesson:5,desc:'Este é Joseph Haydn. Ele criou muitas sinfonias e músicas para grupos de instrumentos.'},
+{id:'beethoven',name:'Ludwig van Beethoven',short:'Beethoven',era:'Classicismo e Romantismo',lesson:6,desc:composers[2].desc,music:2},
+{id:'schubert',name:'Franz Schubert',era:'Romantismo',lesson:6,desc:'Este é Franz Schubert. Ele criou muitas canções, combinando poesia, voz e piano.'},
+{id:'chopin',name:'Frédéric Chopin',era:'Romantismo',lesson:6,desc:'Este é Frédéric Chopin. Ele era pianista e criou muitas músicas para piano.'},
+{id:'clara',name:'Clara Schumann',era:'Romantismo',lesson:6,desc:'Esta é Clara Schumann. Ela foi pianista e compositora. Apresentou concertos e criou suas próprias músicas.'},
+{id:'chiquinha',name:'Chiquinha Gonzaga',era:'Brasil',lesson:8,desc:'Esta é Chiquinha Gonzaga. Ela foi pianista, compositora e regente brasileira. Criou músicas para o teatro e o carnaval.'},
+{id:'pixinguinha',name:'Pixinguinha',era:'Brasil',lesson:8,desc:'Este é Pixinguinha, músico e compositor brasileiro. Ele tocava flauta e saxofone e é um grande nome do choro.'},
+{id:'villa-lobos',name:'Heitor Villa-Lobos',era:'Brasil',lesson:8,desc:'Este é Heitor Villa-Lobos. Ele foi um compositor brasileiro e explorou muitas sonoridades em suas obras.'}
+];
+const personImage=p=>`<img class="person-photo" src="https://musiverso-kids.vercel.app/assets/people/${p.id}.jpg" alt="Retrato de ${esc(p.name)}" loading="lazy" width="320" height="360">`;
+const instrumentImage=x=>`<img class="instrument-photo" src="https://musiverso-kids.vercel.app/assets/instruments/${x.type==='guitar'?'guitar.png':x.type==='flute'?'flute.jpg':x.type+'.jpg'}" alt="Fotografia de ${esc(x.name)}" loading="lazy" width="320" height="260">`;
+function personCard(p,compact=false){return `<article class="collect-card person-card ${compact?'compact':''}"><button class="portrait-button" data-person="${p.id}" aria-label="Conhecer a história de ${esc(p.name)}">${personImage(p)}<span class="photo-play" aria-hidden="true">⌕</span></button><div class="person-info"><small class="era-label">${p.era}</small><h3>${p.short||p.name}</h3>${pianoPieces().some(x=>x.composerId===p.id)?`<button class="voice-button" data-piano-composer="${p.id}">🎹 Tocar no piano</button>`:''}<button class="voice-button" data-person="${p.id}" aria-label="Ler história e ouvir obras de ${esc(p.name)}">📖 História e obras</button><button class="voice-button music-button" data-say="${esc(p.name+'. '+p.desc)}" aria-label="Ouvir apresentação de ${esc(p.name)}">🔊 Ouvir resumo</button></div></article>`}
+const homeExploreCards=[
+ {
+  "page": "games",
+  "title": "Jogos musicais",
+  "description": "Brinque e descubra novos sons.",
+  "action": "Vamos jogar",
+  "image": "https://musiverso-kids.vercel.app/assets/explore/games.svg",
+  "alt": "",
+  "theme": "games"
+ },
+ {
+  "page": "instruments",
+  "title": "Instrumentos",
+  "description": "Conheça cada família e seu som.",
+  "action": "Descobrir sons",
+  "image": "https://musiverso-kids.vercel.app/assets/instruments/guitar.png",
+  "alt": "Violão",
+  "theme": "instruments"
+ },
+ {
+  "page": "composers",
+  "title": "Compositores",
+  "description": "Descubra quem criou grandes músicas.",
+  "action": "Conhecer artistas",
+  "image": "https://musiverso-kids.vercel.app/assets/people/mozart.jpg",
+  "alt": "Retrato de Mozart",
+  "theme": "composers"
+ },
+ {
+  "page": "medals",
+  "title": "Minhas medalhas",
+  "description": "Celebre cada nova conquista.",
+  "action": "Ver meu álbum",
+  "image": "https://musiverso-kids.vercel.app/assets/explore/medals.svg",
+  "alt": "",
+  "theme": "medals"
+ },
+ {
+  "page": "piano",
+  "title": "Piano das cores",
+  "description": "Toque, escute e crie melodias.",
+  "action": "Quero tocar",
+  "image": "https://musiverso-kids.vercel.app/assets/explore/piano.svg",
+  "alt": "",
+  "theme": "piano"
+ },
+ {
+  "page": "journey",
+  "title": "História da música",
+  "description": "Viaje por épocas e descobertas.",
+  "action": "Começar viagem",
+  "image": "https://musiverso-kids.vercel.app/assets/explore/journey.svg",
+  "alt": "",
+  "theme": "journey"
+ }
+];
+const HOME_EXPLORE_INTERVAL=15000,HOME_EXPLORE_SIZE=6;
+let homeExploreCatalogCache=null,homeExploreGroup=0,homeExploreTimer=null,homeExploreNextAt=0;
+let homeExplorePaused=false,homeExploreHovered=false,homeExploreFocused=false,homeExploreVisible=false;
+let homeExploreObserver=null,homeExploreAnimation=null,homeExploreTransition=0,homeExploreAnimating=false;
+function homeExploreSummary(text,max=120){const value=String(text).replace(/\s+/g,' ').trim();if(value.length<=max)return value;const short=value.slice(0,max);return short.slice(0,short.lastIndexOf(' '))+'…'}
+function getHomeExploreCatalog(){
+ if(homeExploreCatalogCache)return homeExploreCatalogCache;
+ const main=homeExploreCards.map(card=>({...card,key:'page:'+card.page,category:'Seu universo musical'}));
+ const gameImages={sound:'https://musiverso-kids.vercel.app/assets/instruments/drum.jpg',memory:'https://musiverso-kids.vercel.app/assets/explore/games.svg',echo:'https://musiverso-kids.vercel.app/assets/history/clapping.jpg',composer:'https://musiverso-kids.vercel.app/assets/people/beethoven.jpg',rhythm:'https://musiverso-kids.vercel.app/assets/instruments/drum.jpg',maestro:'https://musiverso-kids.vercel.app/assets/history/orchestra.jpg',figures:'https://musiverso-kids.vercel.app/assets/facts/figuras.svg',families:'https://musiverso-kids.vercel.app/assets/instruments/violin.jpg',staff:'https://musiverso-kids.vercel.app/assets/facts/pauta.svg'};
+ const gameCards=games.map(([id,icon,title,description])=>({key:'game:'+id,game:id,title,description,action:'Vamos jogar',image:gameImages[id]||'https://musiverso-kids.vercel.app/assets/explore/games.svg',alt:'',theme:id==='composer'?'composers':'games',category:'Jogos e atividades'}));
+ const instrumentCards=instruments.map((instrument,index)=>({key:'instrument:'+instrument.type,instrument:index,title:instrument.name,description:instrument.desc||'Conheça a história e ouça o som deste instrumento.',action:'História e som',image:'https://musiverso-kids.vercel.app/assets/instruments/'+instrument.type+(instrument.type==='guitar'?'.png':'.jpg'),alt:instrument.name,theme:'instruments',category:'Conheça os instrumentos'}));
+ const personCards=people.map(person=>({key:'person:'+person.id,person:person.id,title:person.short||person.name,description:homeExploreSummary(person.era+' · '+person.desc),action:'História e obras',image:'https://musiverso-kids.vercel.app/assets/people/'+person.id+'.jpg',alt:person.name,theme:'composers',category:'Compositores e suas histórias'}));
+ const worldImages=['clapping.jpg','lyre.jpg','notre-dame.jpg','manuscript.gif','violin.png','magic-flute.jpg','orchestra.jpg','studio.jpg','frevo.jpg'];
+ const worldCards=worlds.map((world,index)=>({key:'world:'+index,lesson:index,title:world.title,description:homeExploreSummary(world.subtitle+'. '+world.text),action:'Explorar esta época',image:'https://musiverso-kids.vercel.app/assets/history/'+worldImages[index],alt:'',theme:'journey',category:'Sua viagem no tempo'}));
+ const pools=[gameCards,instrumentCards,personCards,worldCards],all=[...main];
+ for(let i=0;i<Math.max(...pools.map(pool=>pool.length));i++)for(const pool of pools)if(pool[i])all.push(pool[i]);
+ homeExploreCatalogCache=all;return all;
+}
+function homeExploreAction(card){
+ if(card.game)return 'data-game="'+esc(card.game)+'"';
+ if(Number.isInteger(card.instrument))return 'data-instrument-info="'+card.instrument+'"';
+ if(card.person)return 'data-person="'+esc(card.person)+'"';
+ if(Number.isInteger(card.lesson))return 'data-lesson="'+card.lesson+'" data-story-part="'+journeyNextPart(card.lesson)+'"';
+ return 'data-nav="'+esc(card.page)+'"';
+}
+function renderHomeExploreCards(){
+ const all=getHomeExploreCatalog(),groups=Math.ceil(all.length/HOME_EXPLORE_SIZE);
+ homeExploreGroup=(homeExploreGroup+groups)%groups;
+ const visible=Array.from({length:Math.min(HOME_EXPLORE_SIZE,all.length)},(_,i)=>all[(homeExploreGroup*HOME_EXPLORE_SIZE+i)%all.length]);
+ return visible.map(card=>'<button type="button" class="explore-card explore-card-'+card.theme+'" '+homeExploreAction(card)+' data-explore-key="'+esc(card.key)+'" aria-label="'+esc('Abrir '+card.title+' — '+card.category)+'"><span class="explore-art" aria-hidden="true"><span class="explore-orbit"></span><img src="'+esc(card.image)+'" alt="'+esc(card.alt)+'" width="320" height="180" decoding="async"><span class="explore-spark explore-spark-one">✦</span><span class="explore-spark explore-spark-two">♪</span></span><span class="explore-copy"><span class="explore-category">'+esc(card.category)+'</span><strong class="explore-title">'+esc(card.title)+'</strong><span class="explore-description">'+esc(card.description)+'</span><span class="explore-footer"><span>'+esc(card.action)+'</span><span class="explore-arrow" aria-hidden="true">↗</span></span></span></button>').join('');
+}
+function homeExploreBlocked(){
+ return page!=='home'||document.hidden||!homeExploreVisible||homeExplorePaused||homeExploreHovered||homeExploreFocused||document.body.classList.contains('modal-open')||($('#imageViewer')&&!$('#imageViewer').hidden);
+}
+function cancelHomeExploreAnimation(){
+ homeExploreTransition++;homeExploreAnimation?.cancel();homeExploreAnimation=null;homeExploreAnimating=false;
+ $('#homeExploreGrid')?.setAttribute('aria-busy','false');
+}
+function stopHomeExplore(){
+ clearTimeout(homeExploreTimer);homeExploreObserver?.disconnect();homeExploreObserver=null;
+ cancelHomeExploreAnimation();homeExploreVisible=false;homeExploreHovered=false;homeExploreFocused=false;
+}
+function scheduleHomeExplore(){
+ clearTimeout(homeExploreTimer);
+ if(homeExploreBlocked()||homeExploreAnimating||!$('#homeExploreGrid'))return;
+ homeExploreTimer=setTimeout(()=>changeHomeExplore(1,false),Math.max(1,homeExploreNextAt-Date.now()));
+}
+function resumeHomeExplore(){homeExploreNextAt=Date.now()+HOME_EXPLORE_INTERVAL;scheduleHomeExplore()}
+function suspendHomeExplore(){clearTimeout(homeExploreTimer);cancelHomeExploreAnimation()}
+function updateHomeExploreControls(manual=false){
+ const all=getHomeExploreCatalog(),groups=Math.ceil(all.length/HOME_EXPLORE_SIZE);
+ const count=$('#homeExploreCount'),dots=$('#homeExploreDots'),pause=$('#pauseHomeExplore'),announce=$('#homeExploreAnnouncement');
+ if(count)count.textContent=all.length+' descobertas · '+(homeExploreGroup+1)+' de '+groups;
+ if(dots)dots.innerHTML=Array.from({length:groups},(_,i)=>'<span class="'+(i===homeExploreGroup?'active':'')+'"></span>').join('');
+ if(pause){pause.textContent=homeExplorePaused?'▶ Retomar':'Ⅱ Pausar';pause.setAttribute('aria-pressed',String(homeExplorePaused));pause.setAttribute('aria-label',homeExplorePaused?'Retomar troca automática dos cards':'Pausar troca automática dos cards')}
+ if(manual&&announce)announce.textContent='Grupo '+(homeExploreGroup+1)+' de '+groups+'. Novas descobertas para explorar.';
+}
+async function changeHomeExplore(direction=1,manual=true){
+ const grid=$('#homeExploreGrid');if(page!=='home'||!grid||(!manual&&homeExploreBlocked()))return;
+ suspendHomeExplore();const transition=homeExploreTransition,groups=Math.ceil(getHomeExploreCatalog().length/HOME_EXPLORE_SIZE),next=(homeExploreGroup+direction+groups)%groups;
+ homeExploreAnimating=true;
+ const valid=()=>transition===homeExploreTransition&&page==='home'&&grid.isConnected;
+ const apply=()=>{homeExploreGroup=next;grid.innerHTML=renderHomeExploreCards();updateHomeExploreControls(manual)};
+ const animate=!state.reduced&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof grid.animate==='function';
+ try{
+  if(animate){
+   grid.setAttribute('aria-busy','true');
+   homeExploreAnimation=grid.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(7px)'}],{duration:160,easing:'ease-in',fill:'forwards'});
+   await homeExploreAnimation.finished;if(!valid())return;
+   homeExploreAnimation.cancel();apply();
+   homeExploreAnimation=grid.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+   await homeExploreAnimation.finished;if(!valid())return;
+   homeExploreAnimation.cancel();homeExploreAnimation=null;
+  }else apply();
+ }catch{/* A new action or navigation can cancel the previous transition. */}
+ finally{if(valid()){homeExploreAnimating=false;grid.setAttribute('aria-busy','false');resumeHomeExplore()}}
+}
+function setupHomeExplore(){
+ stopHomeExplore();const section=$('#homeExploreCarousel'),grid=$('#homeExploreGrid');if(!section||!grid)return;
+ updateHomeExploreControls();homeExploreNextAt=Date.now()+HOME_EXPLORE_INTERVAL;
+ $('#previousHomeExplore').onclick=()=>changeHomeExplore(-1,true);
+ $('#nextHomeExplore').onclick=()=>changeHomeExplore(1,true);
+ $('#pauseHomeExplore').onclick=()=>{homeExplorePaused=!homeExplorePaused;updateHomeExploreControls();resumeHomeExplore()};
+ section.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){homeExploreHovered=true;suspendHomeExplore()}});
+ section.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){homeExploreHovered=false;resumeHomeExplore()}});
+ grid.addEventListener('focusin',()=>{homeExploreFocused=true;suspendHomeExplore()});
+ grid.addEventListener('focusout',e=>{if(!grid.contains(e.relatedTarget)){homeExploreFocused=false;resumeHomeExplore()}});
+ grid.addEventListener('pointerdown',()=>{suspendHomeExplore();resumeHomeExplore()});
+ if(typeof IntersectionObserver==='function'){
+  homeExploreObserver=new IntersectionObserver(entries=>{for(const entry of entries){homeExploreVisible=entry.isIntersecting;if(homeExploreVisible)resumeHomeExplore();else suspendHomeExplore()}},{threshold:.1});
+  homeExploreObserver.observe(section);
+ }else{homeExploreVisible=true;resumeHomeExplore()}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)suspendHomeExplore();else resumeHomeExplore()});
+window.addEventListener('pagehide',stopHomeExplore);
+$("#homeExploreGrid").innerHTML=renderHomeExploreCards();setupHomeExplore();$("#simulateAuto").onclick=()=>{homeExploreHovered=false;homeExploreFocused=false;homeExploreVisible=true;homeExploreNextAt=Date.now();changeHomeExplore(1,false)};document.addEventListener("click",e=>{const card=e.target.closest("[data-explore-key]");if(card){$("#selectedPreview").textContent="Selecionado: "+card.getAttribute("aria-label")}});</script></body></html>

@@ -284,3 +284,52 @@
 .explore-card:hover .explore-arrow{transform:translate(1px,-1px)}
 @media(max-width:700px){.explore-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.explore-heading h2{font-size:25px}.explore-heading{margin-top:28px}.explore-art,.explore-art img{height:122px}.explore-card-instruments .explore-art img{height:113px}.explore-card-composers .explore-art img{height:105px;width:87px}.explore-copy{padding:14px 12px 12px}.explore-title{font-size:19px}.explore-description{font-size:12px}.explore-footer{font-size:10px}.explore-heading-star{display:none}}
 @media(prefers-reduced-motion:reduce){.explore-card,.explore-art img,.explore-arrow{transition:none}.explore-card:hover,.explore-card:hover .explore-art img,.explore-card:hover .explore-arrow{transform:none}}
+
+/* Automatically cycling discovery cards. */
+.explore-category{color:#80658f;font-size:9px;font-weight:900;letter-spacing:.35px;text-transform:uppercase;line-height:1.4}
+.explore-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.explore-description{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-height:4.5em}
+.explore-carousel-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:18px}
+.explore-pagination{display:grid;gap:9px;color:#80698f;font-size:12px;font-weight:800}
+.explore-dots{display:flex;gap:5px;align-items:center;min-height:8px}
+.explore-dots span{width:6px;height:6px;background:#dfd2eb;border-radius:99px;transition:width .3s,background .3s}
+.explore-dots span.active{width:22px;background:#a373cd}
+.explore-carousel-buttons{display:flex;gap:8px;align-items:center}
+.explore-carousel-buttons .fact-arrow{height:42px;flex-basis:42px;background:#fff}
+.explore-carousel-buttons .fact-pause{background:#f0e8f8;min-width:79px}
+.home-explore .explore-auto-hint{font-size:11px;color:#887195;margin:12px 0 0;line-height:1.6}
+@media(max-width:700px){.explore-carousel-controls{gap:8px;flex-wrap:wrap}.explore-pagination{font-size:11px}.explore-carousel-buttons{gap:5px}.explore-carousel-buttons .fact-arrow{height:40px;flex-basis:40px;width:40px}.explore-carousel-buttons .fact-pause{min-width:70px;font-size:11px}.explore-category{font-size:8px}.home-explore .explore-auto-hint{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.explore-dots span{transition:none}}
+
+/* Keep mobile cards readable and prevent stretched media or narrow columns. */
+.home-explore,.explore-grid,.explore-copy,.home-layout>div{min-width:0}
+.explore-art img{aspect-ratio:auto}
+@media(max-width:700px){
+ .home-explore .explore-grid{grid-template-columns:minmax(0,1fr);gap:13px}
+ .home-explore .explore-card{display:grid;grid-template-columns:108px minmax(0,1fr);min-height:174px;border-radius:20px;border-bottom-width:3px;align-items:stretch}
+ .home-explore .explore-art{height:auto;min-height:174px;border-bottom:0;border-right:1px solid var(--explore-edge)}
+ .home-explore .explore-art img{width:100%;height:128px;max-width:100%;object-fit:contain;object-position:center;transform:none}
+ .home-explore .explore-card-instruments .explore-art img{width:94px;height:138px;padding:5px;mix-blend-mode:multiply}
+ .home-explore .explore-card-composers .explore-art img{width:82px;height:106px;border-radius:21px;border-width:4px;object-fit:cover;object-position:50% 15%;transform:none}
+ .home-explore .explore-orbit{width:120px;height:120px;inset:28px auto auto 50%}
+ .home-explore .explore-copy{gap:6px;padding:13px 14px 12px;overflow:hidden}
+ .home-explore .explore-category{font-size:8px;line-height:1.4}
+ .home-explore .explore-title{font-size:18px;line-height:1.25;min-height:0;max-height:2.5em;overflow-wrap:anywhere}
+ .home-explore .explore-description{font-size:12px;line-height:1.45;min-height:0;max-height:2.9em;-webkit-line-clamp:2}
+ .home-explore .explore-footer{font-size:10px;padding-top:4px;gap:8px;min-height:29px}
+ .home-explore .explore-arrow{width:28px;height:28px;flex-basis:28px;font-size:18px}
+ .home-explore .explore-spark-one{left:9px;top:13px;font-size:14px}
+ .home-explore .explore-spark-two{right:8px;bottom:13px;font-size:18px}
+ .home-explore .explore-heading h2{font-size:24px}
+ .home-explore .explore-carousel-controls{align-items:center;justify-content:space-between}
+}
+@media(max-width:360px){
+ .home-explore .explore-card{grid-template-columns:88px minmax(0,1fr)}
+ .home-explore .explore-copy{padding-left:11px;padding-right:11px}
+ .home-explore .explore-card-instruments .explore-art img{width:80px;height:128px}
+ .home-explore .explore-card-composers .explore-art img{width:70px;height:94px}
+ .home-explore .explore-title{font-size:17px}
+ .home-explore .explore-carousel-controls{justify-content:center;gap:13px}
+ .home-explore .explore-pagination{width:100%;text-align:center}
+ .home-explore .explore-dots{justify-content:center}
+}
