@@ -1,0 +1,23 @@
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+function harness({denied=false,pending=false}={}){
+ const elements=new Map(),intervals=new Map(),timeouts=new Map(),listeners={},nodes=[],streams=[];let next=0,time=0,resolveMic;
+ const el=(key)=>{if(!elements.has(key))elements.set(key,{textContent:'',disabled:false,checked:true,value:'100',dataset:{},classList:{toggle(){},remove(){},add(){}},setAttribute(){},querySelector:s=>el(key+s),querySelectorAll:()=>['record','solo','delete','mute'].map(a=>{const e=el(key+a);e.dataset.poly=a;return e})});return elements.get(key)};
+ const cards=Array.from({length:4},(_,i)=>el('card'+i));const root={innerHTML:'',querySelector:s=>el(s),querySelectorAll:()=>cards};let closed=0;
+ class Context{constructor(){this.state='running';this.currentTime=10;this.destination={}}resume(){return Promise.resolve()}createBufferSource(){const n={connect(){return this},start(t){this.startAt=t},stop(){this.stopped=true}};nodes.push(n);return n}createGain(){return {gain:{value:0},connect(){return this}}}decodeAudioData(){return Promise.resolve({duration:2.5})}close(){closed++;return Promise.resolve()}}
+ class Recorder{static isTypeSupported(t){return t==='audio/mp4'}constructor(stream,opt){this.state='inactive';this.mimeType=opt.mimeType;Recorder.last=this}start(){this.state='recording'}stop(){this.state='inactive';this.ondataavailable?.({data:new Blob(['audio'])});this.onstop?.()}}
+ const mic=()=>{const s={stopped:false,getTracks(){return [{stop(){s.stopped=true}}]}};streams.push(s);return s};
+ const env={window:{AudioContext:Context,MediaRecorder:Recorder,addEventListener:(k,f)=>listeners[k]=f,removeEventListener(){}},navigator:{mediaDevices:{getUserMedia:()=>denied?Promise.reject({name:'NotAllowedError'}):pending?new Promise(r=>resolveMic=()=>r(mic())):Promise.resolve(mic())}},document:{hidden:false,addEventListener:(k,f)=>listeners[k]=f,removeEventListener(){}},MediaRecorder:Recorder,Blob,performance:{now:()=>time},setInterval:f=>{intervals.set(++next,f);return next},clearInterval:n=>intervals.delete(n),setTimeout:f=>{timeouts.set(++next,f);return next},clearTimeout:n=>timeouts.delete(n)};
+ vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../src/polyphony.js'),'utf8'),env);env.window.MusiversoPolyphony.mount(root);
+ const flush=async()=>{for(let i=0;i<12;i++)await Promise.resolve()};const click=async(action,i=0)=>{const b={dataset:{poly:action,track:String(i)},disabled:false};await root.onclick({target:{closest:()=>b}});await flush()};const tick=async(n=1)=>{for(let j=0;j<n;j++){time+=1000;[...intervals.values()].forEach(f=>f());await flush()}};
+ return {env,root,click,tick,flush,nodes,streams,Recorder,hide:()=>{env.document.hidden=true;listeners.visibilitychange()},status:()=>el('.poly-status').textContent,resolve:async()=>{resolveMic();await flush()},dispose:()=>env.window.MusiversoPolyphony.dispose(),closed:()=>closed};
+}
+(async()=>{
+ const h=harness();await h.click('record');await h.tick(3);assert.equal(h.Recorder.last.state,'recording');await h.click('record');assert.equal(h.Recorder.last.state,'inactive');assert(h.streams[0].stopped);assert.match(h.status(),/pronta/);
+ await h.click('record',1);await h.tick(3);assert.equal(h.nodes.length,1,'existing voice accompanies recording');await h.click('stop');await h.click('all');const latest=h.nodes.slice(-2);assert.equal(latest.length,2);assert.equal(latest[0].startAt,latest[1].startAt,'scheduled together');await h.click('mute',0);await h.click('all');assert.equal(h.nodes.at(-1).buffer.duration,2.5);await h.click('delete',1);h.dispose();assert(h.nodes.every(n=>n.stopped));assert.equal(h.closed(),1);
+ const d=harness({denied:true});await d.click('record');assert.match(d.status(),/não foi permitido/);
+ const c=harness({pending:true});const request=c.click('record');await c.flush();c.dispose();await c.resolve();await request;assert(c.streams[0].stopped,'late permission released after navigation');
+ const bg=harness();await bg.click('record');await bg.tick(3);bg.hide();assert.match(bg.status(),/interrompida/);bg.dispose();assert(bg.streams[0].stopped);assert.equal(bg.Recorder.last.state,'inactive');
+ const limit=harness();await limit.click('record');await limit.tick(3);await limit.tick(30);assert.equal(limit.Recorder.last.state,'inactive');assert(limit.streams[0].stopped);limit.dispose();
+ console.log('PASS: recording, mix synchronization, accompaniment, mute/delete, permission denial, late permission cleanup, navigation cleanup, 30-second limit');
+})().catch(e=>{console.error(e);process.exit(1)});
+

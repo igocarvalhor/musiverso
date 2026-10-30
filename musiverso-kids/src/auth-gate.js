@@ -12,7 +12,7 @@ if(!client){show('Não foi possível carregar o serviço de autenticação. Veri
 window.MusiversoAuthClient=client;
 client.auth.onAuthStateChange((event,session)=>{
  if(window.MusiversoAuthUser&&(event==='SIGNED_OUT'||(session?.user?.id&&session.user.id!==window.MusiversoAuthUser.id))){
-  window.MusiversoCloudProgress?.stop();
+  window.MusiversoPolyphony?.dispose();window.MusiversoCloudProgress?.stop();
   window.MusiversoAuthUser=null;
   document.getElementById('platform-content')?.setAttribute('hidden','');
   location.replace('acesso.html');
@@ -30,7 +30,7 @@ client.auth.onAuthStateChange((event,session)=>{
    if(!window.MusiversoAuthUser)return;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=auto-explore-mobile-1';
+   script.src='app.js?v=polyphony-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
@@ -39,6 +39,7 @@ client.auth.onAuthStateChange((event,session)=>{
 window.addEventListener('pagehide',()=>document.getElementById('platform-content')?.setAttribute('hidden',''));
 window.addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
 window.MusiversoLogout=async function(){
- try{await window.MusiversoCloudProgress?.sync();await client.auth.signOut()}finally{window.MusiversoCloudProgress?.stop();location.replace('acesso.html')}
+ window.MusiversoPolyphony?.dispose();
+ try{await window.MusiversoCloudProgress?.sync();await client.auth.signOut()}finally{window.MusiversoPolyphony?.dispose();window.MusiversoCloudProgress?.stop();location.replace('acesso.html')}
 };
 })();
