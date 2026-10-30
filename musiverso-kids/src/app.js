@@ -53,6 +53,375 @@ const homeCuriosities=[
  "As tradições musicais indígenas são diversas, assim como os povos que as mantêm.",
  "Gravações permitem ouvir novamente uma apresentação musical em outro momento."
 ];
+const homeCuriosityMedia=[
+ {
+  "images": [
+   {
+    "src": "assets/instruments/violin.jpg",
+    "alt": "Violino"
+   },
+   {
+    "src": "assets/instruments/cello.jpg",
+    "alt": "Violoncelo"
+   },
+   {
+    "src": "assets/instruments/contrabass.jpg",
+    "alt": "Contrabaixo"
+   }
+  ],
+  "caption": "A família das cordas"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/flute.jpg",
+    "alt": "Flauta doce"
+   },
+   {
+    "src": "assets/instruments/clarinet.jpg",
+    "alt": "Clarinete"
+   },
+   {
+    "src": "assets/instruments/oboe.jpg",
+    "alt": "Oboé"
+   },
+   {
+    "src": "assets/instruments/bassoon.jpg",
+    "alt": "Fagote"
+   }
+  ],
+  "caption": "Instrumentos de sopro"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/timpani.jpg",
+    "alt": "Tímpanos, instrumentos de percussão"
+   }
+  ],
+  "caption": "Tímpanos"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/piano.jpg",
+    "alt": "Piano acústico, um instrumento com teclas e cordas"
+   }
+  ],
+  "caption": "O piano acústico"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/guitar.png",
+    "alt": "Violão com suas cordas"
+   }
+  ],
+  "caption": "As cordas do violão"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/drum.jpg",
+    "alt": "Tambor com uma membrana esticada"
+   }
+  ],
+  "caption": "O tambor"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/tambor.svg",
+    "alt": "Ilustração de um tambor com o centro e a borda indicados"
+   }
+  ],
+  "caption": "Centro e borda: timbres diferentes"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/instruments/piano.jpg",
+    "alt": "Piano acústico"
+   }
+  ],
+  "caption": "O piano e sua história"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/pauta.svg",
+    "alt": "Pauta com cinco linhas e quatro espaços, numerados de baixo para cima"
+   }
+  ],
+  "caption": "Cinco linhas e quatro espaços"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/pauta.svg",
+    "alt": "Linhas de um a cinco e espaços de um a quatro, contados de baixo para cima"
+   }
+  ],
+  "caption": "A leitura começa de baixo para cima"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/claves.svg",
+    "alt": "A linha inferior representa Mi4 na clave de sol e Sol2 na clave de fá"
+   }
+  ],
+  "caption": "A clave muda a leitura da pauta"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/do-re.svg",
+    "alt": "Dó4 na linha suplementar inferior e Ré4 no espaço logo acima, na clave de sol"
+   }
+  ],
+  "caption": "Dó4 e Ré4 na clave de sol"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/claves.svg",
+    "alt": "Notas na mesma posição da pauta, identificadas como Mi4 na clave de sol e Sol2 na clave de fá"
+   }
+  ],
+  "caption": "Mesma posição, notas diferentes"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/figuras.svg",
+    "alt": "Semibreve, mínima e semínima com durações de quatro, dois e um pulso quando a semínima vale um pulso"
+   }
+  ],
+  "caption": "As figuras registram a duração"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/figuras.svg",
+    "alt": "Comparação entre semibreve, mínima e semínima, com a semínima valendo um pulso"
+   }
+  ],
+  "caption": "Quatro, dois e um pulso"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/colcheias.svg",
+    "alt": "Duas colcheias ligadas por uma barra equivalem à duração de uma semínima"
+   }
+  ],
+  "caption": "Duas colcheias e uma semínima"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/pausa.svg",
+    "alt": "Figura de pausa de semínima, um sinal de silêncio"
+   }
+  ],
+  "caption": "A pausa também faz parte da música"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/clapping.jpg",
+    "alt": "Fotografia atual de mãos batendo palmas"
+   }
+  ],
+  "caption": "Palmas: música com o corpo"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/bone-flute.jpg",
+    "alt": "Fotografia de uma flauta antiga feita de osso"
+   }
+  ],
+  "caption": "Uma flauta de osso encontrada por pesquisadores"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/lyre.jpg",
+    "alt": "Reconstrução de uma lira da Antiguidade"
+   }
+  ],
+  "caption": "Uma reconstrução de lira antiga"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/hildegard.jpg",
+    "alt": "Representação histórica de Hildegard von Bingen"
+   }
+  ],
+  "caption": "Hildegard von Bingen"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/troubadour.jpg",
+    "alt": "Imagem de um manuscrito medieval representando o trovador Perdigon"
+   }
+  ],
+  "caption": "Um trovador medieval"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/notre-dame.jpg",
+    "alt": "Fotografia atual da Catedral de Notre-Dame, em Paris"
+   }
+  ],
+  "caption": "Notre-Dame de Paris"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/perotin-score.jpg",
+    "alt": "Página de manuscrito com música atribuída a Pérotin"
+   }
+  ],
+  "caption": "Música atribuída a Pérotin"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/machaut.jpg",
+    "alt": "Miniatura histórica representando Guillaume de Machaut"
+   }
+  ],
+  "caption": "Guillaume de Machaut"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/polifonia.svg",
+    "alt": "Duas linhas melódicas diferentes alinhadas no mesmo tempo, representando duas vozes"
+   }
+  ],
+  "caption": "Polifonia: melodias ao mesmo tempo"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/manuscript.gif",
+    "alt": "Trecho de manuscrito musical de Johannes Ockeghem, do século XV"
+   }
+  ],
+  "caption": "Música escrita no Renascimento"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/vivaldi.jpg",
+    "alt": "Retrato de Antonio Vivaldi"
+   }
+  ],
+  "caption": "Antonio Vivaldi"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/bach.jpg",
+    "alt": "Retrato de Johann Sebastian Bach"
+   }
+  ],
+  "caption": "Johann Sebastian Bach"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/mozart.jpg",
+    "alt": "Retrato de Wolfgang Amadeus Mozart"
+   },
+   {
+    "src": "assets/history/magic-flute.jpg",
+    "alt": "Projeto de cenário de cerca de 1815 para A Flauta Mágica, de Mozart"
+   }
+  ],
+  "caption": "Mozart e A Flauta Mágica"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/haydn.jpg",
+    "alt": "Retrato de Joseph Haydn"
+   }
+  ],
+  "caption": "Joseph Haydn"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/people/chiquinha.jpg",
+    "alt": "Retrato de Chiquinha Gonzaga"
+   }
+  ],
+  "caption": "Chiquinha Gonzaga"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/frevo.jpg",
+    "alt": "Passistas de frevo com sombrinhas coloridas, em Pernambuco"
+   }
+  ],
+  "caption": "Passistas de frevo"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/frevo.jpg",
+    "alt": "Passistas de frevo, um exemplo da diversidade musical de Pernambuco"
+   }
+  ],
+  "caption": "O frevo de Pernambuco"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/facts/diversidade.svg",
+    "alt": "Ilustração abstrata com linhas musicais diferentes, representando a diversidade de tradições"
+   }
+  ],
+  "caption": "Diversidade musical · ilustração"
+ },
+ {
+  "images": [
+   {
+    "src": "assets/history/phonograph.jpg",
+    "alt": "Fonógrafo Edison Standard, aparelho antigo de gravação e reprodução de sons"
+   }
+  ],
+  "caption": "Um fonógrafo antigo"
+ }
+];
+const prefetchedHomeFactImages=new Set();
+function renderHomeCuriosityMedia(index){
+ const item=homeCuriosityMedia[index];
+ if(!item)return '';
+ const images=item.images.map(image=>'<button type="button" class="fact-image-button" data-enlarge="'+esc(image.src)+'" data-image-title="'+esc(item.caption)+'" aria-label="Ampliar imagem: '+esc(image.alt)+'"><img src="'+esc(image.src)+'" alt="'+esc(image.alt)+'" width="320" height="180" decoding="async" draggable="false"></button>').join('');
+ const ownIllustration=item.images.every(image=>image.src.startsWith('assets/facts/'));
+ return '<div class="fact-images '+(item.images.length>1?'fact-images-group':'')+'" style="--fact-image-columns:'+item.images.length+'">'+images+'</div><figcaption>'+esc(item.caption)+'<span class="fact-media-help">Toque para ampliar'+(ownIllustration?'':' · <a href="creditos.html">Créditos</a>')+'</span></figcaption>';
+}
+function prefetchHomeCuriosityMedia(){
+ if(typeof Image!=='function')return;
+ for(const offset of [-1,1]){
+  const index=(homeCuriosityIndex+offset+homeCuriosities.length)%homeCuriosities.length;
+  for(const picture of homeCuriosityMedia[index].images){
+   if(prefetchedHomeFactImages.has(picture.src))continue;
+   prefetchedHomeFactImages.add(picture.src);
+   const image=new Image();image.src=picture.src;
+  }
+ }
+}
 const HOME_CURIOSITY_INTERVAL=5*60*1000;
 let homeCuriosityIndex=-1,homeCuriosityChangedAt=0,homeCuriosityTimer=null,homeCuriosityPaused=false;
 let homeCuriosityAnimation=null,homeCuriosityTransition=0;
@@ -84,6 +453,8 @@ function updateHomeCuriosityControls(){
  const category=homeCuriosityCategory(homeCuriosityIndex);
  const text=$('#homeFactText');
  if(text){text.dataset.factIndex=String(homeCuriosityIndex);text.setAttribute('aria-label','Curiosidade '+(homeCuriosityIndex+1)+' de '+homeCuriosities.length)}
+ const media=$('#homeFactMedia');
+ if(media&&media.dataset.factIndex!==String(homeCuriosityIndex)){media.innerHTML=renderHomeCuriosityMedia(homeCuriosityIndex);media.dataset.factIndex=String(homeCuriosityIndex);prefetchHomeCuriosityMedia()}
  const icon=$('#homeFactIcon'),topic=$('#homeFactTopic'),position=$('#homeFactPosition'),progress=$('#homeFactProgress'),pause=$('#pauseHomeFacts');
  if(icon)icon.textContent=category[0];
  if(topic)topic.textContent=category[1];
@@ -103,17 +474,18 @@ async function refreshHomeCuriosity(force=false,direction=1){
  stopHomeCuriosityAnimation();
  const transition=homeCuriosityTransition,nextText=chooseHomeCuriosity(force,direction);
  const changed=text.textContent!==nextText;
- const animate=changed&&!document.hidden&&!state.reduced&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof text.animate==='function';
+ const slide=$('#homeFactSlide')||text;
+ const animate=changed&&!document.hidden&&!state.reduced&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof slide.animate==='function';
  const valid=()=>transition===homeCuriosityTransition&&page==='home'&&text.isConnected;
  const apply=()=>{text.textContent=nextText;updateHomeCuriosityControls()};
  try{
   if(animate){
    $('#homeFactViewport')?.setAttribute('aria-busy','true');
-   homeCuriosityAnimation=text.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX('+(-direction*18)+'px)'}],{duration:180,easing:'ease-in',fill:'forwards'});
+   homeCuriosityAnimation=slide.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX('+(-direction*18)+'px)'}],{duration:180,easing:'ease-in',fill:'forwards'});
    await homeCuriosityAnimation.finished;
    if(!valid())return;
    homeCuriosityAnimation.cancel();apply();
-   homeCuriosityAnimation=text.animate([{opacity:0,transform:'translateX('+(direction*24)+'px)'},{opacity:1,transform:'translateX(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+   homeCuriosityAnimation=slide.animate([{opacity:0,transform:'translateX('+(direction*24)+'px)'},{opacity:1,transform:'translateX(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
    await homeCuriosityAnimation.finished;
    if(!valid())return;
    homeCuriosityAnimation.cancel();homeCuriosityAnimation=null;
@@ -128,9 +500,10 @@ function setupHomeCuriosityCarousel(){
  $('#pauseHomeFacts').onclick=()=>{homeCuriosityPaused=!homeCuriosityPaused;homeCuriosityChangedAt=Date.now();updateHomeCuriosityControls();scheduleHomeCuriosity()};
  const carousel=$('#homeFactCarousel'),viewport=$('#homeFactViewport');
  carousel.onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();refreshHomeCuriosity(true,e.key==='ArrowLeft'?-1:1)}};
- let touch=null;
+ let touch=null,suppressClickUntil=0;
+ viewport.addEventListener('click',e=>{if(Date.now()<suppressClickUntil){e.preventDefault();e.stopPropagation()}},true);
  viewport.addEventListener('touchstart',e=>{const t=e.touches[0];touch=e.touches.length===1&&t.clientX>24&&t.clientX<innerWidth-24?{x:t.clientX,y:t.clientY}:null},{passive:true});
- viewport.addEventListener('touchend',e=>{if(!touch)return;const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;touch=null;if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy)*1.4)refreshHomeCuriosity(true,dx<0?1:-1)},{passive:true});
+ viewport.addEventListener('touchend',e=>{if(!touch)return;const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;touch=null;if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy)*1.4){suppressClickUntil=Date.now()+500;refreshHomeCuriosity(true,dx<0?1:-1)}},{passive:true});
  viewport.addEventListener('touchcancel',()=>{touch=null},{passive:true});
  scheduleHomeCuriosity();
 }
@@ -138,6 +511,65 @@ document.addEventListener('visibilitychange',()=>{
  if(document.hidden){clearTimeout(homeCuriosityTimer);stopHomeCuriosityAnimation()}
  else refreshHomeCuriosity();
 });
+const homeExploreCards=[
+ {
+  "page": "games",
+  "title": "Jogos musicais",
+  "description": "Brinque e descubra novos sons.",
+  "action": "Vamos jogar",
+  "image": "assets/explore/games.svg",
+  "alt": "",
+  "theme": "games"
+ },
+ {
+  "page": "instruments",
+  "title": "Instrumentos",
+  "description": "Conheça cada família e seu som.",
+  "action": "Descobrir sons",
+  "image": "assets/instruments/guitar.png",
+  "alt": "Violão",
+  "theme": "instruments"
+ },
+ {
+  "page": "composers",
+  "title": "Compositores",
+  "description": "Descubra quem criou grandes músicas.",
+  "action": "Conhecer artistas",
+  "image": "assets/people/mozart.jpg",
+  "alt": "Retrato de Mozart",
+  "theme": "composers"
+ },
+ {
+  "page": "medals",
+  "title": "Minhas medalhas",
+  "description": "Celebre cada nova conquista.",
+  "action": "Ver meu álbum",
+  "image": "assets/explore/medals.svg",
+  "alt": "",
+  "theme": "medals"
+ },
+ {
+  "page": "piano",
+  "title": "Piano das cores",
+  "description": "Toque, escute e crie melodias.",
+  "action": "Quero tocar",
+  "image": "assets/explore/piano.svg",
+  "alt": "",
+  "theme": "piano"
+ },
+ {
+  "page": "journey",
+  "title": "História da música",
+  "description": "Viaje por épocas e descobertas.",
+  "action": "Começar viagem",
+  "image": "assets/explore/journey.svg",
+  "alt": "",
+  "theme": "journey"
+ }
+];
+function renderHomeExploreCards(){
+ return homeExploreCards.map(card=>'<button type="button" class="explore-card explore-card-'+card.theme+'" data-nav="'+esc(card.page)+'" aria-label="'+esc(card.title+': '+card.description)+'"><span class="explore-art" aria-hidden="true"><span class="explore-orbit"></span><img src="'+esc(card.image)+'" alt="'+esc(card.alt)+'" width="320" height="180" decoding="async"><span class="explore-spark explore-spark-one">✦</span><span class="explore-spark explore-spark-two">♪</span></span><span class="explore-copy"><strong class="explore-title">'+esc(card.title)+'</strong><span class="explore-description">'+esc(card.description)+'</span><span class="explore-footer"><span>'+esc(card.action)+'</span><span class="explore-arrow" aria-hidden="true">↗</span></span></span></button>').join('');
+}
 const instrumentFamilies={piano:'strings',flute:'wind',guitar:'strings',drum:'percussion',violin:'strings',cello:'strings',clarinet:'wind',oboe:'wind',bassoon:'wind',timpani:'percussion',contrabass:'strings'};
 const instruments=[{name:'Piano',icon:'🎹',type:'piano',desc:'As teclas acionam martelos que fazem as cordas vibrarem.'},{name:'Flauta doce',icon:'🪈',type:'flute',desc:'O ar em vibração produz seu som.'},{name:'Violão',icon:'🎸',type:'guitar',desc:'As cordas vibram quando são dedilhadas ou tocadas.'},{name:'Tambor',icon:'🥁',type:'drum',desc:'A membrana vibra quando recebe uma batida.'}];instruments.push(...(window.MUSIVERSO_EXTRA_INSTRUMENTS||[]));for(const item of window.MUSIVERSO_EXTRA_INSTRUMENTS||[])window.MUSIVERSO_LIBRARY.instruments[item.type]=item;
 const composers=[{name:'Bach',full:'Johann Sebastian Bach',era:'Barroco',icon:'🎼',dates:'1685–1750',desc:'Bach compôs para vozes, órgão, cravo e muitos outros instrumentos. Aqui ouvimos seu Prelúdio em dó maior.',melody:[[60,.22],[64,.22],[67,.22],[72,.22],[76,.22],[67,.22],[72,.22],[76,.22],[60,.22],[64,.22],[67,.22],[72,.22],[76,.22]],title:'Prelúdio em dó maior, BWV 846'}, {name:'Mozart',full:'Wolfgang Amadeus Mozart',era:'Classicismo',icon:'🎹',dates:'1756–1791',desc:'Mozart criou óperas, concertos e sinfonias. Esta melodia abre Uma pequena serenata noturna.',melody:[[67,.35],[0,.12],[62,.25],[67,.35],[0,.12],[62,.25],[67,.22],[62,.22],[67,.22],[71,.22],[74,.55]],title:'Uma pequena serenata noturna, K. 525'}, {name:'Beethoven',full:'Ludwig van Beethoven',era:'Entre Classicismo e Romantismo',icon:'🎻',dates:'1770–1827',desc:'Beethoven ampliou as possibilidades da orquestra. Ouça o tema conhecido como Ode à alegria.',melody:[[64,.35],[64,.35],[65,.35],[67,.35],[67,.35],[65,.35],[64,.35],[62,.35],[60,.35],[60,.35],[62,.35],[64,.35],[64,.5],[62,.18],[62,.7]],title:'Ode à alegria — Sinfonia nº 9'}];
@@ -170,7 +602,7 @@ function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';se
 function gainXP(n,key){if(key&&state.wins.includes(key))return;if(key)state.wins.push(key);state.xp+=n;save();chrome();toast(`⭐ +${n} estrelas! Muito bem!`)}
 function chrome(){document.body.classList.toggle('large-text',state.large);document.body.classList.toggle('reduced',state.reduced);const nav=[['home','🏠','Início'],['journey','🗺️','Jornada'],['piano','🎹','Piano'],['medals','🏅','Medalhas'],['games','🎮','Jogos'],['profile','☺','Perfil']];let active=page==='collection'?'medals':['lesson'].includes(page)?'journey':['sound','memory','echo','composer','rhythm','maestro','families'].includes(page)?'games':page;const links=nav.map(([id,ic,n])=>`<button data-nav="${id}" class="${active===id?'active':''}" ${active===id?'aria-current="page"':''}><span class="ico">${ic}</span>${n}</button>`).join('');$('#sidebar').innerHTML=`<div class="brand">Musiverso<span><b>K</b><b>i</b><b>ds</b> ♪</span></div><div class="side-links">${links}</div><div class="side-note"><div class="note">♫</div><strong>Uma descoberta por dia!</strong><p>Seu universo fica maior a cada novo som.</p></div>`;$('#bottom').innerHTML=links;$('#header').innerHTML=`<span class="crumb">${innerWidth<701?'Musiverso Kids':'SEU UNIVERSO DE DESCOBERTAS'}</span><div class="stats"><button class="header-voice" data-read-screen aria-label="Ouvir esta tela" title="Ouvir esta tela">🔊<span>Ouvir</span></button><button class="header-voice stop-voice" data-stop-voice aria-label="Parar narração" title="Parar narração" hidden>■</button><button class="header-voice stop-instrument" data-stop-instrument aria-label="Parar som do instrumento" title="Parar som do instrumento" hidden>■</button><span class="pill" title="Estrelas conquistadas">⭐ ${state.xp}</span><span class="pill" title="Medalhas conquistadas">🏅 ${medalDefinitions().filter(m=>m.earned).length}</span><button class="avatar" data-nav="profile" aria-label="Abrir meu perfil">${state.avatar}</button></div>`}
 function go(p,quiet=false){clearTimeout(homeCuriosityTimer);stopHomeCuriosityAnimation();stopConcert();stopInstrumentAudio();stopNarration();session++;clearTimeout(stopTimer);if(audioCtx&&audioCtx.state!=='closed'){audioCtx.close().catch(()=>{});audioCtx=null}activeGame=null;activeGameLevel=null;page=p;chrome();const render={home,journey,games:gameMenu,profile,instruments:instrumentPage,composers:composerPage,figures:figuresPage,collection:medalsPage,piano:pianoPage,medals:medalsPage};(render[p]||home)();window.scrollTo(0,0);if(!quiet)autoRead()}
-function home(){let next=worlds.findIndex((_,i)=>!state.done.includes(i));if(next<0)next=0;const curiosity=chooseHomeCuriosity();$('#main').innerHTML=`<div class="eyebrow">APRENDER É UMA AVENTURA</div><h1>Olá, ${esc(state.name)}! <span style="font-size:25px">👋</span></h1><p class="lead">Um mundo de sons está esperando por você.</p>${narratorWelcome()}<div class="home-layout"><div><section class="hero"><div class="hero-content"><span class="badge">CAPÍTULO ${next+1} · SUA PRÓXIMA DESCOBERTA</span><h2>Vamos viajar<br>pela música?</h2><p>Explore épocas, descubra sons e solte a imaginação.</p><button class="btn continue-journey-btn" data-lesson="${next}" data-story-part="${journeyNextPart(next)}">▶ Continuar jornada</button></div></section><div class="section-head"><h2>O que vamos explorar?</h2></div><div class="quick-grid">${[['games','🎮','Jogos musicais','#e4defe'],['instruments','🎸','Instrumentos','#fff0cc'],['composers','🎼','Compositores','#ffe3db'],['medals','🏅','Minhas medalhas','#e2f3ef'],['piano','🎹','Piano das cores','#e2f0ff'],['journey','🗺️','História da música','#fff3de']].map(([p,i,n,c])=>`<button class="quick" data-nav="${p}" style="background:${c}"><span class="big">${p==='composers'?'<img class="quick-photo" src="assets/people/mozart.jpg" alt="Retrato de Mozart">':p==='instruments'?'<img class="quick-photo instrument" src="assets/instruments/guitar.png" alt="Fotografia de violão">':i}</span><strong>${n}</strong></button>`).join('')}</div><div class="mini-banner"><span class="ico">♩</span><div><strong>Sons, silêncios e figuras musicais</strong><p>Descubra como escrever a duração dos sons.</p></div><button class="text-button" data-nav="figures">DESCOBRIR →</button></div><div class="mini-banner"><span class="ico">🧭</span><div><strong>Cada época, uma nova descoberta</strong><p>Dos primeiros sons às músicas que ouvimos hoje.</p></div><button class="text-button" data-nav="journey">EXPLORAR →</button></div></div><aside class="home-aside"><div class="panel"><div class="eyebrow">PEQUENAS GRANDES CONQUISTAS</div><h3>Seu passaporte musical 🗺️</h3><div class="quest"><span class="quest-icon">🌍</span><div><strong>Explore a história</strong><small>${state.done.length} de 9 aventuras concluídas</small></div></div><div class="progress"><i style="width:${state.done.length/9*100}%"></i></div><div class="quest"><span class="quest-icon" style="background:#e7ddfc">🎧</span><div><strong>Brinque com os sons</strong><small>${state.wins.filter(x=>x.startsWith('game')).length} jogos descobertos</small></div></div><div class="quest"><span class="quest-icon" style="background:#e0f5e9">⭐</span><div><strong>Colecione descobertas</strong><small>${state.xp} estrelas para celebrar</small></div></div></div><section class="panel tip fact-carousel" id="homeFactCarousel" role="region" aria-roledescription="carrossel" aria-label="Você sabia? Curiosidades musicais"><h3>Você sabia? 💡</h3><div class="fact-meta"><span class="fact-icon" id="homeFactIcon" aria-hidden="true"></span><span id="homeFactTopic"></span><span class="fact-position" id="homeFactPosition"></span></div><div class="fact-viewport" id="homeFactViewport" tabindex="0" aria-label="Use as setas para explorar as curiosidades"><p id="homeFactText" role="group" aria-roledescription="slide" aria-live="polite" aria-atomic="true">${esc(curiosity)}</p></div><div class="fact-progress" aria-hidden="true"><span id="homeFactProgress"></span></div><div class="fact-controls"><button type="button" class="fact-arrow" id="previousHomeFact" aria-label="Curiosidade anterior">‹</button><button type="button" class="fact-pause" id="pauseHomeFacts" aria-label="Pausar troca automática" aria-pressed="false">Ⅱ Pausar</button><button type="button" class="fact-arrow" id="nextHomeFact" aria-label="Próxima curiosidade">›</button></div><small class="fact-timing">Uma nova descoberta a cada 5 minutos</small></section></aside></div>`;setupHomeCuriosityCarousel()}
+function home(){let next=worlds.findIndex((_,i)=>!state.done.includes(i));if(next<0)next=0;const curiosity=chooseHomeCuriosity();$('#main').innerHTML=`<div class="eyebrow">APRENDER É UMA AVENTURA</div><h1>Olá, ${esc(state.name)}! <span style="font-size:25px">👋</span></h1><p class="lead">Um mundo de sons está esperando por você.</p>${narratorWelcome()}<div class="home-layout"><div><section class="hero"><div class="hero-content"><span class="badge">CAPÍTULO ${next+1} · SUA PRÓXIMA DESCOBERTA</span><h2>Vamos viajar<br>pela música?</h2><p>Explore épocas, descubra sons e solte a imaginação.</p><button class="btn continue-journey-btn" data-lesson="${next}" data-story-part="${journeyNextPart(next)}">▶ Continuar jornada</button></div></section><section class="home-explore" aria-labelledby="explore-title"><div class="section-head explore-heading"><div><span class="explore-eyebrow">UM UNIVERSO DE POSSIBILIDADES</span><h2 id="explore-title">O que vamos explorar?</h2><p>Escolha seu próximo caminho musical.</p></div><span class="explore-heading-star" aria-hidden="true">✦</span></div><div class="explore-grid">${renderHomeExploreCards()}</div></section><div class="mini-banner"><span class="ico">♩</span><div><strong>Sons, silêncios e figuras musicais</strong><p>Descubra como escrever a duração dos sons.</p></div><button class="text-button" data-nav="figures">DESCOBRIR →</button></div><div class="mini-banner"><span class="ico">🧭</span><div><strong>Cada época, uma nova descoberta</strong><p>Dos primeiros sons às músicas que ouvimos hoje.</p></div><button class="text-button" data-nav="journey">EXPLORAR →</button></div></div><aside class="home-aside"><div class="panel"><div class="eyebrow">PEQUENAS GRANDES CONQUISTAS</div><h3>Seu passaporte musical 🗺️</h3><div class="quest"><span class="quest-icon">🌍</span><div><strong>Explore a história</strong><small>${state.done.length} de 9 aventuras concluídas</small></div></div><div class="progress"><i style="width:${state.done.length/9*100}%"></i></div><div class="quest"><span class="quest-icon" style="background:#e7ddfc">🎧</span><div><strong>Brinque com os sons</strong><small>${state.wins.filter(x=>x.startsWith('game')).length} jogos descobertos</small></div></div><div class="quest"><span class="quest-icon" style="background:#e0f5e9">⭐</span><div><strong>Colecione descobertas</strong><small>${state.xp} estrelas para celebrar</small></div></div></div><section class="panel tip fact-carousel" id="homeFactCarousel" role="region" aria-roledescription="carrossel" aria-label="Você sabia? Curiosidades musicais"><h3>Você sabia? 💡</h3><div class="fact-meta"><span class="fact-icon" id="homeFactIcon" aria-hidden="true"></span><span id="homeFactTopic"></span><span class="fact-position" id="homeFactPosition"></span></div><div class="fact-viewport" id="homeFactViewport" tabindex="0" aria-label="Use as setas para explorar as curiosidades"><div class="fact-slide" id="homeFactSlide"><figure class="fact-media" id="homeFactMedia"></figure><p id="homeFactText" role="group" aria-roledescription="slide" aria-live="polite" aria-atomic="true">${esc(curiosity)}</p></div></div><div class="fact-progress" aria-hidden="true"><span id="homeFactProgress"></span></div><div class="fact-controls"><button type="button" class="fact-arrow" id="previousHomeFact" aria-label="Curiosidade anterior">‹</button><button type="button" class="fact-pause" id="pauseHomeFacts" aria-label="Pausar troca automática" aria-pressed="false">Ⅱ Pausar</button><button type="button" class="fact-arrow" id="nextHomeFact" aria-label="Próxima curiosidade">›</button></div><small class="fact-timing">Uma nova descoberta a cada 5 minutos</small></section></aside></div>`;setupHomeCuriosityCarousel()}
 function gameMenu(){$('#main').innerHTML=`<div class="eyebrow">OUVIR · BRINCAR · CRIAR</div><h1>Jogos musicais</h1><p class="lead">Escolha sua brincadeira. Aqui, cada tentativa é uma descoberta!</p>${gameLevelSettings()}<div class="game-grid">${games.map(([id,i,n,d,c])=>`<button class="game-card" style="background:${c}" data-game="${id}"><span class="game-tag">${state.wins.includes('game-'+id)?'⭐ DESCOBERTO':'VAMOS BRINCAR'}</span><span class="art">${id==='composer'?'<img class="game-photo" src="assets/people/beethoven.jpg" alt="Retrato de Beethoven">':id==='sound'?'<img class="game-photo instrument" src="assets/instruments/drum.jpg" alt="Fotografia de tambor">':i}</span><h3>${n}</h3><p>${d}</p></button>`).join('')}</div>`}
 const journeyStepTitles=[["O corpo também faz música", "Sons da natureza e primeiros instrumentos", "O mistério dos primeiros sons"], ["Flautas e instrumentos de sopro", "As cordas da lira", "Muitos povos, muitos sons"], ["Canto medieval e coro", "Hildegard von Bingen", "Trovadores e suas canções", "Notre-Dame e Léonin", "Pérotin e as várias vozes", "Machaut e a Ars Nova"], ["Melodias que se encontram", "A música registrada no papel", "Josquin des Prez"], ["Vivaldi e As Quatro Estações", "Conhecendo o violino", "Bach e os instrumentos de teclado"], ["A ópera: música e teatro", "Mozart e A Flauta Mágica", "Haydn e a orquestra"], ["Beethoven e Clara Schumann", "Chopin e o piano", "O que sentimos ao ouvir música"], ["Música para filmes e jogos", "Gravar e ouvir de novo", "Música em transformação"], ["O frevo de Pernambuco", "Chiquinha, Pixinguinha e Villa-Lobos", "A diversidade musical brasileira"]];
 
