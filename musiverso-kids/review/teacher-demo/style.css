@@ -4,3 +4,9 @@
 @media print{@page{size:A4;margin:14mm}body{background:white;color:#111;font:12pt Arial,sans-serif}.demo-banner,header,.layout,dialog,#notice{display:none!important}#printSheet{display:block}.note-svg{color:#111}h1,h2,h3{font-family:Arial,sans-serif}.print-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.print-help{font-size:10pt}.print-card{min-height:170px}.sheet-header{font-size:10pt}p{line-height:1.6}}
 
 .print-preview{width:min(850px,calc(100% - 24px))}.paper-preview{border:1px solid #ddd;background:white;margin-top:22px;padding:24px;color:#211c28}.paper-preview h1{font-size:25px}.paper-preview .sheet-page{margin-bottom:30px;padding-bottom:20px;border-bottom:1px dashed #ccc}.paper-preview .print-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.paper-preview .sheet-header{gap:15px;font-size:10px}.paper-preview .print-card{padding:12px;min-height:155px}.paper-preview .print-card p{font-size:12px}@media(max-width:700px){.paper-preview{padding:12px}.paper-preview .print-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.paper-preview .sheet-header{display:block}.paper-preview .sheet-header span{display:block;margin-top:5px}}
+
+@media(max-width:700px){nav{grid-template-columns:repeat(5,minmax(0,1fr))}nav button{font-size:9px}}
+input[type=date]{padding:10px;border:1px solid #dbcee9;border-radius:10px;max-width:100%}
+
+@media(max-width:700px){nav{grid-template-columns:repeat(3,minmax(0,1fr))}nav button{font-size:11px}}
+input[name=name],input[type=time]{padding:11px;border:1px solid #dbcee9;border-radius:10px;max-width:100%;font:inherit}#studentForm label{align-items:flex-start;flex-direction:column}#studentForm .toolbar{align-items:flex-end}
