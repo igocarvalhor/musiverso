@@ -54,29 +54,88 @@ const homeCuriosities=[
  "Gravações permitem ouvir novamente uma apresentação musical em outro momento."
 ];
 const HOME_CURIOSITY_INTERVAL=5*60*1000;
-let homeCuriosityIndex=-1,homeCuriosityChangedAt=0,homeCuriosityTimer=null;
-function chooseHomeCuriosity(force=false){
+let homeCuriosityIndex=-1,homeCuriosityChangedAt=0,homeCuriosityTimer=null,homeCuriosityPaused=false;
+let homeCuriosityAnimation=null,homeCuriosityTransition=0;
+function homeCuriosityCategory(index){
+ if(index<8)return ['🎻','Instrumentos'];
+ if(index<13)return ['🎼','Pauta e claves'];
+ if(index<17)return ['♩','Sons e silêncios'];
+ if(index<27)return ['🏰','História da música'];
+ if(index<31)return ['🎹','Compositores'];
+ if(index<35)return ['🪘','Música do Brasil'];
+ return ['🎧','Música e tecnologia'];
+}
+function chooseHomeCuriosity(force=false,direction=1){
  const now=Date.now();
- if(force||homeCuriosityIndex<0||now-homeCuriosityChangedAt>=HOME_CURIOSITY_INTERVAL){
-  const choices=homeCuriosities.map((_,i)=>i).filter(i=>i!==homeCuriosityIndex);
-  homeCuriosityIndex=choices[Math.floor(Math.random()*choices.length)];
+ if(homeCuriosityIndex<0){homeCuriosityIndex=Math.floor(Math.random()*homeCuriosities.length);homeCuriosityChangedAt=now}
+ else if(force||(!homeCuriosityPaused&&now-homeCuriosityChangedAt>=HOME_CURIOSITY_INTERVAL)){
+  homeCuriosityIndex=(homeCuriosityIndex+(direction<0?-1:1)+homeCuriosities.length)%homeCuriosities.length;
   homeCuriosityChangedAt=now;
  }
  return homeCuriosities[homeCuriosityIndex];
 }
+function stopHomeCuriosityAnimation(){
+ homeCuriosityTransition++;
+ homeCuriosityAnimation?.cancel();
+ homeCuriosityAnimation=null;
+ $('#homeFactViewport')?.setAttribute('aria-busy','false');
+}
+function updateHomeCuriosityControls(){
+ const category=homeCuriosityCategory(homeCuriosityIndex);
+ const text=$('#homeFactText');
+ if(text){text.dataset.factIndex=String(homeCuriosityIndex);text.setAttribute('aria-label','Curiosidade '+(homeCuriosityIndex+1)+' de '+homeCuriosities.length)}
+ const icon=$('#homeFactIcon'),topic=$('#homeFactTopic'),position=$('#homeFactPosition'),progress=$('#homeFactProgress'),pause=$('#pauseHomeFacts');
+ if(icon)icon.textContent=category[0];
+ if(topic)topic.textContent=category[1];
+ if(position)position.textContent=(homeCuriosityIndex+1)+' / '+homeCuriosities.length;
+ if(progress)progress.style.width=((homeCuriosityIndex+1)/homeCuriosities.length*100)+'%';
+ if(pause){pause.textContent=homeCuriosityPaused?'▶ Retomar':'Ⅱ Pausar';pause.setAttribute('aria-label',homeCuriosityPaused?'Retomar troca automática':'Pausar troca automática');pause.setAttribute('aria-pressed',String(homeCuriosityPaused))}
+}
 function scheduleHomeCuriosity(){
  clearTimeout(homeCuriosityTimer);
- if(page!=='home'||document.hidden||!$('#homeFactText'))return;
+ if(page!=='home'||document.hidden||homeCuriosityPaused||!$('#homeFactText'))return;
  const remaining=HOME_CURIOSITY_INTERVAL-(Date.now()-homeCuriosityChangedAt);
  homeCuriosityTimer=setTimeout(()=>refreshHomeCuriosity(),Math.max(1,remaining));
 }
-function refreshHomeCuriosity(force=false){
- if(page!=='home'||!$('#homeFactText'))return;
- $('#homeFactText').textContent=chooseHomeCuriosity(force);
+async function refreshHomeCuriosity(force=false,direction=1){
+ const text=$('#homeFactText');
+ if(page!=='home'||!text)return;
+ stopHomeCuriosityAnimation();
+ const transition=homeCuriosityTransition,nextText=chooseHomeCuriosity(force,direction);
+ const changed=text.textContent!==nextText;
+ const animate=changed&&!document.hidden&&!state.reduced&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof text.animate==='function';
+ const valid=()=>transition===homeCuriosityTransition&&page==='home'&&text.isConnected;
+ const apply=()=>{text.textContent=nextText;updateHomeCuriosityControls()};
+ try{
+  if(animate){
+   $('#homeFactViewport')?.setAttribute('aria-busy','true');
+   homeCuriosityAnimation=text.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX('+(-direction*18)+'px)'}],{duration:180,easing:'ease-in',fill:'forwards'});
+   await homeCuriosityAnimation.finished;
+   if(!valid())return;
+   homeCuriosityAnimation.cancel();apply();
+   homeCuriosityAnimation=text.animate([{opacity:0,transform:'translateX('+(direction*24)+'px)'},{opacity:1,transform:'translateX(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+   await homeCuriosityAnimation.finished;
+   if(!valid())return;
+   homeCuriosityAnimation.cancel();homeCuriosityAnimation=null;
+  }else apply();
+ }catch{/* Navigation or a newer gesture can cancel the previous transition. */}
+ finally{if(valid()){$('#homeFactViewport')?.setAttribute('aria-busy','false');scheduleHomeCuriosity()}}
+}
+function setupHomeCuriosityCarousel(){
+ updateHomeCuriosityControls();
+ $('#nextHomeFact').onclick=()=>refreshHomeCuriosity(true,1);
+ $('#previousHomeFact').onclick=()=>refreshHomeCuriosity(true,-1);
+ $('#pauseHomeFacts').onclick=()=>{homeCuriosityPaused=!homeCuriosityPaused;homeCuriosityChangedAt=Date.now();updateHomeCuriosityControls();scheduleHomeCuriosity()};
+ const carousel=$('#homeFactCarousel'),viewport=$('#homeFactViewport');
+ carousel.onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();refreshHomeCuriosity(true,e.key==='ArrowLeft'?-1:1)}};
+ let touch=null;
+ viewport.addEventListener('touchstart',e=>{const t=e.touches[0];touch=e.touches.length===1&&t.clientX>24&&t.clientX<innerWidth-24?{x:t.clientX,y:t.clientY}:null},{passive:true});
+ viewport.addEventListener('touchend',e=>{if(!touch)return;const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;touch=null;if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy)*1.4)refreshHomeCuriosity(true,dx<0?1:-1)},{passive:true});
+ viewport.addEventListener('touchcancel',()=>{touch=null},{passive:true});
  scheduleHomeCuriosity();
 }
 document.addEventListener('visibilitychange',()=>{
- if(document.hidden)clearTimeout(homeCuriosityTimer);
+ if(document.hidden){clearTimeout(homeCuriosityTimer);stopHomeCuriosityAnimation()}
  else refreshHomeCuriosity();
 });
 const instrumentFamilies={piano:'strings',flute:'wind',guitar:'strings',drum:'percussion',violin:'strings',cello:'strings',clarinet:'wind',oboe:'wind',bassoon:'wind',timpani:'percussion',contrabass:'strings'};
@@ -110,8 +169,8 @@ function narratorWelcome(){return `<div class="narrator-welcome"><span class="na
 function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',3000)}
 function gainXP(n,key){if(key&&state.wins.includes(key))return;if(key)state.wins.push(key);state.xp+=n;save();chrome();toast(`⭐ +${n} estrelas! Muito bem!`)}
 function chrome(){document.body.classList.toggle('large-text',state.large);document.body.classList.toggle('reduced',state.reduced);const nav=[['home','🏠','Início'],['journey','🗺️','Jornada'],['piano','🎹','Piano'],['medals','🏅','Medalhas'],['games','🎮','Jogos'],['profile','☺','Perfil']];let active=page==='collection'?'medals':['lesson'].includes(page)?'journey':['sound','memory','echo','composer','rhythm','maestro','families'].includes(page)?'games':page;const links=nav.map(([id,ic,n])=>`<button data-nav="${id}" class="${active===id?'active':''}" ${active===id?'aria-current="page"':''}><span class="ico">${ic}</span>${n}</button>`).join('');$('#sidebar').innerHTML=`<div class="brand">Musiverso<span><b>K</b><b>i</b><b>ds</b> ♪</span></div><div class="side-links">${links}</div><div class="side-note"><div class="note">♫</div><strong>Uma descoberta por dia!</strong><p>Seu universo fica maior a cada novo som.</p></div>`;$('#bottom').innerHTML=links;$('#header').innerHTML=`<span class="crumb">${innerWidth<701?'Musiverso Kids':'SEU UNIVERSO DE DESCOBERTAS'}</span><div class="stats"><button class="header-voice" data-read-screen aria-label="Ouvir esta tela" title="Ouvir esta tela">🔊<span>Ouvir</span></button><button class="header-voice stop-voice" data-stop-voice aria-label="Parar narração" title="Parar narração" hidden>■</button><button class="header-voice stop-instrument" data-stop-instrument aria-label="Parar som do instrumento" title="Parar som do instrumento" hidden>■</button><span class="pill" title="Estrelas conquistadas">⭐ ${state.xp}</span><span class="pill" title="Medalhas conquistadas">🏅 ${medalDefinitions().filter(m=>m.earned).length}</span><button class="avatar" data-nav="profile" aria-label="Abrir meu perfil">${state.avatar}</button></div>`}
-function go(p,quiet=false){clearTimeout(homeCuriosityTimer);stopConcert();stopInstrumentAudio();stopNarration();session++;clearTimeout(stopTimer);if(audioCtx&&audioCtx.state!=='closed'){audioCtx.close().catch(()=>{});audioCtx=null}activeGame=null;activeGameLevel=null;page=p;chrome();const render={home,journey,games:gameMenu,profile,instruments:instrumentPage,composers:composerPage,figures:figuresPage,collection:medalsPage,piano:pianoPage,medals:medalsPage};(render[p]||home)();window.scrollTo(0,0);if(!quiet)autoRead()}
-function home(){let next=worlds.findIndex((_,i)=>!state.done.includes(i));if(next<0)next=0;const curiosity=chooseHomeCuriosity();$('#main').innerHTML=`<div class="eyebrow">APRENDER É UMA AVENTURA</div><h1>Olá, ${esc(state.name)}! <span style="font-size:25px">👋</span></h1><p class="lead">Um mundo de sons está esperando por você.</p>${narratorWelcome()}<div class="home-layout"><div><section class="hero"><div class="hero-content"><span class="badge">CAPÍTULO ${next+1} · SUA PRÓXIMA DESCOBERTA</span><h2>Vamos viajar<br>pela música?</h2><p>Explore épocas, descubra sons e solte a imaginação.</p><button class="btn continue-journey-btn" data-lesson="${next}" data-story-part="${journeyNextPart(next)}">▶ Continuar jornada</button></div></section><div class="section-head"><h2>O que vamos explorar?</h2></div><div class="quick-grid">${[['games','🎮','Jogos musicais','#e4defe'],['instruments','🎸','Instrumentos','#fff0cc'],['composers','🎼','Compositores','#ffe3db'],['medals','🏅','Minhas medalhas','#e2f3ef'],['piano','🎹','Piano das cores','#e2f0ff'],['journey','🗺️','História da música','#fff3de']].map(([p,i,n,c])=>`<button class="quick" data-nav="${p}" style="background:${c}"><span class="big">${p==='composers'?'<img class="quick-photo" src="assets/people/mozart.jpg" alt="Retrato de Mozart">':p==='instruments'?'<img class="quick-photo instrument" src="assets/instruments/guitar.png" alt="Fotografia de violão">':i}</span><strong>${n}</strong></button>`).join('')}</div><div class="mini-banner"><span class="ico">♩</span><div><strong>Sons, silêncios e figuras musicais</strong><p>Descubra como escrever a duração dos sons.</p></div><button class="text-button" data-nav="figures">DESCOBRIR →</button></div><div class="mini-banner"><span class="ico">🧭</span><div><strong>Cada época, uma nova descoberta</strong><p>Dos primeiros sons às músicas que ouvimos hoje.</p></div><button class="text-button" data-nav="journey">EXPLORAR →</button></div></div><aside class="home-aside"><div class="panel"><div class="eyebrow">PEQUENAS GRANDES CONQUISTAS</div><h3>Seu passaporte musical 🗺️</h3><div class="quest"><span class="quest-icon">🌍</span><div><strong>Explore a história</strong><small>${state.done.length} de 9 aventuras concluídas</small></div></div><div class="progress"><i style="width:${state.done.length/9*100}%"></i></div><div class="quest"><span class="quest-icon" style="background:#e7ddfc">🎧</span><div><strong>Brinque com os sons</strong><small>${state.wins.filter(x=>x.startsWith('game')).length} jogos descobertos</small></div></div><div class="quest"><span class="quest-icon" style="background:#e0f5e9">⭐</span><div><strong>Colecione descobertas</strong><small>${state.xp} estrelas para celebrar</small></div></div></div><div class="panel tip"><h3>Você sabia? 💡</h3><p id="homeFactText" aria-live="polite" aria-atomic="true">${esc(curiosity)}</p><button class="text-button" id="nextHomeFact" style="margin-top:16px">OUTRA CURIOSIDADE →</button></div></aside></div>`;$('#nextHomeFact').onclick=()=>refreshHomeCuriosity(true);scheduleHomeCuriosity()}
+function go(p,quiet=false){clearTimeout(homeCuriosityTimer);stopHomeCuriosityAnimation();stopConcert();stopInstrumentAudio();stopNarration();session++;clearTimeout(stopTimer);if(audioCtx&&audioCtx.state!=='closed'){audioCtx.close().catch(()=>{});audioCtx=null}activeGame=null;activeGameLevel=null;page=p;chrome();const render={home,journey,games:gameMenu,profile,instruments:instrumentPage,composers:composerPage,figures:figuresPage,collection:medalsPage,piano:pianoPage,medals:medalsPage};(render[p]||home)();window.scrollTo(0,0);if(!quiet)autoRead()}
+function home(){let next=worlds.findIndex((_,i)=>!state.done.includes(i));if(next<0)next=0;const curiosity=chooseHomeCuriosity();$('#main').innerHTML=`<div class="eyebrow">APRENDER É UMA AVENTURA</div><h1>Olá, ${esc(state.name)}! <span style="font-size:25px">👋</span></h1><p class="lead">Um mundo de sons está esperando por você.</p>${narratorWelcome()}<div class="home-layout"><div><section class="hero"><div class="hero-content"><span class="badge">CAPÍTULO ${next+1} · SUA PRÓXIMA DESCOBERTA</span><h2>Vamos viajar<br>pela música?</h2><p>Explore épocas, descubra sons e solte a imaginação.</p><button class="btn continue-journey-btn" data-lesson="${next}" data-story-part="${journeyNextPart(next)}">▶ Continuar jornada</button></div></section><div class="section-head"><h2>O que vamos explorar?</h2></div><div class="quick-grid">${[['games','🎮','Jogos musicais','#e4defe'],['instruments','🎸','Instrumentos','#fff0cc'],['composers','🎼','Compositores','#ffe3db'],['medals','🏅','Minhas medalhas','#e2f3ef'],['piano','🎹','Piano das cores','#e2f0ff'],['journey','🗺️','História da música','#fff3de']].map(([p,i,n,c])=>`<button class="quick" data-nav="${p}" style="background:${c}"><span class="big">${p==='composers'?'<img class="quick-photo" src="assets/people/mozart.jpg" alt="Retrato de Mozart">':p==='instruments'?'<img class="quick-photo instrument" src="assets/instruments/guitar.png" alt="Fotografia de violão">':i}</span><strong>${n}</strong></button>`).join('')}</div><div class="mini-banner"><span class="ico">♩</span><div><strong>Sons, silêncios e figuras musicais</strong><p>Descubra como escrever a duração dos sons.</p></div><button class="text-button" data-nav="figures">DESCOBRIR →</button></div><div class="mini-banner"><span class="ico">🧭</span><div><strong>Cada época, uma nova descoberta</strong><p>Dos primeiros sons às músicas que ouvimos hoje.</p></div><button class="text-button" data-nav="journey">EXPLORAR →</button></div></div><aside class="home-aside"><div class="panel"><div class="eyebrow">PEQUENAS GRANDES CONQUISTAS</div><h3>Seu passaporte musical 🗺️</h3><div class="quest"><span class="quest-icon">🌍</span><div><strong>Explore a história</strong><small>${state.done.length} de 9 aventuras concluídas</small></div></div><div class="progress"><i style="width:${state.done.length/9*100}%"></i></div><div class="quest"><span class="quest-icon" style="background:#e7ddfc">🎧</span><div><strong>Brinque com os sons</strong><small>${state.wins.filter(x=>x.startsWith('game')).length} jogos descobertos</small></div></div><div class="quest"><span class="quest-icon" style="background:#e0f5e9">⭐</span><div><strong>Colecione descobertas</strong><small>${state.xp} estrelas para celebrar</small></div></div></div><section class="panel tip fact-carousel" id="homeFactCarousel" role="region" aria-roledescription="carrossel" aria-label="Você sabia? Curiosidades musicais"><h3>Você sabia? 💡</h3><div class="fact-meta"><span class="fact-icon" id="homeFactIcon" aria-hidden="true"></span><span id="homeFactTopic"></span><span class="fact-position" id="homeFactPosition"></span></div><div class="fact-viewport" id="homeFactViewport" tabindex="0" aria-label="Use as setas para explorar as curiosidades"><p id="homeFactText" role="group" aria-roledescription="slide" aria-live="polite" aria-atomic="true">${esc(curiosity)}</p></div><div class="fact-progress" aria-hidden="true"><span id="homeFactProgress"></span></div><div class="fact-controls"><button type="button" class="fact-arrow" id="previousHomeFact" aria-label="Curiosidade anterior">‹</button><button type="button" class="fact-pause" id="pauseHomeFacts" aria-label="Pausar troca automática" aria-pressed="false">Ⅱ Pausar</button><button type="button" class="fact-arrow" id="nextHomeFact" aria-label="Próxima curiosidade">›</button></div><small class="fact-timing">Uma nova descoberta a cada 5 minutos</small></section></aside></div>`;setupHomeCuriosityCarousel()}
 function gameMenu(){$('#main').innerHTML=`<div class="eyebrow">OUVIR · BRINCAR · CRIAR</div><h1>Jogos musicais</h1><p class="lead">Escolha sua brincadeira. Aqui, cada tentativa é uma descoberta!</p>${gameLevelSettings()}<div class="game-grid">${games.map(([id,i,n,d,c])=>`<button class="game-card" style="background:${c}" data-game="${id}"><span class="game-tag">${state.wins.includes('game-'+id)?'⭐ DESCOBERTO':'VAMOS BRINCAR'}</span><span class="art">${id==='composer'?'<img class="game-photo" src="assets/people/beethoven.jpg" alt="Retrato de Beethoven">':id==='sound'?'<img class="game-photo instrument" src="assets/instruments/drum.jpg" alt="Fotografia de tambor">':i}</span><h3>${n}</h3><p>${d}</p></button>`).join('')}</div>`}
 const journeyStepTitles=[["O corpo também faz música", "Sons da natureza e primeiros instrumentos", "O mistério dos primeiros sons"], ["Flautas e instrumentos de sopro", "As cordas da lira", "Muitos povos, muitos sons"], ["Canto medieval e coro", "Hildegard von Bingen", "Trovadores e suas canções", "Notre-Dame e Léonin", "Pérotin e as várias vozes", "Machaut e a Ars Nova"], ["Melodias que se encontram", "A música registrada no papel", "Josquin des Prez"], ["Vivaldi e As Quatro Estações", "Conhecendo o violino", "Bach e os instrumentos de teclado"], ["A ópera: música e teatro", "Mozart e A Flauta Mágica", "Haydn e a orquestra"], ["Beethoven e Clara Schumann", "Chopin e o piano", "O que sentimos ao ouvir música"], ["Música para filmes e jogos", "Gravar e ouvir de novo", "Música em transformação"], ["O frevo de Pernambuco", "Chiquinha, Pixinguinha e Villa-Lobos", "A diversidade musical brasileira"]];
 

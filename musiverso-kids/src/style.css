@@ -214,3 +214,24 @@
 .piano-review-item strong{font-family:'Baloo 2','Nunito',sans-serif;color:#503078}
 .piano-review-item span{color:#88759c;font-size:12px;font-weight:800}
 @media(max-width:700px){.piano-review-list{padding:15px}}
+
+/* Musical curiosity carousel */
+.tip.fact-carousel{display:block;background:linear-gradient(145deg,#fff9ed 0%,#f4edff 72%);border:1px solid #e7d9f5;box-shadow:0 8px 25px #61359908;overflow:hidden}
+.fact-carousel h3{margin:0 0 18px}
+.fact-meta{display:flex;align-items:center;gap:9px;min-width:0;color:#71558d;font-size:12px;font-weight:800}
+.fact-icon{display:grid;place-items:center;flex:0 0 35px;height:35px;border-radius:12px;background:#fff9;font-size:22px}
+.fact-position{margin-left:auto;white-space:nowrap;font-variant-numeric:tabular-nums;color:#856c9b}
+.fact-viewport{display:grid;align-items:center;min-height:14rem;overflow:hidden;touch-action:pan-y pinch-zoom;border-radius:10px}
+.fact-carousel .fact-viewport p{grid-area:1/1;margin:16px 0;color:#563c72;font-size:15px;line-height:1.85;overflow-wrap:anywhere}
+.fact-progress{height:4px;border-radius:99px;background:#e6daf1;overflow:hidden;margin:4px 0 18px}
+.fact-progress span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#aa75ee,#7e41c4);transition:width .6s cubic-bezier(.22,1,.36,1)}
+.fact-controls{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.fact-arrow{display:grid;place-items:center;flex:0 0 46px;height:46px;border:1px solid #e1d3f0;border-radius:15px;background:#fff9;color:#7039aa;font:400 34px/1 system-ui;transition:background .2s,transform .2s}
+.fact-arrow:hover{background:#fff;transform:translateY(-1px)}
+.fact-arrow:active{transform:translateY(1px)}
+.fact-pause{min-height:44px;border:0;border-radius:12px;background:transparent;color:#775e8e;font-size:12px;font-weight:800;padding:8px}
+.fact-pause:hover{background:#ffffff70}
+.fact-carousel .fact-timing{display:block;text-align:center;font-size:11px;line-height:1.6;color:#8b769c;margin-top:14px}
+.fact-viewport:focus-visible{outline:3px solid #ffb927;outline-offset:3px}
+@media(max-width:700px){.fact-viewport{min-height:10.5rem}.fact-carousel .fact-viewport p{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.fact-progress span,.fact-arrow{transition:none}.fact-arrow:hover{transform:none}}
