@@ -12,6 +12,8 @@ if(!client){show('Não foi possível carregar o serviço de autenticação. Veri
 window.MusiversoAuthClient=client;
 client.auth.onAuthStateChange((event,session)=>{
  if(window.MusiversoAuthUser&&(event==='SIGNED_OUT'||(session?.user?.id&&session.user.id!==window.MusiversoAuthUser.id))){
+  window.MusiversoCloudProgress?.stop();
+  window.MusiversoAuthUser=null;
   document.getElementById('platform-content')?.setAttribute('hidden','');
   location.replace('acesso.html');
  }
@@ -22,15 +24,21 @@ client.auth.onAuthStateChange((event,session)=>{
    if(error||!data?.user){location.replace('acesso.html');return}
    window.MusiversoAuthUser=data.user;
    window.MusiversoProgressKey='musiverso-kids-v1:'+data.user.id;
+   if(!window.MusiversoCloudProgress){show('Não foi possível carregar a sincronização. Atualize a página para tentar novamente.');return}
+   show('Carregando o progresso da sua conta…');
+   await window.MusiversoCloudProgress.init(client,data.user);
+   if(!window.MusiversoAuthUser)return;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=mobile-admin-1';
+   script.src='app.js?v=cloud-progress-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
  }catch(e){show('Não foi possível validar seu acesso. Confira a conexão e tente novamente.')}
 })();
+window.addEventListener('pagehide',()=>document.getElementById('platform-content')?.setAttribute('hidden',''));
+window.addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
 window.MusiversoLogout=async function(){
- try{await client.auth.signOut()}finally{location.replace('acesso.html')}
+ try{await window.MusiversoCloudProgress?.sync();await client.auth.signOut()}finally{window.MusiversoCloudProgress?.stop();location.replace('acesso.html')}
 };
 })();
