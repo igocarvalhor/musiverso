@@ -1,0 +1,5 @@
+html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}
+/* Keep pinch zoom, vertical scrolling, and instrument gestures available. */
+.install-dialog{width:min(92vw,480px);border:0;border-radius:24px;padding:28px;color:#352047;background:#fff;font:17px/1.65 system-ui;box-shadow:0 20px 80px #24133b44}
+.install-dialog::backdrop{background:#20103388}.install-dialog h2{font-size:25px;line-height:1.25;margin-top:0}.install-dialog button{padding:14px 26px;border:0;border-radius:14px;background:#6331af;color:#fff;font:700 17px system-ui}.install-dialog :focus-visible{outline:3px solid #ecab32;outline-offset:3px}
+@media(display-mode:standalone){body{min-height:100dvh}#bottom{padding-bottom:env(safe-area-inset-bottom,0px)}#header{padding-top:max(12px,env(safe-area-inset-top,0px))}}

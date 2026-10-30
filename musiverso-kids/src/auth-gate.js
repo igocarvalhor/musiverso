@@ -10,6 +10,12 @@ const client=window.supabase?.createClient?.(
 );
 if(!client){show('Não foi possível carregar o serviço de autenticação. Verifique a conexão e atualize a página.');return}
 window.MusiversoAuthClient=client;
+client.auth.onAuthStateChange((event,session)=>{
+ if(window.MusiversoAuthUser&&(event==='SIGNED_OUT'||(session?.user?.id&&session.user.id!==window.MusiversoAuthUser.id))){
+  document.getElementById('platform-content')?.setAttribute('hidden','');
+  location.replace('acesso.html');
+ }
+});
 (async function init(){
  try{
    const {data,error}=await client.auth.getUser();
@@ -18,7 +24,7 @@ window.MusiversoAuthClient=client;
    window.MusiversoProgressKey='musiverso-kids-v1:'+data.user.id;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=auth1';
+   script.src='app.js?v=mobile-admin-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
