@@ -30,7 +30,7 @@ client.auth.onAuthStateChange((event,session)=>{
    if(!window.MusiversoAuthUser)return;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=polyphony-1';
+   script.src='app.js?v=teacher-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
@@ -43,3 +43,4 @@ window.MusiversoLogout=async function(){
  try{await window.MusiversoCloudProgress?.sync();await client.auth.signOut()}finally{window.MusiversoPolyphony?.dispose();window.MusiversoCloudProgress?.stop();location.replace('acesso.html')}
 };
 })();
+
