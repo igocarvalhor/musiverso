@@ -23,6 +23,7 @@ client.auth.onAuthStateChange((event,session)=>{
    const {data,error}=await client.auth.getUser();
    if(error||!data?.user){location.replace('acesso.html');return}
    window.MusiversoAuthUser=data.user;
+   await window.MusiversoRole.load(client,data.user);
    window.MusiversoProgressKey='musiverso-kids-v1:'+data.user.id;
    if(!window.MusiversoCloudProgress){show('Não foi possível carregar a sincronização. Atualize a página para tentar novamente.');return}
    show('Carregando o progresso da sua conta…');
@@ -30,7 +31,7 @@ client.auth.onAuthStateChange((event,session)=>{
    if(!window.MusiversoAuthUser)return;
    document.getElementById('platform-content')?.removeAttribute('hidden');
    const script=document.createElement('script');
-   script.src='app.js?v=teacher-1';
+   script.src='app.js?v=roles-1';
    script.onload=()=>document.getElementById('auth-loading')?.remove();
    script.onerror=()=>show('Não foi possível iniciar o aplicativo. Atualize a página.');
    document.body.appendChild(script);
@@ -43,4 +44,5 @@ window.MusiversoLogout=async function(){
  try{await window.MusiversoCloudProgress?.sync();await client.auth.signOut()}finally{window.MusiversoPolyphony?.dispose();window.MusiversoCloudProgress?.stop();location.replace('acesso.html')}
 };
 })();
+
 

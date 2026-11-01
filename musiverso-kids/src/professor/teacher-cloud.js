@@ -6,10 +6,13 @@ let client,user,cacheKey,records={},pending={},busy=false,stopped=false,timer;
 const tell=t=>status.textContent=t;
 const persist=()=>{localStorage.setItem(cacheKey,JSON.stringify({records,pending}))};
 async function query(q){const c=new AbortController(),t=setTimeout(()=>c.abort(),10000);try{return await q.abortSignal(c.signal)}finally{clearTimeout(t)}}
+function deny(){stopped=true;content.hidden=true;records={};pending={};if(cacheKey)localStorage.removeItem(cacheKey);loading.hidden=false;loading.replaceChildren();const text=document.createElement('p');text.textContent='Acesso exclusivo para professores aprovados. Solicite acesso pelo Perfil do Musiverso Kids.';const back=document.createElement('a');back.href='../plataforma.html';back.textContent='Voltar ao Musiverso Kids';loading.append(text,back);if(!loading.isConnected)document.body.prepend(loading)}
+async function verifyTeacher(){await window.MusiversoRole.load(client,user);if(!window.MusiversoRole.canTeach){if(window.MusiversoRole.status==='unavailable'){content.hidden=true;throw Error('Permissão indisponível')}deny();return false}return true}
 async function sync(){
  if(busy||stopped)return;busy=true;
  try{
   const {data:session}=await client.auth.getSession();if(session.session?.user?.id!==user.id){stopped=true;content.hidden=true;location.replace('../acesso.html');return}
+  if(!await verifyTeacher())return;
   tell('Sincronizando sua conta…');
   while(Object.keys(pending).length){
    const batch=Object.entries(pending).slice(0,100);const {error}=await query(client.from('kids_teacher_records').upsert(batch.map(([record_key,value])=>({user_id:user.id,record_key,value,updated_at:new Date().toISOString()})),{onConflict:'user_id,record_key'}));if(error)throw error;
@@ -17,8 +20,8 @@ async function sync(){
   }
   const remote={};let offset=0;
   while(true){const {data,error}=await query(client.from('kids_teacher_records').select('record_key,value').eq('user_id',user.id).order('record_key').range(offset,offset+499));if(error)throw error;for(const r of data)remote[r.record_key]=r.value;if(data.length<500)break;offset+=500;}
-  records={...remote,...pending};persist();tell(Object.keys(pending).length?'Alterações pendentes de sincronização.':'Dados sincronizados com sua conta.');
- }catch{tell('Sem sincronização no momento. Alterações guardadas neste aparelho; tente novamente.')}finally{busy=false;}
+  records={...remote,...pending};persist();if(document.getElementById('main')?.children.length){content.hidden=false;loading.remove();}tell(Object.keys(pending).length?'Alterações pendentes de sincronização.':'Dados sincronizados com sua conta.');
+ }catch{if(window.MusiversoRole.status==='unavailable'){content.hidden=true;loading.textContent='Não foi possível verificar sua permissão. Tentaremos novamente; você também pode atualizar a página.';if(!loading.isConnected)document.body.prepend(loading)}tell('Sem sincronização no momento. Alterações guardadas neste aparelho; tente novamente.')}finally{busy=false;}
 }
 function write(entries){const next={...records,...entries},queue={...pending,...entries};localStorage.setItem(cacheKey,JSON.stringify({records:next,pending:queue}));records=next;pending=queue;tell('Salvo neste aparelho; sincronização pendente…');clearTimeout(timer);timer=setTimeout(sync,200)}
 window.TeacherStorage={
@@ -38,10 +41,10 @@ window.TeacherStorage={
 const get=TeacherStorage.getItem;TeacherStorage.getItem=key=>key==='musiverso-course-age'?(records[key]||null):get(key);
 try{
  client=window.supabase.createClient('https://hwbmmypllglujmxuypdw.supabase.co','sb_publishable_wKe1DH_0_UIQuBXgkEYK_g_KGyVKLn-');
- const {data,error}=await client.auth.getUser();if(error||!data.user){location.replace('../acesso.html');return}user=data.user;cacheKey='musiverso-teacher-v1:'+user.id;
+ const {data,error}=await client.auth.getUser();if(error||!data.user){location.replace('../acesso.html');return}user=data.user;if(!await verifyTeacher())return;cacheKey='musiverso-teacher-v1:'+user.id;
  client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'||(session?.user?.id&&session.user.id!==user.id)){stopped=true;content.hidden=true;location.replace('../acesso.html')}});
  try{const saved=JSON.parse(localStorage.getItem(cacheKey)||'{}');records=saved.records||{};pending=saved.pending||{}}catch{}
- await sync();if(stopped)return;
+ await sync();if(stopped)return;if(!window.MusiversoRole.canTeach)throw Error('Permissão indisponível');
  for(const file of ['registration.js','preschool.js','demo.js'])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=file+'?v=teacher-1';s.onload=resolve;s.onerror=reject;document.body.append(s)});
  content.hidden=false;loading.remove();document.getElementById('teacherSyncNow').onclick=async()=>{await sync();window.dispatchEvent(new Event('teacher-refreshed'))};
  window.addEventListener('online',sync);window.addEventListener('focus',sync);setInterval(()=>{if(!document.hidden)sync()},15000);
@@ -49,3 +52,4 @@ try{
  window.addEventListener('pagehide',()=>{content.hidden=true});window.addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
 }catch{loading.textContent='Não foi possível abrir o Espaço do Professor. Verifique a conexão e atualize a página.'}
 })();
+
