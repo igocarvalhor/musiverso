@@ -25,6 +25,20 @@ function allRecords(id){
 function periodRecords(items){return items.filter(x=>(!from||x.date>=from)&&(!to||x.date<=to))}
 function formatDate(s){const [y,m,d]=s.split('-');return d+'/'+m+'/'+y}
 function percent(a,total){return total?Math.round((a/total)*100):null}
+function monthlySummary(records){
+ const months=new Map();
+ for(const row of records){
+  const key=row.date.slice(0,7);
+  if(!months.has(key))months.set(key,{month:key,total:0,presente:0,falta:0,justificada:0});
+  const value=months.get(key);value.total++;value[row.status]++;
+ }
+ return [...months.values()].sort((a,b)=>b.month.localeCompare(a.month));
+}
+function monthLabel(key){
+ const [year,month]=key.split('-').map(Number);
+ return new Intl.DateTimeFormat('pt-BR',{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(year,month-1,1)));
+}
+
 function render(){
  if(!active||!main())return;
  const list=students();if(!list.some(s=>s.id===studentId))studentId=list[0]?.id||'';
@@ -35,10 +49,11 @@ function render(){
  const total=records.length;
  const frequency=percent(counts.presente,total);
  const visible=records.filter(r=>statusFilter==='todos'||r.status===statusFilter);
+ const months=monthlySummary(records);
  document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.remove('active');btn.removeAttribute('aria-current')});
- const nav=document.querySelector('[data-history-tab]');nav?.classList.add('active');nav?.setAttribute('aria-current','page');
+ const nav=document.querySelector('[data-tab="cadastro"]');nav?.classList.add('active');nav?.setAttribute('aria-current','page');
  main().innerHTML=`<section class="history-workspace">
- <div class="page-intro"><div><span class="eyebrow">ACOMPANHAMENTO INDIVIDUAL</span><h1>Histórico dos alunos</h1><p class="lead">Consulte presenças, faltas e faltas justificadas em cada encontro já registrado.</p></div><span class="pill">Diário de frequência</span></div>
+ <div class="page-intro"><div><span class="eyebrow">ACOMPANHAMENTO INDIVIDUAL</span><h1>Histórico dos alunos</h1><button type="button" class="btn soft" data-history-registration>← Voltar a alunos e encontros</button><p class="lead">Consulte presenças, faltas e faltas justificadas em cada encontro já registrado.</p></div><span class="pill">Diário de frequência</span></div>
  ${!list.length?`<section class="panel"><h2>Cadastre seu primeiro aluno</h2><p>O histórico aparece depois que você cadastra um aluno e registra uma presença ou falta.</p><button class="btn" data-history-registration>Ir para alunos e horários</button></section>`:`
  <section class="panel"><div class="history-filters">
  <label>Aluno <select id="historyStudent">${list.map(s=>`<option value="${escaped(s.id)}" ${s.id===studentId?'selected':''}>${escaped(s.name)}</option>`).join('')}</select></label>
@@ -52,14 +67,18 @@ function render(){
  <article><span>Faltas</span><strong>${counts.falta}</strong></article>
  <article><span>Faltas justificadas</span><strong>${counts.justificada}</strong></article>
  <article><span>Frequência</span><strong>${frequency===null?'—':frequency+'%'}</strong></article>
+
  </div>
+ <section class="panel history-monthly"><div class="history-section-header"><div><h2>Encontros por mês</h2><p class="note">Contagem de encontros lançados no diário, incluindo presenças, faltas e justificativas. Aulas não registradas não entram no total.</p></div></div>
+ ${months.length?`<div class="table-wrap"><table class="history-table"><thead><tr><th>MÊS</th><th>ENCONTROS</th><th>PRESENÇAS</th><th>FALTAS</th><th>JUSTIFICADAS</th><th>FREQUÊNCIA</th></tr></thead><tbody>${months.map(m=>`<tr><td><strong>${escaped(monthLabel(m.month))}</strong></td><td>${m.total}</td><td>${m.presente}</td><td>${m.falta}</td><td>${m.justificada}</td><td>${percent(m.presente,m.total)}%</td></tr>`).join('')}</tbody></table></div>`:'<p class="history-empty">Ainda não existem encontros registrados no período selecionado.</p>'}
+ </section>
  <section class="panel"><div class="history-section-header"><div><h2>${escaped(student?.name||'Aluno')}</h2><p class="note">Resumo calculado somente sobre as aulas com presença ou falta registrada no intervalo de datas. Datas sem lançamento não são consideradas faltas.</p></div><div class="actions"><button class="btn soft" type="button" id="historyExport" ${visible.length?'':'disabled'}>↓ Exportar histórico CSV</button><button class="btn soft" type="button" data-history-attendance>Registrar frequência</button></div></div>
  ${visible.length?`<div class="table-wrap"><table class="history-table"><thead><tr><th>DATA</th><th>ENCONTRO</th><th>MODALIDADE</th><th>SITUAÇÃO</th></tr></thead><tbody>${visible.map(r=>`<tr><td>${formatDate(r.date)}</td><td>${escaped(lessons[r.lesson]||r.lesson||'Aula')}</td><td>${r.mode==='individual'?'Individual':r.mode==='turma'?'Turma':escaped(r.mode||'—')}</td><td><span class="history-tag history-${r.status}">${statuses[r.status]}</span></td></tr>`).join('')}</tbody></table></div>`:'<p class="history-empty">Nenhum registro encontrado para este aluno e filtro. As presenças e faltas salvas no Diário de presença aparecerão aqui.</p>'}
  </section>`}
  </section>`;
 }
 function open(){active=true;window.location.hash='historico';render();window.scrollTo({top:0,behavior:'instant'})}
-function close(){if(!active)return;active=false;document.querySelector('[data-history-tab]')?.classList.remove('active')}
+function close(){if(!active)return;active=false;document.querySelector('[data-tab="cadastro"]')?.classList.remove('active')}
 function goTab(tab){close();const button=document.querySelector('[data-tab="'+tab+'"]');if(button)button.click();else window.location.hash=tab}
 function exportCsv(){
  const student=students().find(s=>s.id===studentId);if(!student)return;
@@ -75,7 +94,6 @@ function exportCsv(){
 }
 document.addEventListener('click',event=>{
  const shortcut=event.target.closest('[data-history-student]');if(shortcut){studentId=shortcut.dataset.historyStudent;open();return}
- if(event.target.closest('[data-history-tab]')){event.preventDefault();open();return}
  if(event.target.closest('[data-tab],[data-go]')){close();return}
  if(!active)return;
  if(event.target.closest('[data-history-attendance]')){goTab('presenca');return}
