@@ -16,3 +16,16 @@ input[name=name],input[type=time]{padding:11px;border:1px solid #dbcee9;border-r
 .composer-print-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}.composer-print-card{border:1px dashed #aaa;padding:12px;text-align:center;break-inside:avoid}.composer-print-card img{display:block;width:100%;height:230px;object-fit:contain;background:#faf8f3}.composer-print-card h2{font-size:18px;margin:10px 0 4px}.composer-print-card p{margin:0;font-size:13px}@media print{.composer-print-grid{gap:4mm}.composer-print-card{height:100mm;padding:3mm;box-sizing:border-box}.composer-print-card img{height:76mm}.composer-print-card h2{font-size:14pt;margin:2mm 0 1mm}.composer-print-card p{font-size:10pt}}
 
 [hidden]{display:none!important}#teacherLoading{padding:48px;text-align:center;font:600 20px system-ui}#teacherSyncNow{font:inherit;color:inherit;border:1px solid currentColor;background:transparent;border-radius:8px;padding:5px 10px;margin-left:12px;cursor:pointer}@media print{#teacherLoading{display:none}}
+
+/* Persistent, accessible feedback for teacher actions */
+.kids-feedback{position:fixed;right:22px;bottom:22px;z-index:10020;display:flex;align-items:center;gap:13px;width:min(430px,calc(100vw - 32px));padding:16px 19px;background:#f0fff8;color:#165b43;border:1px solid #98dec2;border-left:5px solid #24946e;box-shadow:0 12px 38px #30203a28;border-radius:15px;font-weight:850;font-size:14px;line-height:1.45}
+.kids-feedback[hidden]{display:none!important}
+.kids-feedback-icon{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;background:#d5f5e5;color:#176546;border-radius:50%;font-size:19px;font-weight:900}
+.kids-feedback[data-type="info"]{background:#f5f2ff;border-color:#cdc1f5;border-left-color:#7552c2;color:#4d3689}
+.kids-feedback[data-type="info"] .kids-feedback-icon{background:#e7defc;color:#5936a5}
+.kids-feedback[data-type="error"]{background:#fff1f0;border-color:#f3b6b0;border-left-color:#c9433a;color:#842e26}
+.kids-feedback[data-type="error"] .kids-feedback-icon{background:#ffdad5;color:#a2312a}
+.kids-feedback[data-type="delete"]{background:#fff7ed;border-color:#f0cfab;border-left-color:#bd7b30;color:#89511b}
+.kids-feedback[data-type="delete"] .kids-feedback-icon{background:#fbe8ce;color:#8c571c}
+@media(max-width:600px){.kids-feedback{right:16px;left:16px;bottom:16px;width:auto}}
+@media print{.kids-feedback{display:none!important}}
