@@ -1,0 +1,22 @@
+/* Teacher notifications, visible throughout Musiverso Kids teacher area. */
+.kn-holder{position:relative;display:inline-flex;align-items:center;flex:0 0 auto}
+.kn-bell{position:relative;min-width:43px;min-height:43px;border-radius:50%;border:1px solid #e6dcee;background:#fff;display:grid;place-items:center;color:#5f3a93;font-size:24px;cursor:pointer}
+.kn-bell:hover,.kn-bell[aria-expanded="true"]{background:#f1e9fe;border-color:#c9b4e6}
+.kn-count{position:absolute;right:-7px;top:-7px;border-radius:50px;background:#c63764;color:#fff;font-size:10px;font-weight:900;padding:3px 5px;min-width:20px;text-align:center;border:2px solid #fff}
+.kn-panel{position:absolute;z-index:1100;right:0;top:calc(100% + 12px);width:min(380px,calc(100vw - 24px));max-height:min(560px,70vh);overflow:auto;background:#fff;border:1px solid #ded3e9;border-radius:18px;box-shadow:0 18px 56px #3b225434;color:#3d3052}
+.kn-panel[hidden]{display:none!important}
+.kn-head{position:sticky;top:0;z-index:1;background:#fff;border-bottom:1px solid #eae2f1;padding:16px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.kn-head strong{font-size:18px;display:block}.kn-head small{font-size:12px;color:#8a779a}.kn-head button{border:0;background:#f5f0fa;border-radius:50%;height:30px;width:30px;font-size:13px;color:#75538f;cursor:pointer}
+.kn-list{display:grid}.kn-item{display:flex;align-items:center;text-align:left;gap:11px;background:#fff;padding:15px;border:0;border-bottom:1px solid #f0ebf4;color:#514360;cursor:pointer}
+.kn-item:hover{background:#f6f0fc}.kn-item.kn-unread{background:#f6f2ff}.kn-symbol{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:50%;background:#eaddfa;color:#6f42a4;font-size:20px}
+.kn-text{flex:1;font-size:12px;font-weight:600;line-height:1.45}.kn-text strong{font-weight:900}.kn-text small{display:block;color:#806f92;font-size:11px;font-weight:700;margin-top:3px}.kn-date{display:block;color:#9b8fa4;font-size:10px;margin-top:4px}
+.kn-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#7b48c1}
+.kn-empty{padding:24px 18px;font-size:13px;color:#786b8c;line-height:1.6}
+.kn-footer{padding:12px 16px;text-align:center;border-top:1px solid #eee5f4}.kn-footer button{border:0;background:none;color:#6d3ca5;font-weight:900;font-size:12px;cursor:pointer}
+.cm-recipient-label{font-size:12px!important;color:#6b5385}.cm-recipient-label select{width:100%;min-height:42px;border:1px solid #ddd0e9;border-radius:9px;background:white;padding:10px}
+.cm-share-form{display:grid;gap:10px;padding:20px;background:#f8f4fe;border-top:1px solid #e7dff0}
+.cm-share-form strong{font-size:15px}.cm-share-form label{display:grid;gap:6px;font-size:12px;font-weight:850;color:#64516f}
+.cm-share-form select,.cm-share-form input{border:1px solid #ded0e9;padding:11px;border-radius:10px;background:#fff;width:100%;color:#3f3156}
+.cm-share-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.cm-share-actions button:not(.cm-primary){background:transparent;border:0;color:#7d638c;font-size:12px;cursor:pointer}
+.cm-share-hint{color:#8f5a3b;font-size:12px}
+@media(max-width:640px){.kn-holder{margin-right:3px}.kn-panel{position:fixed;top:78px;right:12px;left:12px;width:auto;max-height:70vh}.kn-bell{min-width:40px;min-height:40px}}
