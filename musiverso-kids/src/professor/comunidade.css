@@ -52,3 +52,22 @@
 
 /* Override the parent teacher sidebar's generic aside padding in nested community rails. */
 .cm-page .cm-rail{padding:0}
+
+/* Interações sociais do feed: curtir, seguir e salvar. */
+.cm-social-summary{padding:1px 21px 10px;color:#7a6c88;font-size:12px;font-weight:800}
+.cm-post-actions .cm-social-button{display:inline-flex;align-items:center;gap:5px;justify-content:center;flex:1;min-height:42px;border-radius:9px}
+.cm-post-actions .cm-social-button.is-active{color:#6c3ead;background:#f5effc}
+.cm-post-actions button[aria-pressed="true"]{font-weight:900}
+.cm-post-actions button:disabled,.cm-follow:disabled{opacity:.5;cursor:wait}
+.cm-follow{flex:0 0 auto;border:1px solid #c8b3e3;border-radius:999px;background:#fff;color:#6f41a7;padding:8px 11px;font-size:11px;line-height:1.15;font-weight:900;cursor:pointer}
+.cm-follow.is-following{background:#f0e8fa;border-color:#e0d4f0;color:#65448d}
+.cm-follow:hover{background:#f5effb}
+.cm-profile-stats{display:flex;gap:13px;margin:15px 0 12px;font-size:11px;color:#7e6c8d}
+.cm-profile-stats strong{display:inline;font-size:15px;color:#6443a0}
+.cm-saved-shortcut{border:0;background:#f5effd;border-radius:10px;color:#60418e;padding:10px 12px;text-align:left;font-weight:900;font-size:11px;cursor:pointer;width:100%}
+.cm-saved-shortcut:hover{background:#e9ddf8}
+.cm-feed-filters{display:flex;flex-wrap:wrap;gap:9px}
+.cm-feed-filters button{border:1px solid #e0d7ea;border-radius:100px;background:#fff;color:#745c87;padding:9px 15px;font-size:12px;font-weight:850;cursor:pointer}
+.cm-feed-filters button.selected{background:#6f44a9;border-color:#6f44a9;color:#fff}
+.cm-feed-filters button:hover:not(.selected){background:#f4edf9}
+@media(max-width:570px){.cm-follow{padding:7px 9px;font-size:10px}.cm-kind{display:none}.cm-post-actions{flex-wrap:wrap}.cm-post-actions .cm-social-button{min-width:70px}.cm-feed-filters button{flex:1}}
