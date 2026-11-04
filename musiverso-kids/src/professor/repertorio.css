@@ -6,3 +6,12 @@
 @media(max-width:950px){.rp-cards{grid-template-columns:1fr}.rp-banner{align-items:flex-start}.rp-total{margin-left:0}}
 @media(max-width:560px){.rp-banner{padding:18px;gap:12px}.rp-banner h2{font-size:21px}.rp-big-icon{font-size:34px}.rp-card{padding:17px}.rp-card-heading h3{font-size:18px}.rp-toolbar select{min-width:0;width:100%}}
 @media print{body:has(.rp-library) aside,body:has(.rp-library) header,body:has(.rp-library) .demo-banner,body:has(.rp-library) .rp-toolbar,body:has(.rp-library) .rp-card-actions,body:has(.rp-library) .rp-favorite,body:has(.rp-library) .rp-footnote,body:has(.rp-library) .rp-class-plan button{display:none!important}body:has(.rp-library) .layout{display:block}body:has(.rp-library) main{padding:0}body:has(.rp-library) .rp-cards{display:block}body:has(.rp-library) .rp-card{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px;box-shadow:none}body:has(.rp-library) .rp-details{display:block}body:has(.rp-library) .rp-banner{background:#fff}body:has(.rp-library) .rp-library{max-width:none}}
+
+/* Soundtrack blocks in ready-made preschool lessons. */
+.preschool-soundtrack{background:linear-gradient(135deg,#fff9eb,#f3ecff);border:1px solid #e5d8ec;border-radius:20px;padding:23px 25px;margin:22px 0 24px;box-shadow:0 5px 20px #5a397010}
+.preschool-soundtrack h3{color:#552f92;font-size:23px;margin-bottom:9px}
+.preschool-soundtrack p{color:#514160;font-size:14px;line-height:1.7;margin:8px 0}
+.preschool-soundtrack .btn{display:inline-flex;margin-top:13px;align-items:center}
+.preschool-soundtrack .note{font-size:12px;color:#806e8d}
+@media(max-width:600px){.preschool-soundtrack{padding:18px 16px}.preschool-soundtrack h3{font-size:21px}}
+@media print{.preschool-soundtrack{background:white;break-inside:avoid;box-shadow:none}.preschool-soundtrack a.btn{display:none!important}}
