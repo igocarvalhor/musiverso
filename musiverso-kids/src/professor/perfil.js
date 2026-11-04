@@ -66,8 +66,8 @@ async function save(form){
  if(busy)return;busy=true;render(); // do not replace form values until captured
 }
 document.addEventListener('click',e=>{
- const target=e.target.closest('[data-kp-tab]');if(target){e.preventDefault();open();return}
- const profile=e.target.closest('[data-kp-user]');if(profile){e.preventDefault();open(profile.dataset.kpUser);return}
+ const target=e.target.closest('[data-kp-tab]');if(target){e.preventDefault();e.stopImmediatePropagation();open();return}
+ const profile=e.target.closest('[data-kp-user]');if(profile){e.preventDefault();e.stopImmediatePropagation();open(profile.dataset.kpUser);return}
  if(e.target.closest('[data-tab],[data-community-tab],[data-repertoire-tab]')){close();return}
  if(!active)return;
  if(e.target.closest('[data-kp-edit]')){editing=true;render()}
