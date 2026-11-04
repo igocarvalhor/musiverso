@@ -1,9 +1,7 @@
 /* Community pilot for approved Kids teachers; never reads student records. */
 (()=>{
 'use strict';
-const URL='https://hwbmmypllglujmxuypdw.supabase.co';
-const KEY='sb_publishable_wKe1DH_0_UIQuBXgkEYK_g_KGyVKLn-';
-const client=window.supabase.createClient(URL,KEY,{auth:{storageKey:'kids-community-auth-v1',persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+const client=window.KidsTeacherClient;
 const types={forum:'Fórum pedagógico',activity:'Biblioteca colaborativa'};
 const cat=['Metodologias','Repertório','Educação Infantil','Instrumentos','Dúvidas','Outros'];
 let active=false,view='forum',lessonKey='',lessonTitle='',user=null,posts=[],comments=[],selectedPost='',busy=false;
@@ -52,6 +50,7 @@ function render(){
  root().innerHTML=`<section class="cm-workspace">${top()}<p class="cm-status" id="communityStatus" role="status"></p>${body}</section>`;
 }
 async function session(){
+ if(!client)throw Error('Sessão do professor não inicializada.');
  const {data,error}=await client.auth.getUser();
  if(error||!data?.user)throw Error('Sua sessão não está disponível. Entre novamente no Kids.');
  user=data.user;
@@ -61,7 +60,7 @@ async function api(table,action,arg){
  let query=client.from(table);
  if(action==='list'){const {data,error}=await query.select('*').order('created_at',{ascending:false}).limit(80);if(error)throw error;return data||[]}
  if(action==='add'){const {data,error}=await query.insert(arg).select('*').single();if(error)throw error;return data}
- if(action==='remove'){const {error}=await query.delete().eq('id',arg);if(error)throw error;return true}
+ if(action==='remove'){const {data,error}=await query.delete().eq('id',arg).eq('author_id',user.id).select('id');if(error)throw error;if(!data?.length)throw Error('Não foi possível confirmar a exclusão.');return true}
 }
 async function load(){
  if(!active)return;
