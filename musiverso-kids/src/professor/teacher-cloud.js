@@ -46,7 +46,7 @@ try{
  client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'||(session?.user?.id&&session.user.id!==user.id)){stopped=true;content.hidden=true;location.replace('../acesso.html')}});
  try{const saved=JSON.parse(localStorage.getItem(cacheKey)||'{}');records=saved.records||{};pending=saved.pending||{}}catch{}
  await sync();if(stopped)return;if(!window.MusiversoRole.canTeach)throw Error('Permissão indisponível');
- for(const file of ['registration.js','preschool.js','demo.js','repertorio.js'])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=file+'?v=teacher-1';s.onload=resolve;s.onerror=reject;document.body.append(s)});
+ for(const file of ['registration.js','preschool.js','demo.js','repertorio.js','historico.js'])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=file+'?v=teacher-1';s.onload=resolve;s.onerror=reject;document.body.append(s)});
  content.hidden=false;loading.remove();document.getElementById('teacherSyncNow').onclick=async()=>{await sync();window.dispatchEvent(new Event('teacher-refreshed'))};
  window.addEventListener('online',sync);window.addEventListener('focus',sync);setInterval(()=>{if(!document.hidden)sync()},15000);
  window.addEventListener('beforeunload',e=>{if(Object.keys(pending).length){e.preventDefault();e.returnValue=''}});
