@@ -6,11 +6,23 @@ const KINDS={forum:'Discussões',activity:'Atividades'};
 const CATEGORIES=['Metodologias','Repertório','Educação Infantil','Instrumentos','Dúvidas','Outros'];
 const escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const main=()=>document.getElementById('main');
-let active=false,view='forum',lessonKey='',lessonTitle='',posts=[],comments=[],selectedPost='',user=null,loading=false,busy=false,compose=false,queryText='',category='Todas',errorText='',authorDraft='',feedFilter='all',likes=[],saved=[],following=[],actionBusy=new Set();
+let active=false,view='forum',lessonKey='',lessonTitle='',posts=[],comments=[],selectedPost='',user=null,loading=false,busy=false,compose=false,queryText='',category='Todas',errorText='',authorDraft='',feedFilter='all',likes=[],saved=[],following=[],actionBusy=new Set(),sharePost='';
 const notify=(text,type='success')=>window.KidsFeedback?.show(text,type);
 const badge=name=>escape((name||'P').trim().slice(0,1).toUpperCase());
 const stamp=date=>{try{return new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(date))}catch{return ''}};
 function authorName(){return authorDraft||user?.user_metadata?.full_name||user?.email?.split('@')[0]||'Professor'}
+function teachers(){
+ const map=new Map();
+ for(const p of posts)if(p.author_id!==user?.id&&!map.has(p.author_id))map.set(p.author_id,p.author_name);
+ return [...map].sort((a,b)=>a[1].localeCompare(b[1],'pt-BR'));
+}
+function recipientSelect(name='recipient'){
+ const options=teachers().map(([id,label])=>`<option value="${escape(id)}">@${escape(label)}</option>`).join('');
+ return `<label class="cm-recipient-label">Marcar professor <select name="${name}" aria-label="Marcar professor"><option value="">Não marcar ninguém</option>${options}</select></label>`;
+}
+function shareForm(postId){const opts=teachers();
+ return `<form class="cm-share-form" id="cmShareForm"><strong>Compartilhar com outro professor</strong><label>Destinatário<select required name="recipient"><option value="">Selecione um professor</option>${opts.map(([id,name])=>`<option value="${escape(id)}">${escape(name)}</option>`).join('')}</select></label><label>Mensagem opcional<input name="note" maxlength="300" placeholder="Por que você recomenda esta publicação?"></label><input type="hidden" name="post_id" value="${escape(postId)}"><div class="cm-share-actions"><button type="submit" class="cm-primary">Enviar publicação</button><button type="button" data-cm-close-share>Cancelar</button></div>${opts.length?'':'<p class="cm-share-hint">Para compartilhar, outro professor precisa ter publicado uma contribuição na comunidade.</p>'}</form>`;
+}
 const hasLike=id=>likes.some(r=>r.post_id===id&&r.user_id===user?.id);
 const likeCount=id=>likes.filter(r=>r.post_id===id).length;
 const hasSave=id=>saved.some(r=>r.post_id===id);
@@ -49,17 +61,17 @@ function postForm(){
  <label>Assunto<input name="title" placeholder="Dê um título claro à sua publicação" minlength="5" maxlength="120" required></label>
  <div class="cm-form-pair"><label>Categoria<select name="category">${CATEGORIES.map(c=>`<option>${escape(c)}</option>`).join('')}</select></label>${kind==='activity'?'<label>Faixa etária<input name="age" placeholder="Ex.: 2–3 anos" maxlength="30"></label>':''}</div>
  ${kind==='activity'?'<label>Materiais necessários<input name="materials" maxlength="500" placeholder="Ex.: tambores, cartões e tecidos"></label>':''}
- <label>${kind==='activity'?'Objetivos e desenvolvimento da atividade':'Sua pergunta ou experiência'}<textarea name="body" required minlength="10" maxlength="2000" rows="5" placeholder="Descreva sua experiência. Não inclua informações pessoais de crianças."></textarea></label>
+ <label>${kind==='activity'?'Objetivos e desenvolvimento da atividade':'Sua pergunta ou experiência'}<textarea name="body" required minlength="10" maxlength="2000" rows="5" placeholder="Descreva sua experiência. Não inclua informações pessoais de crianças."></textarea></label>${recipientSelect()}
  <div class="cm-form-footer"><span>Somente professores aprovados podem visualizar.</span><button class="cm-primary" type="submit" ${busy?'disabled':''}>${busy?'Publicando…':'Publicar agora'}</button></div></form></section>`;
 }
 function commentHTML(c){const own=c.author_id===user?.id;return `<div class="cm-comment"><span class="cm-avatar cm-avatar-sm" aria-hidden="true">${badge(c.author_name)}</span><div class="cm-comment-body"><div class="cm-comment-header"><strong>${escape(c.author_name)}</strong><span>${stamp(c.created_at)}</span></div><p>${escape(c.body)}</p>${own?`<button type="button" class="cm-minilink" data-cm-delete-comment="${escape(c.id)}">Excluir comentário</button>`:''}</div></div>`}
-function commentForm(){return `<form id="cmCommentForm" class="cm-comment-form"><span class="cm-avatar cm-avatar-sm" aria-hidden="true">${badge(authorName())}</span><div class="cm-comment-fields"><label class="cm-visually-hidden" for="cmName">Nome profissional</label><input id="cmName" name="author" value="${escape(authorName())}" minlength="2" maxlength="60" required aria-label="Nome profissional"><label class="cm-visually-hidden" for="cmCommentBody">Comentário</label><textarea id="cmCommentBody" name="body" rows="2" minlength="2" maxlength="1000" placeholder="Compartilhe uma ideia ou experiência..." required></textarea><button type="submit" class="cm-primary" ${busy?'disabled':''}>Comentar</button></div></form>`}
+function commentForm(){return `<form id="cmCommentForm" class="cm-comment-form"><span class="cm-avatar cm-avatar-sm" aria-hidden="true">${badge(authorName())}</span><div class="cm-comment-fields"><label class="cm-visually-hidden" for="cmName">Nome profissional</label><input id="cmName" name="author" value="${escape(authorName())}" minlength="2" maxlength="60" required aria-label="Nome profissional"><label class="cm-visually-hidden" for="cmCommentBody">Comentário</label><textarea id="cmCommentBody" name="body" rows="2" minlength="2" maxlength="1000" placeholder="Compartilhe uma ideia ou experiência..." required></textarea>${recipientSelect()}<button type="submit" class="cm-primary" ${busy?'disabled':''}>Comentar</button></div></form>`}
 function postCard(p){const own=p.author_id===user?.id,opened=p.id===selectedPost;return `<article class="cm-post cm-surface">
  <header class="cm-post-header"><span class="cm-avatar" aria-hidden="true">${badge(p.author_name)}</span><div class="cm-poster"><strong>${escape(p.author_name)}</strong><span>Professor(a) · ${stamp(p.created_at)}</span></div>${!own?`<button type="button" class="cm-follow ${hasFollow(p.author_id)?'is-following':''}" data-cm-follow="${escape(p.author_id)}" aria-pressed="${hasFollow(p.author_id)}" ${actionBusy.has('follow:'+p.author_id)?'disabled':''}>${hasFollow(p.author_id)?'✓ Seguindo':'+ Seguir'}</button>`:''}<span class="cm-kind">${p.kind==='activity'?'Atividade':'Discussão'}</span></header>
  <div class="cm-post-content"><span class="cm-topic">◈ ${escape(p.category)}</span><h3>${escape(p.title)}</h3><p>${escape(p.body)}</p>
  ${p.kind==='activity'?`<div class="cm-resource"><span>◷ <strong>Faixa etária:</strong> ${escape(p.age_range||'Não informada')}</span><span>▦ <strong>Materiais:</strong> ${escape(p.materials||'Não informados')}</span></div>`:''}</div>
- <div class="cm-social-summary"><span>${likeCount(p.id)} ${likeCount(p.id)===1?'curtida':'curtidas'}</span></div><div class="cm-post-actions"><button type="button" class="cm-social-button ${hasLike(p.id)?'is-active':''}" data-cm-like="${escape(p.id)}" aria-pressed="${hasLike(p.id)}" ${actionBusy.has('like:'+p.id)?'disabled':''}>♡ ${hasLike(p.id)?'Curtido':'Curtir'}</button><button type="button" data-cm-discuss="${escape(p.id)}" aria-expanded="${opened}">▤ ${opened?'Ocultar comentários':'Comentar'}</button><button type="button" class="cm-social-button ${hasSave(p.id)?'is-active':''}" data-cm-save="${escape(p.id)}" aria-pressed="${hasSave(p.id)}" ${actionBusy.has('save:'+p.id)?'disabled':''}>▣ ${hasSave(p.id)?'Salvo':'Salvar'}</button>${own?`<button type="button" class="cm-danger-link" data-cm-delete-post="${escape(p.id)}">♧ Excluir</button>`:''}</div>
- ${opened?`<div class="cm-inline-comments" id="cmDiscussion"><div class="cm-comments-title">Conversa da publicação</div>${comments.length?comments.map(commentHTML).join(''):'<p class="cm-empty-comments">Seja o primeiro a contribuir com esta conversa.</p>'}${commentForm()}</div>`:''}
+ <div class="cm-social-summary"><span>${likeCount(p.id)} ${likeCount(p.id)===1?'curtida':'curtidas'}</span></div><div class="cm-post-actions"><button type="button" class="cm-social-button ${hasLike(p.id)?'is-active':''}" data-cm-like="${escape(p.id)}" aria-pressed="${hasLike(p.id)}" ${actionBusy.has('like:'+p.id)?'disabled':''}>♡ ${hasLike(p.id)?'Curtido':'Curtir'}</button><button type="button" data-cm-discuss="${escape(p.id)}" aria-expanded="${opened}">▤ ${opened?'Ocultar comentários':'Comentar'}</button><button type="button" class="cm-social-button ${hasSave(p.id)?'is-active':''}" data-cm-save="${escape(p.id)}" aria-pressed="${hasSave(p.id)}" ${actionBusy.has('save:'+p.id)?'disabled':''}>▣ ${hasSave(p.id)?'Salvo':'Salvar'}</button><button type="button" data-cm-share="${escape(p.id)}">↗ Compartilhar</button>${own?`<button type="button" class="cm-danger-link" data-cm-delete-post="${escape(p.id)}">♧ Excluir</button>`:''}</div>
+ ${sharePost===p.id?shareForm(p.id):''}${opened?`<div class="cm-inline-comments" id="cmDiscussion"><div class="cm-comments-title">Conversa da publicação</div>${comments.length?comments.map(commentHTML).join(''):'<p class="cm-empty-comments">Seja o primeiro a contribuir com esta conversa.</p>'}${commentForm()}</div>`:''}
  </article>`}
 function lessonContent(){return `<section class="cm-surface cm-lesson-card"><div class="cm-section-head"><span class="cm-section-icon">♫</span><div><h2>${lessonKey?escape(lessonTitle):'Discussões das aulas prontas'}</h2><p>${lessonKey?'Troque experiências sobre esta aula com outros professores.':'Cada aula tem uma conversa própria, conectada ao planejamento.'}</p></div></div>
  ${lessonKey?`<div class="cm-lessons-comments">${comments.length?comments.map(commentHTML).join(''):'<p class="cm-empty-comments">Ainda não há comentários para esta aula. Que tal compartilhar sua primeira adaptação?</p>'}</div>${commentForm()}`:'<button type="button" class="cm-primary" data-cm-lessons>Escolher uma aula pronta ↗</button>'}</section>`}
@@ -108,7 +120,7 @@ async function loadEngagement(){
 }
 async function load(){
  if(!active)return;loading=true;errorText='';render();
- try{await requireUser();if(view==='lesson')comments=lessonKey?await list('kids_community_comments',{lesson_key:lessonKey}):[];
+ try{await requireUser();if(view==='lesson'){posts=await list('kids_community_posts');comments=lessonKey?await list('kids_community_comments',{lesson_key:lessonKey}):[];}
  else{posts=await list('kids_community_posts');await loadEngagement();comments=selectedPost?await list('kids_community_comments',{post_id:selectedPost}):[]}}
  catch(e){errorText='Não foi possível carregar as publicações. Confira a conexão e sua permissão de professor.';notify(errorText,'error')}
  finally{loading=false;render()}
@@ -146,6 +158,8 @@ document.addEventListener('click',async e=>{
  if(e.target.closest('[data-community-tab]')){e.preventDefault();open();return}
  if(e.target.closest('[data-tab],[data-go],[data-history-tab],[data-repertoire-tab]')){close();return}
  if(!active)return;
+ const share=e.target.closest('[data-cm-share]');if(share){sharePost=sharePost===share.dataset.cmShare?'':share.dataset.cmShare;render();return}
+ if(e.target.closest('[data-cm-close-share]')){sharePost='';render();return}
  const filter=e.target.closest('[data-cm-filter]');if(filter){feedFilter=filter.dataset.cmFilter;render();return}
  const like=e.target.closest('[data-cm-like]');if(like){await toggleEngagement('like',like.dataset.cmLike);return}
  const save=e.target.closest('[data-cm-save]');if(save){await toggleEngagement('save',save.dataset.cmSave);return}
@@ -169,20 +183,31 @@ document.addEventListener('input',e=>{
 });
 document.addEventListener('change',e=>{if(active&&e.target.id==='cmCategory'){category=e.target.value;render()}});
 document.addEventListener('submit',async e=>{
- if(!active||!['cmPostForm','cmCommentForm'].includes(e.target.id))return;
+ if(!active||!['cmPostForm','cmCommentForm','cmShareForm'].includes(e.target.id))return;
  e.preventDefault();if(busy)return;
+ if(e.target.id==='cmShareForm'){
+  const f=new FormData(e.target),recipient=String(f.get('recipient')||''),postId=String(f.get('post_id')||'');
+  if(!recipient||!postId){notify('Escolha um professor para compartilhar.','error');return}
+  await act(async()=>{await requireUser();await insert('kids_community_shares',{sender_id:user.id,recipient_id:recipient,post_id:postId,note:String(f.get('note')||'').trim()});sharePost=''},'Publicação compartilhada. O professor receberá uma notificação.');
+  return;
+ }
  const f=new FormData(e.target),name=String(f.get('author')||'').trim(),body=String(f.get('body')||'').trim();
  if(name.length<2||!body)return;authorDraft=name;
  await requireUser().catch(()=>{});
  if(!user){notify('Sua sessão não está disponível. Entre novamente.','error');return}
  if(e.target.id==='cmPostForm'){
   const kind=view==='activity'?'activity':'forum';
-  await act(()=>insert('kids_community_posts',{author_id:user.id,author_name:name,kind,category:String(f.get('category')||'Outros'),title:String(f.get('title')||'').trim(),body,age_range:String(f.get('age')||'').trim(),materials:String(f.get('materials')||'').trim()}),'Publicação criada com sucesso.');
+  await act(()=>insert('kids_community_posts',{author_id:user.id,author_name:name,kind,category:String(f.get('category')||'Outros'),title:String(f.get('title')||'').trim(),body,age_range:String(f.get('age')||'').trim(),materials:String(f.get('materials')||'').trim(),mentioned_user_id:String(f.get('recipient')||'')||null}),'Publicação criada com sucesso.');
  }else{
   if(view==='lesson'&&!lessonKey){notify('Selecione uma aula antes de comentar.','error');return}
-  await act(()=>insert('kids_community_comments',{author_id:user.id,author_name:name,body,post_id:view==='lesson'?null:selectedPost,lesson_key:view==='lesson'?lessonKey:null}),'Comentário publicado com sucesso.');
+  await act(()=>insert('kids_community_comments',{author_id:user.id,author_name:name,body,post_id:view==='lesson'?null:selectedPost,lesson_key:view==='lesson'?lessonKey:null,mentioned_user_id:String(f.get('recipient')||'')||null}),'Comentário publicado com sucesso.');
  }
 });
+window.KidsCommunityOpenAlert=async n=>{
+ if(n.lesson_key){open('lesson',n.lesson_key,'Aula comentada');return}
+ if(n.post_id){open('forum');await load();const post=posts.find(p=>p.id===n.post_id);if(post){view=post.kind;selectedPost=post.id;sharePost='';await load();document.getElementById('cmDiscussion')?.scrollIntoView({block:'nearest',behavior:'smooth'});return}}
+ open('forum');
+};
 window.addEventListener('hashchange',()=>{if(location.hash==='#comunidade'&&!active)open();else if(location.hash!=='#comunidade')close()});
 window.addEventListener('teacher-refreshed',()=>{if(active)load()});
 if(location.hash==='#comunidade')open();
