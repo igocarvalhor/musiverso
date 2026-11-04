@@ -16,7 +16,7 @@ function render(){
  if(!initialized)return;
  const unread=items.filter(n=>!n.read_at).length;
  bell.setAttribute('aria-expanded',String(open));bell.setAttribute('aria-label',unread?`Notificações: ${unread} não lidas`:'Notificações');
- bell.innerHTML=`<span aria-hidden="true">♧</span>${unread?`<span class="kn-count">${unread>99?'99+':unread}</span>`:''}`;
+ bell.innerHTML=`<span aria-hidden="true">🔔</span>${unread?`<span class="kn-count">${unread>99?'99+':unread}</span>`:''}`;
  panel.hidden=!open;
  panel.innerHTML=`<div class="kn-head"><div><strong>Notificações</strong><small>${unread?unread+' não lida(s)':'Tudo em dia'}</small></div><button type="button" data-kn-close aria-label="Fechar">✕</button></div>
  ${items.length?`<div class="kn-list">${items.map(row).join('')}</div>`:`<p class="kn-empty">${loading?'Carregando avisos…':'Nenhuma notificação por enquanto. Quando outros professores interagirem, você verá aqui.'}</p>`}
@@ -25,7 +25,7 @@ function render(){
 function mount(){
  if(initialized)return;const header=document.querySelector('#teacherContent header .teacher');if(!header)return;
  const holder=document.createElement('div');holder.className='kn-holder';
- holder.innerHTML='<button type="button" class="kn-bell" aria-expanded="false" aria-label="Notificações">♧</button><div class="kn-panel" hidden role="region" aria-label="Central de notificações"></div>';
+ holder.innerHTML='<button type="button" class="kn-bell" aria-expanded="false" aria-label="Notificações">🔔</button><div class="kn-panel" hidden role="region" aria-label="Central de notificações"></div>';
  header.prepend(holder);bell=holder.querySelector('.kn-bell');panel=holder.querySelector('.kn-panel');initialized=true;render();
 }
 async function getUser(){if(!db)return null;const {data,error}=await db.auth.getUser();if(error||!data?.user)return null;return data.user}
