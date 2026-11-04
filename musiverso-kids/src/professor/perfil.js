@@ -102,6 +102,6 @@ document.addEventListener('submit',async e=>{
  finally{busy=false;render()}
 });
 window.addEventListener('hashchange',()=>{if(location.hash==='#perfil-professor'&&!active)open();else if(location.hash!=='#perfil-professor')close()});
-window.KidsProfiles={get:getProfile,peek:profileFor,avatar:avatar,open:open};
+window.KidsProfilePhotos=avatars;window.KidsProfiles={get:getProfile,peek:profileFor,avatar:avatar,open:open};
 if(location.hash==='#perfil-professor')open();
 })();
