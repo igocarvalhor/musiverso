@@ -1,0 +1,22 @@
+/* Individual attendance history dashboard */
+.history-workspace{max-width:1200px}
+.history-filters{display:grid;grid-template-columns:minmax(180px,1.4fr) repeat(3,minmax(135px,1fr));align-items:end;gap:14px}
+.history-filters label{font-size:12px;font-weight:900;color:#625273;display:grid;gap:7px}
+.history-filters select,.history-filters input{width:100%;min-height:44px;border-radius:11px;border:1px solid #dcd2e6;background:#fff;padding:9px 11px;color:#34234e}
+.history-summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:21px 0}
+.history-summary article{background:#fff;border:1px solid #e9e1f1;border-radius:17px;padding:18px 14px;min-width:0;box-shadow:0 4px 16px #50357608}
+.history-summary article span{display:block;font-size:12px;color:#786b89;font-weight:800;line-height:1.35;min-height:34px}
+.history-summary article strong{display:block;font:800 31px 'Baloo 2','Nunito',sans-serif;color:#6531a5;margin-top:4px}
+.history-section-header{display:flex;align-items:start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.history-section-header .actions{display:flex;gap:9px;flex-wrap:wrap;margin:0}
+.history-section-header .note{font-size:13px;max-width:690px}
+.history-table{width:100%}.history-table td{vertical-align:middle}
+.history-tag{display:inline-block;padding:7px 11px;border-radius:25px;font-size:12px;font-weight:900;white-space:nowrap}
+.history-presente{background:#dff5e9;color:#126e47}
+.history-falta{background:#ffe4e1;color:#a0322b}
+.history-justificada{background:#fff0cf;color:#865517}
+.history-warning{color:#9e3c20;font-weight:800;font-size:13px;margin-top:10px}
+.history-empty{padding:25px;text-align:center;color:#786b89;background:#faf7ff;border-radius:15px;font-size:14px}
+@media(max-width:1100px){.history-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.history-summary{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:580px){.history-filters{grid-template-columns:1fr}.history-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.history-summary article strong{font-size:27px}}
+@media print{.history-filters,.history-section-header .actions{display:none!important}.history-summary article{box-shadow:none}}
