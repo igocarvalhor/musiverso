@@ -58,7 +58,7 @@ async function session(){
 async function api(table,action,arg){
  await session();
  let query=client.from(table);
- if(action==='list'){const {data,error}=await query.select('*').order('created_at',{ascending:false}).limit(80);if(error)throw error;return data||[]}
+ if(action==='list'){let q=query.select('*').order('created_at',{ascending:false}).limit(100);if(table==='kids_community_comments'&&arg?.lesson_key)q=q.eq('lesson_key',arg.lesson_key);if(table==='kids_community_comments'&&arg?.post_id)q=q.eq('post_id',arg.post_id);const {data,error}=await q;if(error)throw error;return data||[]}
  if(action==='add'){const {data,error}=await query.insert(arg).select('*').single();if(error)throw error;return data}
  if(action==='remove'){const {data,error}=await query.delete().eq('id',arg).eq('author_id',user.id).select('id');if(error)throw error;if(!data?.length)throw Error('Não foi possível confirmar a exclusão.');return true}
 }
@@ -67,10 +67,10 @@ async function load(){
  setStatus('Carregando publicações…');
  try{
   await session();
-  if(view==='lesson'){comments=lessonKey?(await api('kids_community_comments','list')).filter(c=>c.lesson_key===lessonKey):[]}
+  if(view==='lesson'){comments=lessonKey?await api('kids_community_comments','list',{lesson_key:lessonKey}):[]}
   else{
    posts=await api('kids_community_posts','list');
-   comments=selectedPost?(await api('kids_community_comments','list')).filter(c=>c.post_id===selectedPost):[];
+   comments=selectedPost?await api('kids_community_comments','list',{post_id:selectedPost}):[];
   }
   render();setStatus('');
  }catch(err){setStatus('Não foi possível carregar a comunidade. Verifique sua conexão ou suas permissões.');message(err.message||'Erro ao carregar dados.','error')}
