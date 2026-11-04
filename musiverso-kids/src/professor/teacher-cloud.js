@@ -14,16 +14,17 @@ async function sync(){
   const {data:session}=await client.auth.getSession();if(session.session?.user?.id!==user.id){stopped=true;content.hidden=true;location.replace('../acesso.html');return}
   if(!await verifyTeacher())return;
   tell('Sincronizando sua conta…');
+  const hadPending=Object.keys(pending).length>0;
   while(Object.keys(pending).length){
    const batch=Object.entries(pending).slice(0,100);const {error}=await query(client.from('kids_teacher_records').upsert(batch.map(([record_key,value])=>({user_id:user.id,record_key,value,updated_at:new Date().toISOString()})),{onConflict:'user_id,record_key'}));if(error)throw error;
    for(const [k,v] of batch)if(JSON.stringify(pending[k])===JSON.stringify(v))delete pending[k];persist();
   }
   const remote={};let offset=0;
   while(true){const {data,error}=await query(client.from('kids_teacher_records').select('record_key,value').eq('user_id',user.id).order('record_key').range(offset,offset+499));if(error)throw error;for(const r of data)remote[r.record_key]=r.value;if(data.length<500)break;offset+=500;}
-  records={...remote,...pending};persist();if(document.getElementById('main')?.children.length){content.hidden=false;loading.remove();}tell(Object.keys(pending).length?'Alterações pendentes de sincronização.':'Dados sincronizados com sua conta.');
- }catch{if(window.MusiversoRole.status==='unavailable'){content.hidden=true;loading.textContent='Não foi possível verificar sua permissão. Tentaremos novamente; você também pode atualizar a página.';if(!loading.isConnected)document.body.prepend(loading)}tell('Sem sincronização no momento. Alterações guardadas neste aparelho; tente novamente.')}finally{busy=false;}
+  records={...remote,...pending};persist();if(document.getElementById('main')?.children.length){content.hidden=false;loading.remove();}tell(Object.keys(pending).length?'Alterações pendentes de sincronização.':'Dados sincronizados com sua conta.');if(hadPending&&!Object.keys(pending).length)window.KidsFeedback?.synced();
+ }catch{if(window.MusiversoRole.status==='unavailable'){content.hidden=true;loading.textContent='Não foi possível verificar sua permissão. Tentaremos novamente; você também pode atualizar a página.';if(!loading.isConnected)document.body.prepend(loading)}tell('Sem sincronização no momento. Alterações guardadas neste aparelho; tente novamente.');if(Object.keys(pending).length)window.KidsFeedback?.show('Sem conexão com a nuvem. Seus dados continuam salvos neste dispositivo.','info')}finally{busy=false;}
 }
-function write(entries){const next={...records,...entries},queue={...pending,...entries};localStorage.setItem(cacheKey,JSON.stringify({records:next,pending:queue}));records=next;pending=queue;tell('Salvo neste aparelho; sincronização pendente…');clearTimeout(timer);timer=setTimeout(sync,200)}
+function write(entries){const next={...records,...entries},queue={...pending,...entries};localStorage.setItem(cacheKey,JSON.stringify({records:next,pending:queue}));records=next;pending=queue;tell('Salvo neste aparelho; sincronização pendente…');const removing=Object.keys(entries).length>0&&Object.values(entries).every(v=>v===null);if(removing)window.KidsFeedback?.deleted('Registro');else window.KidsFeedback?.savedLocal('Alteração');clearTimeout(timer);timer=setTimeout(sync,200)}
 window.TeacherStorage={
  getItem(key){
   if(key==='musiverso-demo-students')return JSON.stringify(Object.entries(records).filter(([k,v])=>k.startsWith('student:')&&v).map(([,v])=>v).sort((a,b)=>a.id.localeCompare(b.id)));
