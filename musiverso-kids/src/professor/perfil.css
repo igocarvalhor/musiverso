@@ -16,3 +16,11 @@
 .cm-profile-photo{width:43px;height:43px;border:2px solid white;border-radius:50%;object-fit:cover;flex:0 0 43px}
 .cm-avatar-profile{width:65px;height:65px;border:4px solid #fff;border-radius:50%;object-fit:cover;flex:0 0 65px;margin:-32px 0 0 18px;position:relative}
 @media(max-width:640px){.kp-cover{height:135px}.kp-profile-top{padding:0 19px 19px;margin-top:-43px;gap:13px;align-items:end}.kp-large{width:88px;height:88px;font-size:28px}.kp-profile-title h2{font-size:20px}.kp-profile-content{padding:0 18px 22px}.kp-two{grid-template-columns:1fr;gap:0}.kp-edit{padding:17px}.kp-photo-edit{align-items:start}}
+
+/* Acesso ao perfil pelo cabeçalho “Olá, professor!” */
+.teacher .teacher-profile-button{display:flex;align-items:center;gap:11px;cursor:pointer;background:transparent;border:1px solid transparent;border-radius:15px;padding:7px 10px;color:inherit;text-align:left;font:inherit}
+.teacher .teacher-profile-button:hover,.teacher .teacher-profile-button:focus-visible{background:#f3ecfd;border-color:#dac9ed}
+.teacher .teacher-profile-button:focus-visible{outline:3px solid #bb92e2;outline-offset:2px}
+.teacher .teacher-profile-button small{display:block;color:#8054ab}
+.teacher-profile-chevron{font-size:17px;color:#8a6aa8;margin-left:3px}
+@media(max-width:570px){.teacher .teacher-profile-button{gap:6px;padding:5px}.teacher .teacher-profile-button .avatar{width:34px;height:34px;flex:0 0 34px}.teacher .teacher-profile-button small{font-size:10px}.teacher-profile-chevron{display:none}}
