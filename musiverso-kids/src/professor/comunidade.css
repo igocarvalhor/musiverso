@@ -49,3 +49,6 @@
 @media(max-width:1260px){.cm-layout{grid-template-columns:minmax(175px,205px) minmax(0,1fr)}.cm-discover{display:none}}
 @media(max-width:920px){.cm-layout{grid-template-columns:minmax(0,1fr)}.cm-profile{display:none}.cm-hero{padding:22px}}
 @media(max-width:570px){.cm-hero{padding:17px 19px}.cm-hero h1{font-size:25px}.cm-hero-decoration{font-size:44px}.cm-switcher button{font-size:11px;padding:10px 7px;flex:1}.cm-switcher button span{display:block}.cm-editor{padding:13px}.cm-post-content{padding:10px 15px}.cm-post-header{padding:15px 14px 6px}.cm-filter-row{flex-direction:column}.cm-category{flex:auto}.cm-form-pair{grid-template-columns:1fr}.cm-form-footer{flex-direction:column;align-items:stretch}.cm-form-footer button{width:100%}.cm-hero p{font-size:12px}}
+
+/* Override the parent teacher sidebar's generic aside padding in nested community rails. */
+.cm-page .cm-rail{padding:0}
