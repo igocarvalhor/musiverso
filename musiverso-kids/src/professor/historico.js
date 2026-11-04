@@ -74,6 +74,7 @@ function exportCsv(){
  window.KidsFeedback?.show('Histórico preparado para exportação.','success');
 }
 document.addEventListener('click',event=>{
+ const shortcut=event.target.closest('[data-history-student]');if(shortcut){studentId=shortcut.dataset.historyStudent;open();return}
  if(event.target.closest('[data-history-tab]')){event.preventDefault();open();return}
  if(event.target.closest('[data-tab],[data-go]')){close();return}
  if(!active)return;
