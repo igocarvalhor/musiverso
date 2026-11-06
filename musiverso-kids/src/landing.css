@@ -49,3 +49,6 @@ body.landing{background:radial-gradient(circle at 80% 10%,#f4e8ff 0,transparent 
 @media(max-width:950px){.hero{padding-top:35px;min-height:auto}.hero-visual{max-width:610px}.music-world{min-height:425px}}
 @media(max-width:630px){.site-header{padding:12px 5%}.logo-mascot{width:44px;height:44px}.hero{padding-top:35px}.hero h1{font-size:clamp(44px,10vw,59px)}.hero-copy>p{font-size:16px}.music-world{min-height:370px;gap:13px}.world-sun{height:132px}.landing-hero-mascot{max-height:155px}.music-world-title{font-size:23px}.trail-item{font-size:33px}.world-caption{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.feature-card{transition:none}}
+
+/* Musiverso Kids sem mascote */
+.landing-music-symbol{display:block;font-size:clamp(95px,12vw,160px);filter:drop-shadow(0 12px 8px #55368a25);transform:rotate(-7deg)}.world-sun{width:100%;height:185px}@media(max-width:630px){.landing-music-symbol{font-size:98px}.world-sun{height:125px}}
