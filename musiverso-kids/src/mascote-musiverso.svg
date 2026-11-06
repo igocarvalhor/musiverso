@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 520" role="img" aria-labelledby="t d"><title id="t">Mascote do Musiverso</title><desc id="d">Rosto amarelo sorridente com grandes olhos e letras coloridas em volta.</desc>
+<defs><linearGradient id="sun" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffed8e"/><stop offset="1" stop-color="#ffda48"/></linearGradient><linearGradient id="orange" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff994f"/><stop offset="1" stop-color="#f5763e"/></linearGradient></defs>
+<g fill="#49bee5" font-family="DejaVu Sans,Arial,sans-serif" font-weight="900">
+<text x="80" y="205" font-size="87" transform="rotate(-29 80 205)">s</text>
+<text x="162" y="109" font-size="85" transform="rotate(-24 162 109)">i</text>
+<text x="230" y="87" font-size="106" transform="rotate(9 230 87)">e</text>
+<text x="353" y="140" font-size="95" transform="rotate(34 353 140)">v</text>
+<text x="31" y="331" font-size="100" transform="rotate(-12 31 331)">o</text>
+</g>
+<circle cx="270" cy="264" r="207" fill="url(#sun)"/>
+<g stroke="#141016" stroke-width="4.2">
+<path d="M157 242c-3-37 15-60 48-64 34-4 57 19 57 54v17c0 11-8 18-18 18h-68c-12 0-19-9-19-25Z" fill="white"/>
+<path d="M277 242c-2-37 16-61 49-64 32-3 54 18 55 53v18c0 11-8 18-18 18h-65c-13 0-21-9-21-25Z" fill="white"/>
+</g>
+<ellipse cx="214" cy="224" rx="37" ry="44" fill="#151113"/><ellipse cx="326" cy="225" rx="37" ry="44" fill="#151113"/>
+<circle cx="226" cy="203" r="14" fill="white"/><circle cx="338" cy="203" r="14" fill="white"/>
+<path d="M157 280q4-24 27-25M383 281q-8-20-21-22" stroke="#171015" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M167 286c37 7 64 30 109 22 31-6 64-27 93-19 17 5 28 17 23 41-6 41-65 101-129 99-58-2-109-54-111-96-1-23 4-40 15-47Z" fill="#111014"/>
+<path d="M199 297c40 11 66 23 105 15 19-3 35-10 49-14-14 24-42 34-77 34-39 0-64-15-77-35Z" fill="white"/>
+<path d="M218 400c23-21 39-27 55-18 15-16 40-16 57-1-29 26-72 43-112 19Z" fill="#f27d86"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" font-weight="900" fill="url(#orange)">
+<text x="75" y="443" font-size="127" transform="rotate(12 75 443)">m</text>
+<text x="248" y="489" font-size="125" transform="rotate(-16 248 489)">u</text>
+<text x="386" y="404" font-size="103" transform="rotate(-31 386 404)">s</text>
+<text x="449" y="270" font-size="93" transform="rotate(-59 449 270)">i</text>
+</g>
+</svg>
