@@ -18,3 +18,34 @@
 .google-login-btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #dfd4e9}
 .google-login-btn:disabled{opacity:.6;cursor:wait}
 @media(prefers-reduced-motion:reduce){.google-login-btn{transition:none}}
+
+/* Musiverso Kids 2.0 — linguagem de mundos ilustrados e aventuras */
+:root{--purple:#6031a8;--bright:#8b44d7;--ink:#322050;--muted:#746384;--bg:#faf9ff}
+body.landing{background:radial-gradient(circle at 80% 10%,#f4e8ff 0,transparent 35%),#faf9ff}
+.site-header{max-width:1450px;padding-top:15px;padding-bottom:15px}
+.logo{gap:8px}
+.logo-mascot{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 4px 4px #733fba20)}
+.nav-login{background:linear-gradient(180deg,#8f4be1,#7431c2);color:#fff;border-color:#9b5cea;box-shadow:0 5px 0 #532287}
+.nav-login:hover{background:#7130c6;color:white}
+.hero{max-width:1450px;min-height:660px;gap:26px;padding-top:32px;padding-bottom:70px}
+.hero h1{font-size:clamp(47px,5.7vw,84px);line-height:1.03;color:#39235c}
+.hero h1 span{color:#8b45d6;text-shadow:0 4px 0 #e5cffb}
+.hero-copy>p{font-size:19px;color:#6c5b83}
+.hero .eyebrow{border:1px solid #e3d2ff;background:#f0e7ff;color:#713bb0}
+.hero-visual{padding:38px 18px}
+.music-world{background:radial-gradient(circle at 75% 13%,#fff9bf 0 8%,transparent 8.2%),radial-gradient(ellipse at 50% 100%,#b3efd0 0 24%,transparent 24.5%),linear-gradient(155deg,#fce1fa 0,#d8e5ff 50%,#ddfae5 100%);border:9px solid white;box-shadow:0 11px 0 #e7ddf1,0 28px 50px #693a9c19;transform:rotate(1.5deg);border-radius:48px;min-height:475px}
+.world-sun{font-size:initial;color:inherit;width:min(52%,270px);height:200px;display:flex;justify-content:center;align-items:center}
+.landing-hero-mascot{display:block;max-height:215px;max-width:100%;object-fit:contain;filter:drop-shadow(0 12px 10px #4f337a27)}
+.music-world-title{font:800 30px 'Baloo 2';color:#56328c;margin-top:-10px}
+.world-trail{position:relative;z-index:1}
+.trail-item{box-shadow:0 6px 0 #d5bff0,0 12px 18px #55338b16;border:2px solid #f7f0ff;border-radius:24px}
+.world-caption{font-size:15px}
+.floating{font-size:49px}
+.feature-card{border:3px solid white;box-shadow:0 7px 0 #e6d8f3,0 14px 24px #4d2a7911;border-radius:30px;transition:transform .2s}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-emoji{border-radius:24px}
+.audience-card{background:linear-gradient(135deg,#e5dcff,#e2f7ed);border:5px solid white;box-shadow:0 8px 0 #e8dff3;border-radius:36px}
+.cta{background:radial-gradient(circle at 15% 30%,#bc84f277,transparent 26%),linear-gradient(130deg,#6730b7,#964de4);border-top:6px solid #e7d8fa}
+@media(max-width:950px){.hero{padding-top:35px;min-height:auto}.hero-visual{max-width:610px}.music-world{min-height:425px}}
+@media(max-width:630px){.site-header{padding:12px 5%}.logo-mascot{width:44px;height:44px}.hero{padding-top:35px}.hero h1{font-size:clamp(44px,10vw,59px)}.hero-copy>p{font-size:16px}.music-world{min-height:370px;gap:13px}.world-sun{height:132px}.landing-hero-mascot{max-height:155px}.music-world-title{font-size:23px}.trail-item{font-size:33px}.world-caption{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.feature-card{transition:none}}
