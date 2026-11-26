@@ -1,8 +1,27 @@
 // No browser key has administrative privileges. Every request is verified by Auth.
 const allowedOrigins = new Set(['https://musiverso-kids.vercel.app', 'https://musiverso-kids.igocarvalhor.chatgpt.site']);
+const maxBodyBytes = 10000;
+async function readBody(req: Request): Promise<string | null> {
+  if (Number(req.headers.get('content-length')) > maxBodyBytes) return null;
+  if (!req.body) return '';
+  const reader = req.body.getReader();
+  const decoder = new TextDecoder();
+  let size = 0;
+  let text = '';
+  while (true) {
+    const {value, done} = await reader.read();
+    if (done) return text + decoder.decode();
+    size += value.byteLength;
+    if (size > maxBodyBytes) {
+      await reader.cancel();
+      return null;
+    }
+    text += decoder.decode(value, {stream:true});
+  }
+}
 export async function handler(req: Request): Promise<Response> {
   const origin = req.headers.get('origin') || '';
-  const headers: Record<string,string> = {'Content-Type':'application/json','Cache-Control':'no-store','Vary':'Origin','Access-Control-Allow-Headers':'authorization, apikey, content-type, x-client-info','Access-Control-Allow-Methods':'GET, POST, DELETE, OPTIONS'};
+  const headers: Record<string,string> = {'Content-Type':'application/json','X-Content-Type-Options':'nosniff','Cache-Control':'no-store','Vary':'Origin','Access-Control-Allow-Headers':'authorization, apikey, content-type, x-client-info','Access-Control-Allow-Methods':'GET, POST, DELETE, OPTIONS'};
   if (allowedOrigins.has(origin)) headers['Access-Control-Allow-Origin'] = origin;
   const reply = (status: number, body: unknown) => new Response(JSON.stringify(body), {status,headers});
   if (origin && !allowedOrigins.has(origin)) return reply(403,{error:'Origem não autorizada.'});
@@ -21,9 +40,17 @@ export async function handler(req: Request): Promise<Response> {
     if (!user.id || user.app_metadata?.musiverso_kids_admin !== true) return reply(403,{error:'Acesso exclusivo do administrador.'});
     const adminHeaders = {apikey:secret,Authorization:'Bearer '+secret,'Content-Type':'application/json'};
     if (req.method === 'POST' || req.method === 'DELETE') {
-      const raw = await req.text();
-      if(raw.length>10000) return reply(413,{error:'Solicitação muito grande.'});
-      let body: any;try{body=JSON.parse(raw)}catch{return reply(400,{error:'Dados inválidos.'})}
+      const contentType = req.headers.get('content-type')?.split(';', 1)[0].trim().toLowerCase();
+      if (contentType !== 'application/json') return reply(415,{error:'Use JSON.'});
+      const raw = await readBody(req);
+      if (raw === null) return reply(413,{error:'Solicitação muito grande.'});
+      let body: any;
+      try {
+        body = JSON.parse(raw);
+        if (!body || typeof body !== 'object' || Array.isArray(body)) throw Error();
+      } catch {
+        return reply(400,{error:'Dados inválidos.'});
+      }
       if(req.method==='POST'){
         const email=typeof body.email==='string'?body.email.trim().toLowerCase():'';
         const name=typeof body.name==='string'?body.name.trim():'';
