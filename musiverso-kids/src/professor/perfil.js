@@ -74,6 +74,39 @@ document.addEventListener('click',e=>{
  if(e.target.closest('[data-kp-cancel]')){editing=false;render()}
  if(e.target.closest('[data-kp-back]')){document.querySelector('[data-community-tab]')?.click()}
 });
+const avatarTypes = {'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+const avatarMaxBytes = 2 * 1024 * 1024;
+async function prepareAvatar(file) {
+ const message = 'Escolha uma imagem JPG, PNG ou WebP válida de até 2 MB.';
+ if (!Object.hasOwn(avatarTypes, file.type) || file.size > avatarMaxBytes) throw Error(message);
+ const header = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+ const matches = (offset, bytes) => bytes.every((byte, index) => header[offset + index] === byte);
+ const hasExpectedSignature = {
+  'image/jpeg': matches(0, [255, 216, 255]),
+  'image/png': matches(0, [137, 80, 78, 71, 13, 10, 26, 10]),
+  'image/webp': matches(0, [82, 73, 70, 70]) && matches(8, [87, 69, 66, 80])
+ };
+ if (!hasExpectedSignature[file.type]) throw Error(message);
+ const source = URL.createObjectURL(file);
+ try {
+  const image = new Image();
+  image.src = source;
+  await image.decode();
+  if (!image.naturalWidth || !image.naturalHeight || image.naturalWidth * image.naturalHeight > 25000000) throw Error(message);
+  const scale = Math.min(1, 512 / Math.max(image.naturalWidth, image.naturalHeight));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+  canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+  canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+  const photo = await new Promise(resolve => canvas.toBlob(resolve, file.type, 0.9));
+  if (!photo || !Object.hasOwn(avatarTypes, photo.type) || photo.size > avatarMaxBytes) throw Error(message);
+  return photo;
+ } catch {
+  throw Error(message);
+ } finally {
+  URL.revokeObjectURL(source);
+ }
+}
 document.addEventListener('submit',async e=>{
  if(!active||e.target.id!=='kpForm')return;
  e.preventDefault();if(busy)return;
@@ -85,10 +118,9 @@ document.addEventListener('submit',async e=>{
  try{
   const current=profileFor(self.id);data.avatar_path=current?.avatar_path||null;
   if(file&&file.size){
-   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>2097152)throw Error('Escolha uma imagem JPG, PNG ou WebP de até 2 MB.');
-   const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
-   const path=self.id+'/avatar.'+ext;
-   const {error}=await db.storage.from(BUCKET).upload(path,file,{upsert:true,contentType:file.type,cacheControl:'60'});
+   const photo = await prepareAvatar(file);
+   const path = self.id + '/avatar.' + avatarTypes[photo.type];
+   const {error}=await db.storage.from(BUCKET).upload(path,photo,{upsert:true,contentType:photo.type,cacheControl:'60'});
    if(error)throw error;
    data.avatar_path=path;avatars.delete(path);
   }

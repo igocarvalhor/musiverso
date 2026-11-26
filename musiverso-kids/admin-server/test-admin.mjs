@@ -2,9 +2,9 @@ import {readFileSync} from 'node:fs';import {stripTypeScriptTypes} from 'node:mo
 const source=stripTypeScriptTypes(readFileSync(new URL('./kids-admin.ts',import.meta.url),'utf8')).replace('export async function','async function');
 const own='11111111-1111-4111-8111-111111111111',other='22222222-2222-4222-8222-222222222222';
 let handler,calls=[],identity={id:own,app_metadata:{musiverso_kids_admin:true}},identityStatus=200,target={id:other,app_metadata:{musiverso_kids_account:true}};
-const context=vm.createContext({Request,Response,URL,Set,Number,JSON,fetch:async(url,options)=>{calls.push({url,options});let payload;if(url.endsWith('/user'))return new Response(JSON.stringify(identity),{status:identityStatus});if(url.includes('/rest/v1/'))payload=[];else if(url.endsWith('/users/'+other))payload=target;else if(options.method==='POST')payload={id:other,email:'new@example.test'};else payload={users:[{id:other,email:'demo@example.test',encrypted_password:'NEVER',user_metadata:{display_name:'<script>name</script>'},app_metadata:{providers:['google'],musiverso_kids_account:true}}]};return new Response(JSON.stringify(payload))},Deno:{env:{get:n=>({SUPABASE_URL:'https://test.invalid',SUPABASE_SERVICE_ROLE_KEY:'SERVER_SECRET'})[n]},serve:h=>handler=h}});
+const context=vm.createContext({Request,Response,TextDecoder,URL,Set,Number,JSON,fetch:async(url,options)=>{calls.push({url,options});let payload;if(url.endsWith('/user'))return new Response(JSON.stringify(identity),{status:identityStatus});if(url.includes('/rest/v1/'))payload=[];else if(url.endsWith('/users/'+other))payload=target;else if(options.method==='POST')payload={id:other,email:'new@example.test'};else payload={users:[{id:other,email:'demo@example.test',encrypted_password:'NEVER',user_metadata:{display_name:'<script>name</script>'},app_metadata:{providers:['google'],musiverso_kids_account:true}}]};return new Response(JSON.stringify(payload))},Deno:{env:{get:n=>({SUPABASE_URL:'https://test.invalid',SUPABASE_SERVICE_ROLE_KEY:'SERVER_SECRET'})[n]},serve:h=>handler=h}});
 vm.runInContext(source,context);
-async function test(name,status,{headers={authorization:'Bearer valid'},query='',method='GET',body}={}){calls=[];const r=await handler(new Request('https://api.invalid/kids-admin'+query,{headers,method,...(body?{body:JSON.stringify(body)}:{})}));assert.equal(r.status,status,name);return r}
+async function test(name,status,{headers={authorization:'Bearer valid'},query='',method='GET',body}={}){calls=[];const r=await handler(new Request('https://api.invalid/kids-admin'+query,{headers:body===undefined?headers:{'content-type':'application/json',...headers},method,...(body===undefined?{}:{body:JSON.stringify(body)})}));assert.equal(r.status,status,name);return r}
 await test('No session',401,{headers:{}});assert.equal(calls.length,0);
 await test('Disallowed origin',403,{headers:{origin:'https://evil.invalid',authorization:'Bearer valid'}});assert.equal(calls.length,0);
 identity={id:own,app_metadata:{},user_metadata:{musiverso_kids_admin:true}};await test('Forged role denied',403);assert.equal(calls.length,1);
@@ -17,5 +17,11 @@ await test('Self delete denied',403,{method:'DELETE',body:{user_id:own}});assert
 target={id:other,app_metadata:{musiverso_kids_admin:true}};await test('Other admin protected',403,{method:'DELETE',body:{user_id:other}});
 target={id:other,app_metadata:{}};await test('Unrelated app account protected',403,{method:'DELETE',body:{user_id:other}});
 target={id:other,app_metadata:{musiverso_kids_account:true}};await test('Kids account delete',200,{method:'DELETE',body:{user_id:other}});assert.equal(calls.at(-1).options.method,'DELETE');
-console.log('14 admin authorization, create/delete and data-exposure checks passed.');
+await test('Null payload',400,{method:'POST',body:null});
+await test('Array payload',400,{method:'DELETE',body:[]});
+await test('Unexpected media type',415,{method:'POST',body:{},headers:{authorization:'Bearer valid','content-type':'text/plain'}});
+await test('UTF-8 byte limit',413,{method:'POST',body:{name:'á'.repeat(5100)}});
+assert.equal(calls.length,1,'Rejected bodies never reach the admin API');
+assert.equal(result.headers.get('x-content-type-options'),'nosniff');
+console.log('Admin authorization, create/delete, data exposure and bounded JSON checks passed.');
 new vm.Script(readFileSync(new URL('../src/admin-ui.js',import.meta.url),'utf8'));console.log('Admin UI syntax passed.');
